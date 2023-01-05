@@ -1,5 +1,6 @@
 const Users = require('../context/UserContext')
 const userValidation = require('../utils/usersValidation')
+const bcrypt = require('bcrypt')
 const getAll = (req, res) => {
     Users.findAll({
         attributes : {exclude : ["createdAt", "updatedAt"]}
@@ -27,6 +28,8 @@ const createOne = (req, res) => {
     const {error} = userValidation(body)
     if (error) return res.status(401).json(error.details[0].message)
 
+    const hash = bcrypt.genSaltSync(10)
+    body.password = bcrypt.hashSync(body.password, hash)
     Users.create({ ... body})
     .then(() => {
         res.status(201).json({msg : "Les ressources ont bien était créer"})
