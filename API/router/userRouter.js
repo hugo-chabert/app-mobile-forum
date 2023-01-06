@@ -1,19 +1,30 @@
 const express = require('express');
+const router = express.Router();
 const { getAll, getOne, createOne, updateOne, deleteOne, login } = require( '../services/userApi');
-router = express.Router();
 
-var app = express()
+router.post("/users/create", (req, res) => {
+    createOne(req, res);
+});
 
-router.get("/getAll", getAll);
+router.get("/users/all", (req, res) => {
+    getAll(req, res)
+});
 
-router.get("/getOne/:id", getOne);
+router.get("/users/all/?id={id}", (req, res) => {
+    getOne(req, res);
+});
 
-router.post("/createOne", createOne);
+router.put("/users/update/?id={id}", (req, res) => {
+    updateOne(req, res);
+});
 
-router.put("/updateOne/:id", updateOne);
+router.delete("/users/delete/?id={id}", (req, res) => {
+    deleteOne(req, res);
+});
 
-router.delete("/deleteOne/:id", deleteOne);
+router.post("/login", (req, res) => {
+    login(req, res);
+});
 
-router.post("/login", login);
 
 module.exports = router;
