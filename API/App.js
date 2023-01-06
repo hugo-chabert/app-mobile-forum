@@ -4,6 +4,7 @@ const port = 3000
 
 var usersRouter = require('./router/userRouter');
 var postsRouter = require('./router/postRouter');
+var commentsRouter = require('./router/commentRouter');
 const sequelize = require('./config/database');
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
@@ -11,6 +12,7 @@ const sequelize = require('./config/database');
 app.use(express.json())
 app.use(usersRouter);
 app.use(postsRouter);
+app.use(commentsRouter);
 
 sequelize.sync()
 .then((console.log('Connexion database done')))
