@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const postRouter = require('./routes/postRouter')
+const postRouter = require('./routes/commentRouter')
 const db = require('./config/database')
 
 const port = 3000

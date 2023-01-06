@@ -1,8 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-// const seq = new Sequelize('mysql::memory:');
 const db = require("../config/database");
 
-const Posts = db.define('posts', {
+const Comments = db.define('comments', {
 
     id: {
         type: Sequelize.INTEGER.UNSIGNED,
@@ -10,16 +9,7 @@ const Posts = db.define('posts', {
         autoIncrement: true,
         allowNull: false
     },
-    titre: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    // PAS DE CHAMP 'DATE', SEQUELIZE CREE 'createdAt'
-    // date: {
-    //     type: DataTypes.DATE,
-    //     allowNull: false
-    // },
-    message: {
+    text: {
         type: Sequelize.TEXT,
         allowNull: false
     },
@@ -27,6 +17,10 @@ const Posts = db.define('posts', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    id_post: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    }
 })
 
-module.exports = Posts;
+module.exports = Comments;
