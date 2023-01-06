@@ -8,7 +8,7 @@ const dbInfo = {
     dialect: 'mysql'
 };
 
-const seq = new Sequelize(
+const db = new Sequelize(
     dbInfo.database, 
     dbInfo.username, 
     dbInfo.password,
@@ -19,7 +19,7 @@ const seq = new Sequelize(
 );
 
 try {
-    seq.authenticate();
+    db.authenticate();
     console.log("Successfully connected!");
 }
 catch(e) {
@@ -27,5 +27,4 @@ catch(e) {
 }
 
 
-
-module.exports = seq;
+module.exports = db;

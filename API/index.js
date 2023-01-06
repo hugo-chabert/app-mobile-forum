@@ -1,0 +1,17 @@
+const express = require('express')
+const app = express()
+
+const postRouter = require('./routes/postRouter')
+const db = require('./config/database')
+
+app.use(express.json())
+app.use(postRouter)
+
+
+app.get('/', (req, res) => {
+    res.send('Hello world')
+})
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000')
+})

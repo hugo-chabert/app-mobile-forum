@@ -1,10 +1,10 @@
-const { Sequelize, DataTypes } = require("sequelize/types");
+const { Sequelize, DataTypes } = require('sequelize');
 const seq = new Sequelize('mysql::memory:');
 
 const Post = seq.define('posts', {
 
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false

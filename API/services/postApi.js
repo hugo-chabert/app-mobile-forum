@@ -1,4 +1,4 @@
-const posts = require('../../API/context/post');
+const posts = require('../context/post');
 
 //#region CREATE
 
