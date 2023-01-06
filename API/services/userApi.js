@@ -3,6 +3,7 @@ const userValidation = require('../utils/usersValidation')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config();
+
 const getAll = (req, res) => {
     Users.findAll({
         attributes : {exclude : ["createdAt", "updatedAt"]}

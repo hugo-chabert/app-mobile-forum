@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const port = 3000;
 
-const { 
-    createPost, 
-    getAllPosts, 
-    getPostByID, 
+const {
+    createPost,
+    getAllPosts,
+    getPostByID,
     getAllPostsByUserID,
     getPostByTitle,
     updatePost,

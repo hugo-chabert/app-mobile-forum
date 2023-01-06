@@ -1,6 +1,6 @@
-var express = require('express');
+const express = require('express');
 const { getAll, getOne, createOne, updateOne, deleteOne, login } = require( '../services/userApi');
- router = express.Router();
+router = express.Router();
 
 var app = express()
 
@@ -15,4 +15,5 @@ router.put("/updateOne/:id", updateOne);
 router.delete("/deleteOne/:id", deleteOne);
 
 router.post("/login", login);
+
 module.exports = router;

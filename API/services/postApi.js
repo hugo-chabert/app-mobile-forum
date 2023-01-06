@@ -1,5 +1,5 @@
 const posts = require('../context/PostContext');
-const { post } = require('../routes/postRouter');
+const { post } = require('../router/postRouter');
 
 //#region CREATE
 
