@@ -23,7 +23,7 @@ router.get('/posts/all', (req, res) => {
     getAllPosts(req, res);
 })
 
-router.get('/posts/{id}', (req, res) => {
+router.get('/posts/all?id={id}', (req, res) => {
     getPostByID(req, res);
 })
 
@@ -36,12 +36,12 @@ router.get('/posts/all?title={title}', (req, res) => {
 })
 
 
-router.put('/posts/{id}', (req, res) => {
+router.put('/posts/', (req, res) => {
     updatePost(req, res);
 })
 
 
-router.delete('/posts/{id}', (req, res) => {
+router.delete('/posts/', (req, res) => {
     deletePost(req, res);
 })
 

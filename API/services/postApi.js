@@ -1,4 +1,5 @@
 const posts = require('../context/PostContext');
+const { post } = require('../routes/postRouter');
 
 //#region CREATE
 
@@ -13,37 +14,41 @@ function createPost(req, res) {
 //#region READ
 
 function getAllPosts(req, res) {
-    res.send(
-        posts.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] }
-        })
-    )
+    posts.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
+    .then((posts) => {
+        res.json(posts);
+    })
 }
 
 function getPostByID(req, res) {
-    res.send(
-        posts.findByPk(req.params.id, {
-            attributes: { exclude: ['createdAt', 'updatedAt'] }
-        })
-    )
+    posts.findByPk(req.params.id, {
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
+    .then((posts) => {
+        res.json(posts);
+    })
 }
 
 function getAllPostsByUserID(req, res) {
-    res.send(
-        posts.findAll({
-            where: { id_user: req.params.id_user },
-            attributes : { exclude: ['createdAt', 'updatedAt' ] }
-        })
-    )
+    posts.findAll({
+        where: { id_user: req.params.id_user },
+        attributes : { exclude: ['createdAt', 'updatedAt' ] }
+    })
+    .then((posts) => {
+        res.json(posts);
+    })
 }
 
 function getPostByTitle(req, res) {
-    res.send(
-        posts.findAll({
-            where: { titre: req.params.titre },
-            attributes : { exclude: ['createdAt', 'updatedAt' ] }
-        })
-    )
+    posts.findAll({
+        where: { titre: req.params.titre },
+        attributes : { exclude: ['createdAt', 'updatedAt' ] }
+    })
+    .then((posts) => {
+        res.json(posts);
+    })
 }
 
 //#endregion
@@ -51,13 +56,14 @@ function getPostByTitle(req, res) {
 //#region UPDATE
 
 function updatePost(req, res) {
-    posts.findByPk(req.params.id)
-    .then(p => {
-        p.update({
-            titre: req.body.newTitre,
-            message: req.body.newMessage
-        })
+    posts.update({
+        titre: req.body.newTitre,
+        message: req.body.newMessage
+    }, {
+        where: { id: req.body.id },
+        omitNull: true
     })
+    .then(() => res.send("Post updated!"))
 }
 
 //#endregion
@@ -67,9 +73,10 @@ function updatePost(req, res) {
 function deletePost(req, res) {
     posts.destroy({
         where: {
-            id: req.params.id
+            id: req.body.id
         }
     })
+    .then(() => res.send("Post deleted!"))
 }
 
 //#endregion
