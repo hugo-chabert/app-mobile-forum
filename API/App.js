@@ -3,14 +3,18 @@ const app = express()
 const port = 3000
 
 var usersRouter = require('./router/userRouter');
-const db = require('./config/database');
+var postsRouter = require('./router/postRouter');
+var commentsRouter = require('./router/commentRouter');
+const sequelize = require('./config/database');
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
 app.use(express.json())
 app.use(usersRouter);
+app.use(postsRouter);
+app.use(commentsRouter);
 
-db.sync()
+sequelize.sync()
 .then((console.log('Connexion database done')))
 .catch(error => console.log(error))
 app.listen(port, () => {
