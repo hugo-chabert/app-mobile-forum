@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
     'akibatown',
     'root',
-    '',
+    'root',
     {
         host: 'localhost',
         dialect: 'mysql'
