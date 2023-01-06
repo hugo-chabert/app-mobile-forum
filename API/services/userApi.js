@@ -40,26 +40,44 @@ const createOne = (req, res) => {
     .catch(error => res .status(500).json(error))
 };
 
-const updateOne = (req, res) => {
-    const {id} = req.params
-    const {body} = req;
+// const updateOne = (req, res) => {
+//     const {id} = req.params
+//     const {body} = req;
 
-    Users.findByPk(id)
-    .then(users => {
-        if(!users) return res.status(404).json({msg : "Not found"})
-        users.username = body.username
-        // users.firstname = body.firstname
-        // users.lastname = body.lastname
-        // users.email = body.email
-        // users.password = body.password
-        // users.profile_picture = body.profile_picture
-        // users.favorite_anime = body.favorite_anime
-        users.save()
-        .then(() => res.status(201).json({msg : "ressources modifier avec succés"}))
-        .catch(error => res .status(500).json(error))
+//     Users.findByPk(id)
+//     .then(users => {
+//         if(!users) return res.status(404).json({msg : "Not found"})
+//         users.username = body.username
+//         users.firstname = body.firstname
+//         users.lastname = body.lastname
+//         users.email = body.email
+//         users.password = body.password
+//         users.profile_picture = body.profile_picture
+//         users.favorite_anime = body.favorite_anime
+//         users.save()
+//         .then(() => res.status(201).json({msg : "ressources modifier avec succés"}))
+//         .catch(error => res .status(500).json(error))
+//     })
+//     .catch(error => res .status(500).json(error))
+// }
+
+function updateOne(req, res){
+    Users.update({
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password,
+        profile_picture: req.body.profile_picture,
+        favorite_anime: req.body.favorite_anime,
+    }, {
+        where: { id: req.body.id },
+        omitNull: true
     })
+    .then(() => res.send("User updated!"))
     .catch(error => res .status(500).json(error))
 }
+
 const deleteOne = (req, res) => {
     const {id} = req.params
     Users.destroy({where : {id :id }})
