@@ -4,6 +4,8 @@ const app = express()
 const postRouter = require('./routes/postRouter')
 const db = require('./config/database')
 
+const port = 3000
+
 app.use(express.json())
 app.use(postRouter)
 
