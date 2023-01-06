@@ -1,30 +1,26 @@
 const { Sequelize } = require("sequelize");
 
+
 const dbInfo = {
     database: 'akibatown',
     username: 'root',
-    password: '',
+    password: 'root',
     hostname: 'localhost',
     dialect: 'mysql'
 };
 
 const db = new Sequelize(
-    dbInfo.database, 
-    dbInfo.username, 
-    dbInfo.password,
+    'akibatown', 
+    'root', 
+    'root',
     {
-        host: dbInfo.hostname,
-        dialect: dbInfo.dialect
+        host: 'localhost',
+        dialect: 'mysql'
     }
-);
-
-try {
-    db.authenticate();
-    console.log("Successfully connected!");
-}
-catch(e) {
-    console.error("Unable to connect to database: " + e);
-}
+)
 
 
-module.exports = db;
+db.authenticate()
+.then(() => db.sync({ force: false }))
+.then(() => module.exports = db)
+.catch(e => console.error("Unable to connect to database: " + e));
