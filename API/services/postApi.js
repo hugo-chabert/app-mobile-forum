@@ -1,13 +1,11 @@
-const posts = require('../context/post');
+const posts = require('../context/PostContext');
 
 //#region CREATE
 
 function createPost(req, res) {
-    posts.create({
-        title: req.body.title,
-        message: req.body.message,
-        userID: req.body.userID
-    })
+    const { body } = req
+    posts.create({...body})
+    .then(() => res.send("Post créé!"))
 }
 
 //#endregion
@@ -33,7 +31,7 @@ function getPostByID(req, res) {
 function getAllPostsByUserID(req, res) {
     res.send(
         posts.findAll({
-            where: { userID: req.params.userID },
+            where: { id_user: req.params.id_user },
             attributes : { exclude: ['createdAt', 'updatedAt' ] }
         })
     )
@@ -42,7 +40,7 @@ function getAllPostsByUserID(req, res) {
 function getPostByTitle(req, res) {
     res.send(
         posts.findAll({
-            where: { title: req.params.title },
+            where: { titre: req.params.titre },
             attributes : { exclude: ['createdAt', 'updatedAt' ] }
         })
     )
@@ -56,7 +54,7 @@ function updatePost(req, res) {
     posts.findByPk(req.params.id)
     .then(p => {
         p.update({
-            title: req.body.newTitle,
+            titre: req.body.newTitre,
             message: req.body.newMessage
         })
     })

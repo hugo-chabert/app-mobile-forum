@@ -2,16 +2,16 @@ const { Sequelize, DataTypes } = require('sequelize');
 // const seq = new Sequelize('mysql::memory:');
 const db = require("../config/database");
 
-const Post = db.define('posts', {
+const Posts = db.define('posts', {
 
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    title: {
-        type: DataTypes.STRING,
+    titre: {
+        type: Sequelize.STRING,
         allowNull: false
     },
     // PAS DE CHAMP 'DATE', SEQUELIZE CREE 'createdAt'
@@ -20,13 +20,13 @@ const Post = db.define('posts', {
     //     allowNull: false
     // },
     message: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false
     },
-    userID: {
-        type: DataTypes.INTEGER,
+    id_user: {
+        type: Sequelize.INTEGER,
         allowNull: false
     },
 })
 
-module.exports = Post;
+module.exports = Posts;
