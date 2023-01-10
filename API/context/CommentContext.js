@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require("../config/database");
+const Posts = require('./PostContext');
+const Users = require('./UserContext');
 
 const Comments = db.define('comments', {
 
@@ -22,5 +24,8 @@ const Comments = db.define('comments', {
         allowNull: false
     }
 })
+
+Comments.belongsTo(Posts)
+Comments.belongsTo(Users)
 
 module.exports = Comments;
