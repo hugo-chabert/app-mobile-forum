@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 // const seq = new Sequelize('mysql::memory:');
 const db = require("../config/database");
+const Users = require('./UserContext');
+const Comments = require('./CommentContext');
 
 const Posts = db.define('posts', {
 
@@ -28,5 +30,8 @@ const Posts = db.define('posts', {
         allowNull: false
     },
 })
+
+Posts.belongsTo(Users)
+Posts.hasMany(Comments)
 
 module.exports = Posts;

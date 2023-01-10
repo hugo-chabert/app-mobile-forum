@@ -1,5 +1,7 @@
 const sequelize = require('sequelize');
 const db = require('../config/database');
+const Posts = require('./PostContext');
+const Comments = require('./CommentContext');
 // const {dataTypes} = sequelize;
 
 const Users = db.define('users', {
@@ -38,5 +40,8 @@ const Users = db.define('users', {
         allowNull : true
     },
 })
+
+Users.hasMany(Posts)
+Users.hasMany(Comments)
 
 module.exports = Users
