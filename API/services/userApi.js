@@ -39,6 +39,8 @@ function createOne(req, res) {
 }
 
 function updateOne(req, res){
+    const { error } = userValidation(body)
+    if (error) return res.status(401).json(error.details[0].message)
     Users.update({
         username: req.body.username,
         firstname: req.body.firstname,
@@ -68,6 +70,8 @@ function deleteOne(req, res){
 
 function login(req, res) {
     const { body } = req
+    const { error } = userValidation(body)
+    if (error) return res.status(401).json(error.details[0].message)
     Users.findOne({ where: { email: body.email } })
     .then(users => {
         if (!users) res.status(400).json({
