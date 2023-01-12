@@ -1,4 +1,4 @@
-const posts = require('../context/PostContext');
+const posts = require('../models/PostContext');
 const { post } = require('../router/postRouter');
 
 //#region CREATE

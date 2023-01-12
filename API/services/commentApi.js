@@ -1,4 +1,4 @@
-const comments = require('../context/CommentContext');
+const comments = require('../models/CommentContext');
 
 //#region CREATE
 

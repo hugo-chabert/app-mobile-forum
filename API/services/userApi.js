@@ -1,4 +1,4 @@
-const Users = require('../context/UserContext')
+const Users = require('../models/UserContext')
 const userValidation = require('../utils/usersValidation')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
