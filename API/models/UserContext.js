@@ -1,4 +1,5 @@
 const sequelize = require('sequelize');
+const { default: isEmail } = require('validator/lib/isEmail');
 const db = require('../config/database');
 // const {dataTypes} = sequelize;
 
@@ -7,27 +8,73 @@ const Users = db.define('users', {
         type : sequelize.INTEGER.UNSIGNED,
         primaryKey : true,
         autoIncrement: true,
-        allowNull : false
+        allowNull : false,
     },
     username : {
         type : sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        validate : {
+            notNull: {
+                msg: 'Please enter your username'
+            },
+            is : {
+                arg : /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/i,
+                msg : "le champ n'est pas valide"
+            }
+        }
     },
     firstname : {
         type : sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        validate : {
+            notNull: {
+                msg: 'Please enter your firstname'
+            },
+            is : {
+                arg : /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/i,
+                msg : "le champ n'est pas valide"
+            }
+        }
     },
     lastname : {
         type : sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        validate : {
+            notNull: {
+                msg: 'Please enter your lastname'
+            },
+            is : {
+                arg : /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/i,
+                msg : "le champ n'est pas valide"
+            }
+        }
     },
     email : {
         type : sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        isEmail : true,
+        validate : {
+            notNull: {
+                msg: 'Please enter your email'
+            },
+            is : {
+                arg : /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+                msg : "le champ n'est pas valide"
+            }
+        }
     },
     password : {
         type : sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        validate : {
+            notNull: {
+                msg: 'Please enter your password'
+            },
+            is : {
+                arg : /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/im,
+                msg : "le champ n'est pas valide"
+            }
+        }
     },
     profile_picture : {
         type : sequelize.STRING,
