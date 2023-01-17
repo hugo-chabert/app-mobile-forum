@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Image, ImageBackground } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image, ImageBackground, ScrollView, SafeAreaView } from 'react-native';
 
 import backgroundStyle from '../constants/BackgroundStyle';
 
@@ -10,8 +10,9 @@ const LandingPage = ({ navigation }) => {
                 source={require('../assets/images/background.png')}
                 style={backgroundStyle.bg}
             ></ImageBackground>
+
             <View style={styles.landingPage}>
-                <Image 
+                <Image
                     source={require('../assets/images/AkibaTownLogo.png')}
                     style={styles.bigLogo}
                 />
@@ -20,39 +21,44 @@ const LandingPage = ({ navigation }) => {
                 </Text>
 
 
-                <View style={styles.buttonsAndLabels}>
+                <View style={{
+                    width: "80%",
+                    margin: 'auto',
+                    alignItems: 'center',
+                }}>
                     <Text style={styles.normalText}>
                         Accède directement à tous les forums juste ici !
                     </Text>
-                    <Button 
-                        title='Accueil' 
-                        onPress={() => {}}
+                    <Pressable
+                        onPress={() => { }}
                         style={styles.standardButtons}
-                    />
+                    ><Text style={styles.buttonText}>Accueil</Text></Pressable>
                 </View>
 
-                <View>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}>
                     <View style={styles.buttonsAndLabels}>
                         <Text style={styles.normalText}>
                             Déjà membre ? Connecte-toi dès maintenant !
                         </Text>
-                        <Button 
-                            title='Connexion' 
-                            onPress={() => {}}
-                            co
+                        <Pressable
+                            onPress={() => { }}
                             style={styles.standardButtons}
-                        />
+                        ><Text style={styles.buttonText}>Connexion</Text></Pressable>
                     </View>
 
                     <View style={styles.buttonsAndLabels}>
                         <Text style={styles.normalText}>
                             Tu n'as pas encore de compte ? Qu'est-ce que tu attends pour nous rejoindre ?!
                         </Text>
-                        <Button 
-                            title='Inscription' 
-                            onPress={() => {}}
+                        <Pressable
+                            onPress={() => { }}
                             style={styles.standardButtons}
-                        />
+                        ><Text style={styles.buttonText}>Inscription</Text></Pressable>
                     </View>
                 </View>
             </View>
@@ -64,6 +70,7 @@ export default LandingPage;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: 'black',
     },
     bigLogo: {
@@ -90,14 +97,25 @@ const styles = StyleSheet.create({
         fontSize: 28,
     },
     buttonsAndLabels: {
-
+        alignItems: 'center',
+        width: "30%"
     },
     standardButtons: {
-
+        backgroundColor: '#fff',
+        padding: 5,
+        width: 100,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#A51717',
     },
     normalText: {
         color: '#ffffff',
         textAlign: 'center',
-        fontSize: 16,
-    }
+        fontSize: 14,
+    },
+    buttonText: {
+        color: '#000000',
+        textAlign: 'center',
+        fontSize: 14,
+    },
 });
