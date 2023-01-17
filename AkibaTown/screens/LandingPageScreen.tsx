@@ -14,7 +14,47 @@ const LandingPage = ({ navigation }) => {
                 <Image 
                     source={require('../assets/images/AkibaTownLogo.png')}
                     style={styles.bigLogo}
+                />
+                <Text style={styles.headline}>
+                    Le quartier japonais directement sur ton téléphone !
+                </Text>
+
+
+                <View style={styles.buttonsAndLabels}>
+                    <Text style={styles.normalText}>
+                        Accède directement à tous les forums juste ici !
+                    </Text>
+                    <Button 
+                        title='Accueil' 
+                        onPress={() => {}}
+                        style={styles.standardButtons}
                     />
+                </View>
+
+                <View>
+                    <View style={styles.buttonsAndLabels}>
+                        <Text style={styles.normalText}>
+                            Déjà membre ? Connecte-toi dès maintenant !
+                        </Text>
+                        <Button 
+                            title='Connexion' 
+                            onPress={() => {}}
+                            co
+                            style={styles.standardButtons}
+                        />
+                    </View>
+
+                    <View style={styles.buttonsAndLabels}>
+                        <Text style={styles.normalText}>
+                            Tu n'as pas encore de compte ? Qu'est-ce que tu attends pour nous rejoindre ?!
+                        </Text>
+                        <Button 
+                            title='Inscription' 
+                            onPress={() => {}}
+                            style={styles.standardButtons}
+                        />
+                    </View>
+                </View>
             </View>
         </View>
     );
@@ -27,14 +67,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
     },
     bigLogo: {
-        width: 250,
-        height: 250,
+        width: 150,
+        height: 150,
         // shadow
         shadowColor: '#ffffff',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 1,
         shadowRadius: 10,
-        elevation: 10,
+        margin: 5,
     },
     landingPage: {
         width: "100%",
@@ -43,6 +81,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         top: 0,
-        left: 0
+        left: 0,
+        padding: 20,
+    },
+    headline: {
+        textAlign: 'center',
+        color: '#ffffff',
+        fontSize: 28,
+    },
+    buttonsAndLabels: {
+
+    },
+    standardButtons: {
+
+    },
+    normalText: {
+        color: '#ffffff',
+        textAlign: 'center',
+        fontSize: 16,
     }
 });
