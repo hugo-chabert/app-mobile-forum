@@ -1,13 +1,24 @@
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useUserContext } from '../context/UserContext';
 
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
-export default function EditScreenInfo({ path }: { path: string }) {
+export default function EditScreenInfo({ path }) {
+
+  const userContext = useUserContext();
+
+  function login(){
+    userContext.login('test@gmail.com', 'test')
+  }
+
   return (
     <View>
+      <TouchableOpacity onPress={login} >
+        <Text>PANTALON</Text>
+      </TouchableOpacity>
       <View style={styles.getStartedContainer}>
         <Text
           style={styles.getStartedText}

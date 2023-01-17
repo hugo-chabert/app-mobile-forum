@@ -24,7 +24,7 @@ function getOne(req, res) {
     .catch(error => res .status(500).json(error))
 }
 
-function createOne(req, res) {
+function register(req, res) {
     const { body } = req
     // const { error } = userValidation(body)
     // if (error) return res.status(401).json("Un des champs n'est pas valide")
@@ -103,4 +103,4 @@ function login(req, res) {
 }
 
 
-module.exports = {getAll, getOne, createOne, updateOne, deleteOne, login}
+module.exports = {getAll, getOne, register, updateOne, deleteOne, login}

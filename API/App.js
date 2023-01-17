@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const port = 3000
 
 var usersRouter = require('./router/userRouter');
@@ -9,7 +10,8 @@ const sequelize = require('./config/database');
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 app.use(usersRouter);
 app.use(postsRouter);
 app.use(commentsRouter);
