@@ -71,7 +71,7 @@ function deleteOne(req, res){
 function login(req, res) {
     const { body } = req
     const { error } = userValidation(body)
-    if (error) return res.status(401).json("Un des champs n'est pas valide")
+    //if (error) return res.status(401).json("Un des champs n'est pas valide")
     Users.findOne({ where: { email: body.email } })
     .then(users => {
         if (!users) res.status(400).json({

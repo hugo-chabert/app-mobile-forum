@@ -5,6 +5,12 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
+var express = require('express')
+var cors = require('cors')
+var app = express()
+
+app.use(cors())
+
 export default function App() {
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
