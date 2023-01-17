@@ -1,15 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
+import LandingPage from './LandingPageScreen';
+
 const HomeScreen = ({ navigation }) => {
+    
+
     return (
-        <View style={styles.container}>
-            <Text>Home screen</Text>
-            <Button
-                title="Click here"
-                onPress={() => alert('Button pressed')}
-            />
-        </View>
+        // <View style={styles.container}>
+        //     <Text>Home screen</Text>
+        //     <Button
+        //         title="Click here"
+        //         onPress={() => alert('Button pressed')}
+        //     />
+            <LandingPage/>
+        // </View>
     );
 }
 
