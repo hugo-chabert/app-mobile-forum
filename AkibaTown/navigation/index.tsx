@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import LinearGradient from 'react-native-linear-gradient';
 
 import HomeScreen from '../screens/HomeScreen';
 import NewSubjectScreen from '../screens/NewSubjectScreen';
@@ -35,7 +34,7 @@ const CustomTabBarButton = ({children, onPress}) => (
 const Tabs = () => {
   return(
     <Tab.Navigator
-    tabBarOptions={{
+      tabBarOptions={{
       showLabel: false,
       style: {
         position: 'absolute',
@@ -49,7 +48,7 @@ const Tabs = () => {
       }
     }}
     >
-      <Tab.Screen name="Accueil" component={HomeScreen} 
+      <Tab.Screen name="Accueil" component={HomeScreen}
       options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>

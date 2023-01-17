@@ -5,7 +5,7 @@ import Tabs from './navigation/index'
 const App = () => {
   return (
     <NavigationContainer>
-      <Tabs />
+      <Tabs/>
     </NavigationContainer>
   );
 }
