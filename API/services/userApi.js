@@ -27,7 +27,7 @@ function getOne(req, res) {
 function createOne(req, res) {
     const { body } = req
     const { error } = userValidation(body)
-    if (error) return res.status(401).json(error.details[0].message)
+    if (error) return res.status(401).json("Un des champs n'est pas valide")
 
     body.password = bcrypt.hashSync(body.password, 10)
 
@@ -40,7 +40,7 @@ function createOne(req, res) {
 
 function updateOne(req, res){
     const { error } = userValidation(body)
-    if (error) return res.status(401).json(error.details[0].message)
+    if (error) return res.status(401).json("Un des champs n'est pas valide")
     Users.update({
         username: req.body.username,
         firstname: req.body.firstname,
@@ -71,7 +71,7 @@ function deleteOne(req, res){
 function login(req, res) {
     const { body } = req
     const { error } = userValidation(body)
-    if (error) return res.status(401).json(error.details[0].message)
+    if (error) return res.status(401).json("Un des champs n'est pas valide")
     Users.findOne({ where: { email: body.email } })
     .then(users => {
         if (!users) res.status(400).json({
