@@ -11,7 +11,6 @@ import ForumScreen from '../screens/ForumScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
 const CustomTabBarButton = ({ children, onPress }) => (
     <TouchableOpacity
@@ -67,7 +66,7 @@ const Tabs = () => {
                                 Home
                             </Text>
                         </View>
-                    ),
+                    ), headerShown: false
                 }} />
 
             <Tab.Screen name="Forum" component={ForumScreen}
@@ -86,7 +85,7 @@ const Tabs = () => {
                                 Forum
                             </Text>
                         </View>
-                    ),
+                    ), headerShown: false
                 }} />
 
             <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen}
@@ -103,7 +102,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <CustomTabBarButton {...props} />
-                    )
+                    ), headerShown: false
                 }}
             />
 
@@ -123,7 +122,7 @@ const Tabs = () => {
                                 Actualités
                             </Text>
                         </View>
-                    ),
+                    ), headerShown: false
                 }} />
             <Tab.Screen name="Équipes" component={TeamsScreen} options={{
                 tabBarIcon: ({ focused }) => (
@@ -140,7 +139,7 @@ const Tabs = () => {
                             Équipes
                         </Text>
                     </View>
-                ),
+                ), headerShown: false
             }} />
         </Tab.Navigator>
     );
