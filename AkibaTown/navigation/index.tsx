@@ -1,15 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import LinearGradient from 'react-native-linear-gradient';
+import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import NewSubjectScreen from '../screens/NewSubjectScreen';
 import TeamsScreen from '../screens/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const CustomTabBarButton = ({ children, onPress }) => (
     <TouchableOpacity
