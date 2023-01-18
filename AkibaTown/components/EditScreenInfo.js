@@ -14,10 +14,24 @@ export default function EditScreenInfo({ path }) {
     userContext.login('test@gmail.com', 'test')
   }
 
+  function test(){
+    userContext.getToken()
+  }
+
+  function logout(){
+    userContext.logout()
+  }
+
   return (
     <View>
       <TouchableOpacity onPress={login} >
-        <Text>PANTALON</Text>
+        <Text>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={test} >
+        <Text>GET TOKEN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={logout} >
+        <Text>LOGOUT</Text>
       </TouchableOpacity>
       <View style={styles.getStartedContainer}>
         <Text

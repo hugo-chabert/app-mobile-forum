@@ -1,6 +1,5 @@
 import axios from "axios";
 import { BASE_URL } from "../config/config";
-import { storeData, deleteData, getData } from "../utils/storage";
 
 async function login(email, password) {
     return await axios.post(`${BASE_URL}/users/login`, {
@@ -8,7 +7,6 @@ async function login(email, password) {
         password: password,
     })
         .then(async response => {
-            // await storeData('authToken', response.data.token)
             // axios.defaults.headers["Authorization"] = "Bearer " + response.data.token
             console.log(response.data.token)
             return response
