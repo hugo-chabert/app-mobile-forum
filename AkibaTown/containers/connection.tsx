@@ -9,10 +9,9 @@ import {
     StatusBar,
     TextInput,
     Image, 
-    Platform
+    Platform,
 } from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
@@ -68,14 +67,18 @@ const ConnectionScreen = (navigation) => {
                     style={styles.logo}
                     resizeMode="stretch"
                 />
-                <Text
+                <Animatable.Text
+                    animation="bounceIn"
                     style={styles.text_header}
-                > Connecte toi pour partager ton avis avec d’autres passionnés ! </Text>
+                > Connecte toi pour partager ton avis avec d’autres passionnés ! </Animatable.Text>
             </View>
 
 
             {/* Parti Inférieur : Formulaire de connexion  */}
-            <View style={styles.footer}>
+            <Animatable.View 
+                animation="fadeInUpBig"
+                style={styles.footer}
+            >
                 <Text style={styles.text_footer}>Email</Text>
                 <View style={styles.action}>
                     <FontAwesome
@@ -85,6 +88,7 @@ const ConnectionScreen = (navigation) => {
                     />
                     <TextInput
                         placeholder='Email'
+                        placeholderTextColor="rgba(0, 0, 0, 0.5)"
                         style = {[styles.textInput, {
                             fontSize : 20
                         }]}
@@ -114,6 +118,7 @@ const ConnectionScreen = (navigation) => {
                     />
                     <TextInput
                         placeholder='Mot de passe'
+                        placeholderTextColor="rgba(0, 0, 0, 0.5)"
                         secureTextEntry = {data.secureTextEntry ? true : false}
                         style = {[styles.textInput, {
                             fontSize : 20
@@ -146,7 +151,7 @@ const ConnectionScreen = (navigation) => {
                         marginTop : 15,
                         textDecorationLine: 'underline',
                         textDecorationStyle: 'solid',
-                        color: '#009387'
+                        color: '#A51717'
                         }]}
                         >Mot de passe oublié</Text>
                     </TouchableOpacity>
@@ -159,9 +164,9 @@ const ConnectionScreen = (navigation) => {
                     <TouchableOpacity
                     onPress={() => navigation.navigate('')}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#A51717',
                         borderWidth: 1,
-                        backgroundColor: '#009387'
+                        backgroundColor: '#A51717'
                     }]}
                     >
                         <Text style={[styles.textSign, {
@@ -172,17 +177,17 @@ const ConnectionScreen = (navigation) => {
                     <TouchableOpacity
                     onPress={() => navigation.navigate('SignUpScreen')}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#A51717',
                         borderWidth: 1,
                         marginTop: 25
                     }]}
                     >
                         <Text style={[styles.textSign, {
-                        color: '#009387'
+                        color: '#A51717'
                     }]}>M'inscrire</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </Animatable.View>
         </View>
     );
 }
@@ -195,7 +200,7 @@ const height_logo = height * 0.2;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#009387'
+        backgroundColor: '#A51717'
     },
     header: {
         flex: 1,
@@ -245,7 +250,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
-        color: '#05375a',
+        color: '#000',
     },
     errorMsg: {
         color: '#FF0000',
