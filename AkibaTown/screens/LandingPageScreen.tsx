@@ -5,7 +5,7 @@ import backgroundStyle from '../constants/BackgroundStyle';
 
 import LoginPage from './LoginScreen';
 
-const LandingPage = ({ navigation }) => {
+const LandingPage = ({ navigation }: {navigation: any}) => {
 
     const [landingPageActive, setLandingPageActive] = useState(true)
     const [loginPageActive, setLoginPageActive] = useState(false)

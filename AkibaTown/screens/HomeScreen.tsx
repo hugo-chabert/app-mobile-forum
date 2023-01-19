@@ -3,12 +3,35 @@ import { useState } from 'react';
 import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 
 import SideScroller from '../components/SideScroller';
+import { useNavigation } from '@react-navigation/native';
 
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/icons/eye.png')
 
-const HomeScreen = ({ navigation }) => {
+
+// FAKE DATA
+const data = [
+    {
+        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
+        author: "John Doe",
+        date: "2021-01-01",
+    },
+    {  
+        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
+        author: "Jane Doe",
+        date: "2021-01-01",
+    },
+    {
+        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
+        author: "Sylvain",
+        date: "2021-01-01",
+    },
+]
+
+
+const HomeScreen = ({ navigation }: {navigation: any}) => {
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -19,9 +42,10 @@ const HomeScreen = ({ navigation }) => {
 
             <ScrollView>
                 <View style={styles.scrollers}>
-                    <SideScroller/>
-                    <SideScroller/>
-                    <SideScroller/>
+                    <SideScroller
+                        title="Derniers messages"
+                        dataToShow={data}
+                    />
                 </View>
             </ScrollView>
         </View>
@@ -50,5 +74,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         width: 40,
         height: 40,
+    },
+    scrollers: {
+
     },
 });
