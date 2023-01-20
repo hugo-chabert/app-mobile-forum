@@ -10,6 +10,7 @@ import {
     TextInput,
     Image,
     Platform,
+    Keyboard
 } from 'react-native';
 
 import { ScrollView } from 'react-native';
@@ -20,6 +21,13 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
+
+
+/*Fonction permettant de retirer le clavier*/
+function handleTouch() {
+    Keyboard.dismiss();
+}
+
 
 const NewPostscreen = ({ navigation }) => {
     const [selected, setSelected] = React.useState("");
@@ -102,36 +110,37 @@ const NewPostscreen = ({ navigation }) => {
                     </Text>
                     <View style={styles.action_select}>
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             multiline={true}
-                            placeholder = 'Description du sujet'
-                            style={{ 
+                            placeholder='Description du sujet'
+                            style={{
                                 height: 400,
-                                width: '90%' ,
+                                width: '90%',
                                 borderColor: 'gray',
                                 borderWidth: 1,
-                                fontSize : 20 ,
-                                borderRadius : 10,
-                                paddingLeft : 10,
-                                paddingRight : 10,
+                                fontSize: 20,
+                                borderRadius: 10,
+                                paddingLeft: 10,
+                                paddingRight: 10,
                             }}
                         />
                     </View>
 
 
-                    {/* Bouton de connexion et inscription */}
+                    {/* Bouton Publier */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                        onPress={() => navigation.navigate('')}
-                        style={[styles.signIn, {
-                            borderColor: '#A51717',
-                            borderWidth: 1,
-                            backgroundColor: '#A51717', 
-                            marginBottom: 100
-                        }]}
+                            onPress={() => navigation.navigate('')}
+                            style={[styles.signIn, {
+                                borderColor: '#A51717',
+                                borderWidth: 1,
+                                backgroundColor: '#A51717',
+                                marginBottom: 100
+                            }]}
                         >
                             <Text style={[styles.textSign, {
-                            color: '#fff'
-                        }]}>Publier</Text>
+                                color: '#fff'
+                            }]}>Publier</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
