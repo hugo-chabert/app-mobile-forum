@@ -10,11 +10,17 @@ import {
     TextInput,
     Image, 
     Platform,
+    Keyboard
 } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
+
+/*Fonction permettant de retirer le clavier*/
+function handleTouch() {
+    Keyboard.dismiss();
+}
 
 const ConnectionScreen = (navigation) => {
 
@@ -87,6 +93,7 @@ const ConnectionScreen = (navigation) => {
                         size={20}
                     />
                     <TextInput
+                        onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                         placeholder='Email'
                         placeholderTextColor="rgba(0, 0, 0, 0.5)"
                         style = {[styles.textInput, {
@@ -117,6 +124,7 @@ const ConnectionScreen = (navigation) => {
                         size={20}
                     />
                     <TextInput
+                        onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                         placeholder='Mot de passe'
                         placeholderTextColor="rgba(0, 0, 0, 0.5)"
                         secureTextEntry = {data.secureTextEntry ? true : false}

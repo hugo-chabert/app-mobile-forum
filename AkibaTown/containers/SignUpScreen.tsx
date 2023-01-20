@@ -11,6 +11,7 @@ import {
     Image,
     Platform,
     ScrollView,
+    Keyboard
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -18,6 +19,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import ConnectionScreen from './connection';
+
+/*Fonction permettant de retirer le clavier*/
+function handleTouch() {
+    Keyboard.dismiss();
+}
 
 const SignUpScrenn = (navigation) => {
 
@@ -82,7 +88,8 @@ const SignUpScrenn = (navigation) => {
 
 
             {/* Parti supérieur : LOGO + Texte  */}
-            <View style={styles.header}>
+            <View style={styles.header} 
+                onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/>
                 <Animatable.Image
                     animation="bounceIn"
                     duration={1500}
@@ -112,6 +119,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Nom'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
@@ -133,6 +141,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Prénom'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
@@ -154,6 +163,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Username'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
@@ -187,6 +197,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Manga préféré'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
@@ -208,6 +219,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Email'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
@@ -241,6 +253,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Mot de passe'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             secureTextEntry={data.secureTextEntry ? true : false}
@@ -281,6 +294,7 @@ const SignUpScrenn = (navigation) => {
                             size={20}
                         />
                         <TextInput
+                            onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             placeholder='Confirmation du mot de passe'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             secureTextEntry={data.confirm_secureTextEntry ? true : false}
