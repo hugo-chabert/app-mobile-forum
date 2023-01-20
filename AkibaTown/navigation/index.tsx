@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/HomeScreen';
-import NewSubjectScreen from '../screens/NewSubjectScreen';
+import NewPostscreen from '../containers/Newpost';
 import TeamsScreen from '../screens/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
@@ -86,7 +86,7 @@ const Tabs = () => {
         ),
       }} />
 
-      <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen} 
+      <Tab.Screen name="Nouveau Sujet" component={NewPostscreen} 
       options={{
         tabBarIcon: ({focused}) => (
           <Image 
@@ -97,7 +97,7 @@ const Tabs = () => {
               height : 30,
             }}
           />
-        ), 
+        ), headerShown: false,
         tabBarButton: (props) => (
           <CustomTabBarButton {...props}/>
         )
