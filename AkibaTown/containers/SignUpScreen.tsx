@@ -22,10 +22,16 @@ import ConnectionScreen from './connection';
 const SignUpScrenn = (navigation) => {
 
     const [data, setData] = React.useState({
+        firstname: '',
+        lastname: '',
+        username: '',
+        manga: '',
         email: '',
         password: '',
+        confirm_password: '',
         check_textInputChange: false,
         secureTextEntry: true,
+        confirm_secureTextEntry: true,
     });
 
     const textInputChange = (val) => {
@@ -33,6 +39,7 @@ const SignUpScrenn = (navigation) => {
             setData({
                 ...data,
                 email: val,
+                username: val,
                 check_textInputChange: true
             })
         }
@@ -40,6 +47,7 @@ const SignUpScrenn = (navigation) => {
             setData({
                 ...data,
                 email: val,
+                username: val,
                 check_textInputChange: false
             })
         }
@@ -50,10 +58,22 @@ const SignUpScrenn = (navigation) => {
             password: val
         });
     }
+    const handleConfirmPasswordChange = (val) => {
+        setData({
+            ...data,
+            confirm_password: val
+        });
+    }
     const updateSecureTextEntry = () => {
         setData({
             ...data,
             secureTextEntry: !data.secureTextEntry
+        });
+    }
+    const updateConfirmSecureTextEntry = () => {
+        setData({
+            ...data,
+            confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
     }
 
@@ -98,19 +118,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
                         />
-                        {data.check_textInputChange ?
-                            <Animatable.View
-                                animation="bounceIn"
-                            >
-                                <Feather
-                                    name='check-circle'
-                                    color={'green'}
-                                    size={20}
-                                />
-                            </Animatable.View>
-                            : null}
                     </View>
 
 
@@ -131,19 +139,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
                         />
-                        {data.check_textInputChange ?
-                            <Animatable.View
-                                animation="bounceIn"
-                            >
-                                <Feather
-                                    name='check-circle'
-                                    color={'green'}
-                                    size={20}
-                                />
-                            </Animatable.View>
-                            : null}
                     </View>
 
 
@@ -197,19 +193,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
                         />
-                        {data.check_textInputChange ?
-                            <Animatable.View
-                                animation="bounceIn"
-                            >
-                                <Feather
-                                    name='check-circle'
-                                    color={'green'}
-                                    size={20}
-                                />
-                            </Animatable.View>
-                            : null}
                     </View>
 
 
@@ -299,15 +283,15 @@ const SignUpScrenn = (navigation) => {
                         <TextInput
                             placeholder='Confirmation du mot de passe'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
-                            secureTextEntry={data.secureTextEntry ? true : false}
+                            secureTextEntry={data.confirm_secureTextEntry ? true : false}
                             style={[styles.textInput, {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => handlePasswordChange(val)}
+                            onChangeText={(val) => handleConfirmPasswordChange(val)}
                         />
                         <TouchableOpacity
-                            onPress={updateSecureTextEntry}
+                            onPress={updateConfirmSecureTextEntry}
                         >
                             {data.secureTextEntry ?
                                 <Feather
