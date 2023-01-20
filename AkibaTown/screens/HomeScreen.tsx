@@ -1,9 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
 import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 
 import SideScroller from '../components/SideScroller';
-import { useNavigation } from '@react-navigation/native';
 
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
@@ -54,22 +52,24 @@ const HomeScreen = ({ navigation }: any) => {
             </View>
 
             <ScrollView>
-                <View style={styles.scrollers}>
-                    <SideScroller
-                        title="Derniers messages"
-                        dataToShow={data}
-                        navigation={navigation}
-                    />
-                    <SideScroller
-                        title="Derniers sujets"
-                        dataToShow={data}
-                        navigation={navigation}
-                    />
-                    <SideScroller
-                        title="Statistiques"
-                        dataToShow={data}
-                        navigation={navigation}
-                    />
+                <View style={{flex: 1}}>
+                    <View style={styles.scrollers}>
+                        <SideScroller
+                            title="Derniers messages"
+                            dataToShow={data}
+                            navigation={navigation}
+                        />
+                        <SideScroller
+                            title="Derniers sujets"
+                            dataToShow={data}
+                            navigation={navigation}
+                        />
+                        <SideScroller
+                            title="Statistiques"
+                            dataToShow={data}
+                            navigation={navigation}
+                        />
+                    </View>
                 </View>
             </ScrollView>
         </View>
