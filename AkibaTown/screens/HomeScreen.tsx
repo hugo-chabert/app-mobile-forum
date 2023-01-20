@@ -17,7 +17,7 @@ const data = [
         author: "John Doe",
         date: "2021-01-01",
     },
-    {  
+    {
         content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
         author: "Jane Doe",
         date: "2021-01-01",
@@ -30,14 +30,27 @@ const data = [
 ]
 
 
-const HomeScreen = ({ navigation }: {navigation: any}) => {
+interface Post {
+    content: string;
+    author: string;
+    date: string;
+}
+
+interface Props {
+    title: string;
+    dataToShow: Post[];
+    navigation: any;
+}
+
+
+const HomeScreen = ({ navigation }: any) => {
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image source={searchIcon} style={styles.icon}/>
-                <Image source={logo} style={styles.mediumLogo}/>
-                <Image source={profileIcon} style={styles.icon}/>
+                <Image source={searchIcon} style={styles.icon} />
+                <Image source={logo} style={styles.mediumLogo} />
+                <Image source={profileIcon} style={styles.icon} />
             </View>
 
             <ScrollView>
@@ -45,6 +58,17 @@ const HomeScreen = ({ navigation }: {navigation: any}) => {
                     <SideScroller
                         title="Derniers messages"
                         dataToShow={data}
+                        navigation={navigation}
+                    />
+                    <SideScroller
+                        title="Derniers sujets"
+                        dataToShow={data}
+                        navigation={navigation}
+                    />
+                    <SideScroller
+                        title="Statistiques"
+                        dataToShow={data}
+                        navigation={navigation}
                     />
                 </View>
             </ScrollView>

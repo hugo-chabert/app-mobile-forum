@@ -1,9 +1,21 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
-const SideScroller = (title: string, dataToShow: any, { navigation }: {navigation: any}) => {
 
-    navigation = React.createRef();
+interface Post {
+    content: string;
+    author: string;
+    date: string;
+}
+
+interface Props {
+    title: string;
+    dataToShow: Post[];
+    navigation: any;
+}
+
+
+const SideScroller = ({title, dataToShow, navigation}: Props) => {
 
     const bandHeader = (
         <View style={styles.bandHeader}>
@@ -15,12 +27,21 @@ const SideScroller = (title: string, dataToShow: any, { navigation }: {navigatio
         <View style={styles.container}>
             {bandHeader}
             <ScrollView style={styles.content}>
-                {dataToShow.map((item: any, index: number) => {
+                {dataToShow.map((item?: any, index?: number) => {
                     return (
-                        <View key={index}>
-                            <Text>{item?.content}</Text>
-                            <Text>Posté par {item?.author} le {item?.date}</Text>
-                        </View>
+                        <TouchableOpacity 
+                            key={index}
+                            onPress={() => {
+                                navigation.navigate('Post', {
+                                    post: item
+                                });
+                            }}
+                        >
+                            <View style={styles.blogPreview}>
+                                <Text>{item?.content}</Text>
+                                <Text>Posté par {item?.author} le {item?.date}</Text>
+                            </View>
+                        </TouchableOpacity>
                     )
                 })}
             </ScrollView>
@@ -39,6 +60,8 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 10,
         backgroundColor: 'grey',
+    },
+    blogPreview: {
     },
     content: {
         width: "100%",
