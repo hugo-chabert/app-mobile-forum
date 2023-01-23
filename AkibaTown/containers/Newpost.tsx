@@ -66,17 +66,15 @@ const NewPostscreen = ({ navigation }) => {
                         marginTop: 20
                     }]}>Titre du Sujet
                     </Text>
+                    
                     <View style={styles.action}>
-                        <FontAwesome
-                            name="question"
-                            color={'#A51717'}
-                            size={25}
-                        />
                         <TextInput
                             placeholder='Titre du Sujet'
                             placeholderTextColor="rgba(0, 0, 0, 0.5)"
                             style={[styles.textInput, {
-                                fontSize: 25
+                                fontSize: 25,
+                                height: 50,
+                                marginRight: 35
                             }]}
                         />
                     </View>
@@ -91,6 +89,7 @@ const NewPostscreen = ({ navigation }) => {
                         <SelectList
                             boxStyles={{
                                 width: 360,
+                                backgroundColor: '#e6e6e6'
                             }}
                             inputStyles={{
                                 fontSize: 25,
@@ -117,15 +116,17 @@ const NewPostscreen = ({ navigation }) => {
                             onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/
                             multiline={true}
                             placeholder='Description du sujet'
+                            placeholderTextColor = "rgba(0, 0, 0, 0.5)"
                             style={{
                                 height: 400,
                                 width: '90%',
                                 borderColor: 'gray',
                                 borderWidth: 1,
-                                fontSize: 20,
+                                fontSize: 22,
                                 borderRadius: 10,
                                 paddingLeft: 10,
                                 paddingRight: 10,
+                                backgroundColor: '#e6e6e6',
                             }}
                         />
                     </View>
@@ -189,9 +190,9 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
         color: '#000',
+        backgroundColor: '#E6E6E6',
     },
     select: {
         flex: 1,
