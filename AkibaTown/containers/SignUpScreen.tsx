@@ -86,9 +86,13 @@ const SignUpScrenn = (navigation) => {
     return (
         <View style={styles.container}>
 
+            <Image
+                source={require('../assets/images/background.png')}
+                style={[styles.bg, { width: '100%', height: '100%', position: 'absolute' }]}
+            />
 
             {/* Parti supérieur : LOGO + Texte  */}
-            <View style={styles.header} 
+            <View style={styles.header}
                 onPress={handleTouch} /*Pour pouvoir retirer le clavier en touchant l'écran*/>
                 <Animatable.Image
                     animation="bounceIn"
@@ -366,7 +370,7 @@ const height_logo = height * 0.2;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#A51717'
+        backgroundColor: '#000'
     },
     header: {
         flex: 1,
@@ -436,6 +440,11 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
+    },
+    bg: {
+        width: '100%',
+        height: '100%',
+        opacity: 0.4
     }
 });
 

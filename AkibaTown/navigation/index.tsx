@@ -67,7 +67,7 @@ const Tabs = () => {
         ),
       }} />
 
-      <Tab.Screen name="Forum" component={ForumScreen} 
+      <Tab.Screen name="Forum" component={ForumScreen}
       options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>
