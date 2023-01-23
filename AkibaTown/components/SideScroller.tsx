@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
+import PostPreviewCard from "./PostPreviewCard";
 
 interface Post {
     content: string;
@@ -15,32 +15,37 @@ interface Props {
 }
 
 
-const SideScroller = ({title, dataToShow, navigation}: Props) => {
+const SideScroller = ({ title, dataToShow, navigation }: Props) => {
 
     const bandHeader = (
         <View style={styles.bandHeader}>
-            <Text style={{color: '#ffffff', textAlign: 'left', fontSize: 16}}>{title}</Text>
+            <ImageBackground
+                source={require('../assets/images/background.png')}
+                style={styles.bg}
+            ></ImageBackground>
+
+            <View style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                padding: 10,
+            }}>
+                <Text style={{ color: '#ffffff', textAlign: 'left', fontSize: 16 }}>{title}</Text>
+            </View>
         </View>
     )
 
     return (
         <View style={styles.container}>
             {bandHeader}
-            <ScrollView style={styles.content}>
-                {dataToShow.map((item?: any, index?: number) => {
+            <ScrollView style={styles.content} horizontal={true}>
+                {dataToShow.map((post: Post, index: number) => {
                     return (
-                        <TouchableOpacity 
-                            key={index}
-                            onPress={() => {
-                                navigation.navigate('Post', {
-                                    post: item
-                                });
-                            }}
-                        >
-                            <View style={styles.blogPreview}>
-                                <Text>{item?.content}</Text>
-                                <Text>Posté par {item?.author} le {item?.date}</Text>
-                            </View>
+                        <TouchableOpacity
+                            key={index} onPress={() => navigation.navigate('Post', { post: post })}
+                            style={[styles.content, { alignItems: 'flex-start' }]}>
+                            <PostPreviewCard dataToShow={post} />
                         </TouchableOpacity>
                     )
                 })}
@@ -53,19 +58,23 @@ export default SideScroller
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 20,
+        marginBottom: 20,
     },
     bandHeader: {
         width: "100%",
-        height: 45,
-        padding: 10,
-        backgroundColor: 'grey',
-    },
-    blogPreview: {
+        height: 40,
+        backgroundColor: 'black',
     },
     content: {
-        width: "100%",
         height: 200,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: "wrap"
+    },
+    bg: {
+        width: '100%',
+        height: '100%',
+        opacity: 0.4
     }
 })

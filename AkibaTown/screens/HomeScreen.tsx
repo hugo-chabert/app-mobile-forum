@@ -5,7 +5,7 @@ import SideScroller from '../components/SideScroller';
 
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
-const profileIcon = require('../assets/images/icons/eye.png')
+const profileIcon = require('../assets/images/profile/zoro.jpg')
 
 
 // FAKE DATA
@@ -14,16 +14,19 @@ const data = [
         content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
         author: "John Doe",
         date: "2021-01-01",
+        forumName: "One Piece",
     },
     {
         content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
         author: "Jane Doe",
         date: "2021-01-01",
+        forumName: "Naruto",
     },
     {
         content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
         author: "Sylvain",
         date: "2021-01-01",
+        forumName: "Chainsaw Man",
     },
 ]
 
@@ -48,7 +51,7 @@ const HomeScreen = ({ navigation }: any) => {
             <View style={styles.header}>
                 <Image source={searchIcon} style={styles.icon} />
                 <Image source={logo} style={styles.mediumLogo} />
-                <Image source={profileIcon} style={styles.icon} />
+                <Image source={profileIcon} style={styles.profileIcon} />
             </View>
 
             <ScrollView>
@@ -81,7 +84,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#DBD9DB'
+        backgroundColor: '#DBD9DB',
     },
     mediumLogo: {
         width: 100,
@@ -99,7 +102,14 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
     },
+    profileIcon: {
+        width: 50,
+        height: 50,
+        borderRadius: 30,
+        borderColor: '#00b300',
+        borderWidth: 2,
+    },
     scrollers: {
-
+        marginBottom: 120
     },
 });

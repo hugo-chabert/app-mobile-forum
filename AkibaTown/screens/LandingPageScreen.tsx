@@ -5,7 +5,7 @@ import backgroundStyle from '../constants/BackgroundStyle';
 
 import LoginPage from './LoginScreen';
 
-const LandingPage = ({ navigation }: {navigation: any}) => {
+const LandingPage = ({ navigation }: any) => {
 
     const [landingPageActive, setLandingPageActive] = useState(true)
     const [loginPageActive, setLoginPageActive] = useState(false)
@@ -108,9 +108,6 @@ const styles = StyleSheet.create({
     bigLogo: {
         width: 150,
         height: 150,
-        // shadow
-        shadowColor: '#ffffff',
-        shadowRadius: 10,
         margin: 5,
     },
     landingPage: {
