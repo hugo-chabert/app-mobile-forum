@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { useUserContext } from '../context/UserContext';
+import { usePostContext } from '../context/PostContext';
 
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
@@ -8,39 +8,15 @@ import { Text, View } from './Themed';
 
 export default function EditScreenInfo({ path }) {
 
-  const userContext = useUserContext();
+  const postContext = usePostContext();
 
-  function login(){
-    userContext.login('test@gmail.com', 'test')
-  }
-
-  function register(){
-    userContext.register('test','test@gmail.com', 'test', 'test', 'test')
-  }
-
-  function test(){
-    userContext.getToken()
-  }
-
-  function logout(){
-    userContext.logout()
+  function create(){
+    postContext.create('test', 1, 1)
   }
 
   return (
     <View>
-      <TouchableOpacity onPress={login} >
-        <Text>LOGIN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={test} >
-        <Text>GET TOKEN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={logout} >
-        <Text>LOGOUT</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity onPress={register} >
-        <Text>REGISTER</Text>
-      </TouchableOpacity>
+
       <View style={styles.getStartedContainer}>
         <Text
           style={styles.getStartedText}

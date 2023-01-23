@@ -5,8 +5,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { UserProvider } from './context/UserContext';
-
-
+import { PostProvider } from './context/PostContext';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -18,11 +17,12 @@ export default function App() {
         return (
             <SafeAreaProvider>
                 <UserProvider>
-                    <Navigation colorScheme={colorScheme} />
-                    <StatusBar />
+                    <PostProvider>
+                        <Navigation colorScheme={colorScheme} />
+                        <StatusBar />
+                    </PostProvider>
                 </UserProvider>
             </SafeAreaProvider>
         );
     }
 }
-
