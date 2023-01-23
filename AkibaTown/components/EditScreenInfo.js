@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { usePostContext } from '../context/PostContext';
+import { useCommentContext } from '../context/CommentContext';
 
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
@@ -9,14 +10,45 @@ import { Text, View } from './Themed';
 export default function EditScreenInfo({ path }) {
 
   const postContext = usePostContext();
+  const commentContext = useCommentContext();
 
   function create(){
-    postContext.create('test', 1, 1)
+    commentContext.create('test', 1, 1)
+  }
+
+  function getAllComments(){
+    commentContext.getAllComments()
+  }
+
+  function getCommentByID(){
+    commentContext.getCommentByID(1)
+  }
+
+  function getAllCommentsByUserID(){
+    commentContext.getAllCommentsByUserID(1)
+  }
+
+  function getAllCommentsByPostID(){
+    commentContext.getAllCommentsByPostID(1)
   }
 
   return (
     <View>
-
+      <TouchableOpacity onPress={create}>
+        <Text>Test</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getAllComments}>
+        <Text>Get All Comments</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getCommentByID}>
+        <Text>Get Comment By ID</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getAllCommentsByUserID}>
+        <Text>Get All Comments By User ID</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getAllCommentsByPostID}>
+        <Text>Get All Comments By Post ID</Text>
+      </TouchableOpacity>
       <View style={styles.getStartedContainer}>
         <Text
           style={styles.getStartedText}

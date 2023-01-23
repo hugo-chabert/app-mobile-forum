@@ -24,7 +24,7 @@ function getAllPosts(req, res) {
 
 function getPostByID(req, res) {
     posts.findByPk(req.params.id, {
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
     })
     .then((posts) => {
         res.json(posts);
@@ -33,7 +33,7 @@ function getPostByID(req, res) {
 
 function getAllPostsByUserID(req, res) {
     posts.findAll({
-        where: { id_user: req.params.id_user },
+        where: { id_user: req.params.userID },
         attributes : { exclude: ['createdAt', 'updatedAt' ] }
     })
     .then((posts) => {
@@ -43,7 +43,7 @@ function getAllPostsByUserID(req, res) {
 
 function getPostByTitle(req, res) {
     posts.findAll({
-        where: { titre: req.params.titre },
+        where: { titre: req.params.title },
         attributes : { exclude: ['createdAt', 'updatedAt' ] }
     })
     .then((posts) => {
@@ -57,10 +57,10 @@ function getPostByTitle(req, res) {
 
 function updatePost(req, res) {
     posts.update({
-        titre: req.body.newTitre,
-        message: req.body.newMessage
+        titre: req.params.newTitre,
+        message: req.params.newMessage
     }, {
-        where: { id: req.body.id },
+        where: { id: req.params.id },
         omitNull: true
     })
     .then(() => res.send("Post updated!"))
@@ -73,7 +73,7 @@ function updatePost(req, res) {
 function deletePost(req, res) {
     posts.destroy({
         where: {
-            id: req.body.id
+            id: req.params.id
         }
     })
     .then(() => res.send("Post deleted!"))

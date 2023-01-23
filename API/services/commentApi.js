@@ -4,6 +4,7 @@ const comments = require('../models/CommentContext');
 
 function createComment(req, res) {
     const { body } = req
+    console.log('BODY ==', body);
     comments.create({...body})
     .then(() => res.send("Commentaire créé!"))
 }
@@ -32,7 +33,17 @@ function getCommentByID(req, res) {
 
 function getAllCommentsByUserID(req, res) {
     comments.findAll({
-        where: { id_user: req.params.id_user },
+        where: { id_user: req.params.userID },
+        attributes : { exclude: ['createdAt', 'updatedAt' ] }
+    })
+    .then((comments) => {
+        res.json(comments);
+    })
+}
+
+function getAllCommentsByPostID(req, res) {
+    comments.findAll({
+        where: { id_post: req.params.postID },
         attributes : { exclude: ['createdAt', 'updatedAt' ] }
     })
     .then((comments) => {
@@ -46,9 +57,9 @@ function getAllCommentsByUserID(req, res) {
 
 function updateComment(req, res) {
     comments.update({
-        text: req.body.newText
+        text: req.params.newText
     }, {
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     })
     .then(() => res.send("Comment updated!"))
 }
@@ -60,7 +71,7 @@ function updateComment(req, res) {
 function deleteComment(req, res) {
     comments.destroy({
         where: {
-            id: req.body.id
+            id: req.params.id
         }
     })
     .then(() => res.send("Comment deleted!"))
@@ -74,6 +85,7 @@ module.exports = {
     getAllComments,
     getCommentByID,
     getAllCommentsByUserID,
+    getAllCommentsByPostID,
     updateComment,
     deleteComment,
 };

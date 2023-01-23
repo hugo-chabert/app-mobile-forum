@@ -6,6 +6,7 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { UserProvider } from './context/UserContext';
 import { PostProvider } from './context/PostContext';
+import { CommentProvider } from './context/CommentContext';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -18,8 +19,10 @@ export default function App() {
             <SafeAreaProvider>
                 <UserProvider>
                     <PostProvider>
-                        <Navigation colorScheme={colorScheme} />
-                        <StatusBar />
+                        <CommentProvider>
+                            <Navigation colorScheme={colorScheme} />
+                            <StatusBar />
+                        </CommentProvider>
                     </PostProvider>
                 </UserProvider>
             </SafeAreaProvider>
