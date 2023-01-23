@@ -14,6 +14,10 @@ export default function EditScreenInfo({ path }) {
     userContext.login('test@gmail.com', 'test')
   }
 
+  function register(){
+    userContext.register('test','test@gmail.com', 'test', 'test', 'test')
+  }
+
   function test(){
     userContext.getToken()
   }
@@ -32,6 +36,10 @@ export default function EditScreenInfo({ path }) {
       </TouchableOpacity>
       <TouchableOpacity onPress={logout} >
         <Text>LOGOUT</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity onPress={register} >
+        <Text>REGISTER</Text>
       </TouchableOpacity>
       <View style={styles.getStartedContainer}>
         <Text

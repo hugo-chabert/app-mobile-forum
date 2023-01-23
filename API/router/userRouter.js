@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getAll, getOne, createOne, updateOne, deleteOne, login } = require( '../services/userApi');
+const { getAll, getOne, register, updateOne, deleteOne, login } = require( '../services/userApi');
 const authenticateJWT = require('../utils/authenticateJWT');
 
-router.post("/users/create", (req, res) => {
-    createOne(req, res);
+router.post("/users/register", (req, res) => {
+    register(req, res);
 });
 
 router.get("/users/all", authenticateJWT, (req, res) => {

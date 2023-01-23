@@ -16,6 +16,32 @@ const initialState = {
 const UserProvider = ({ children }) => {
     const [authState, setAuthState] = React.useState(initialState)
 
+    const register = async (username, email, firstname, lastname, password) => {
+        setAuthState({
+            ...authState,
+            isLoading: true
+        })
+
+        const data = { username, email, firstname, lastname, password }
+
+        const response = await userApi.register(data)
+
+        if (response.data.error) {
+            setAuthState({
+                ...authState,
+                isLoading: false,
+                error: true,
+                errorMessage: response.data.error.message
+            })
+        }
+        else {
+            setAuthState({
+                ...authState,
+                isLoading: false,
+            })
+        }
+    };
+
     const login = async (email, password) => {
         setAuthState({
             ...authState,
@@ -26,6 +52,10 @@ const UserProvider = ({ children }) => {
         if (response.data.token){
             try {
                 await AsyncStorage.setItem('token', JSON.stringify(response.data.token))
+                setAuthState({
+                    ...authState,
+                    isLoading: false
+                })
             } catch (e) {
               // saving error
             }
@@ -64,6 +94,7 @@ const UserProvider = ({ children }) => {
     return (
         <UserContext.Provider
             value={{
+                register,
                 login,
                 getToken,
                 logout,
