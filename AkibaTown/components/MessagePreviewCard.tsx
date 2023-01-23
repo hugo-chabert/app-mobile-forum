@@ -1,24 +1,22 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const PostPreviewCard = ({ dataToShow, navigation }: any) => {
+const MessagePreviewCard = ({ dataToShow, navigation }: any) => {
 
     return (
         <View style={styles.container}>
-            <Text style={{fontWeight: 'bold', fontSize: 18}}>
-                {dataToShow?.forumName}
-                <View style={{height: 5}}></View>
-                {dataToShow?.title} ({dataToShow?.msgAmount} commentaires)
+            <Text style={{color: 'grey', fontSize: 18}}>
+                {dataToShow.content}
             </Text>
             <View style={{height: 5}}></View>
             <Text>
-                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow?.author}</Text> le {dataToShow?.date}
+                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow.author}</Text> le {dataToShow.date} dans <Text style={{ fontWeight: 'bold' }}>{dataToShow.forumName}</Text>
             </Text>
         </View>
     )
 }
 
-export default PostPreviewCard
+export default MessagePreviewCard
 
 const styles = StyleSheet.create({
     container: {
