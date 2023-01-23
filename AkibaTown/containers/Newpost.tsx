@@ -49,6 +49,10 @@ const NewPostscreen = ({ navigation }) => {
             <ScrollView>
                 <StatusBar backgroundColor='rgba(219, 217, 219, 1)' barStyle="dark-content" />
                 <View style={styles.parallax}>
+                    <Image
+                        source={require('../assets/images/background.png')}
+                        style={[styles.bg, { width: '100%', height: '100%', position: 'absolute' }]}
+                    />
                     <Text style={styles.title}>Nouveau Sujet</Text>
                 </View>
 
@@ -208,7 +212,7 @@ const styles = StyleSheet.create({
         marginTop: 60,
         width: '100%',
         height: 80,
-        backgroundColor: 'red',
+        backgroundColor: 'black',
         justifyContent: 'center',
     },
     form: {
@@ -238,5 +242,10 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
+    },
+    bg: {
+        width: '100%',
+        height: '100%',
+        opacity: 0.4
     }
 });
