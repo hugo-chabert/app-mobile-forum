@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import NewPostscreen from '../containers/Newpost';
 import TeamsScreen from '../containers/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
-import ForumScreen from '../screens/ForumScreen';
+import ForumScreen from '../containers/ForumScreen';
 
 const Tab = createBottomTabNavigator();
 

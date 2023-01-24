@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ConnectionScreen from './containers/connection';
 import SignUpScreen from './containers/SignUpScreen';
 import NewPostscreen from './containers/Newpost';
+import ForumScreen from './containers/ForumScreen';
 
 
 export default function App() {
@@ -30,7 +31,8 @@ export default function App() {
                         </CommentProvider>
                     </PostProvider>
                 </UserProvider> */}
-                <SignUpScreen />
+                {/* <SignUpScreen /> */}
+                <ForumScreen/>
             </NavigationContainer>
         );
     }
