@@ -1,107 +1,159 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
-import LinkingConfiguration from './LinkingConfiguration';
+import HomeScreen from '../screens/HomeScreen';
+import NewSubjectScreen from '../screens/NewSubjectScreen';
+import TeamsScreen from '../screens/TeamsScreen';
+import NewsScreen from '../screens/NewsScreen';
+import ForumScreen from '../screens/ForumScreen';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
+const Tab = createBottomTabNavigator();
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const CustomTabBarButton = ({children, onPress}) => (
+  <TouchableOpacity
+  style={{
+    top: -25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...styles.shadow
+  }}
+  onPress={onPress}
+  >
+    <View style={{
+      width: 70,
+      height : 70,
+      borderRadius: 35,
+      backgroundColor: '#ffffff'
+    }}>
+      {children}
+    </View>
+  </TouchableOpacity>
+);
 
-function RootNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
-    </Stack.Navigator>
-  );
-}
+const Tabs = () => {
+  return(
+    <Tab.Navigator
+      tabBarOptions={{
+      showLabel: false,
+      style: {
+        position: 'absolute',
+        bottom: 25,
+        left: 20,
+        right: 20,
+        backgroundColor:'#ffffff',
+        borderRadius: 15,
+        height: 90,
+        ...styles.shadow
+      }
+    }}
+    >
+      <Tab.Screen name="Accueil" component={HomeScreen}
+      options={{
+        tabBarIcon: ({focused}) => (
+          <View style ={{alignItems: 'center', justifyContent:'center'}}>
+            <Image
+            source={require('../assets/images/icons/home.png')}
+            resizeMode = 'contain'
+            style={{
+              width : 25,
+              height : 25,
+            }}
+            />
+            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
+              Home
+            </Text>
+          </View>
+        ),
+      }} />
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+      <Tab.Screen name="Forum" component={ForumScreen} 
+      options={{
+        tabBarIcon: ({focused}) => (
+          <View style ={{alignItems: 'center', justifyContent:'center'}}>
+            <Image
+            source={require('../assets/images/icons/forum.png')}
+            resizeMode = 'contain'
+            style={{
+              width : 25,
+              height : 25,
+            }}
+            />
+            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
+              Forum
+            </Text>
+          </View>
+        ),
+      }} />
 
-function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
-      <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+      <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen} 
+      options={{
+        tabBarIcon: ({focused}) => (
+          <Image 
+            source = {require('../assets/images/icons/add.png')}
+            resizeMode = 'contain'
+            style ={{
+              width : 30,
+              height : 30,
+            }}
+          />
+        ), 
+        tabBarButton: (props) => (
+          <CustomTabBarButton {...props}/>
+        )
+      }}
       />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
+
+      <Tab.Screen name="Actualités" component={NewsScreen} 
+      options={{
+        tabBarIcon: ({focused}) => (
+          <View style ={{alignItems: 'center', justifyContent:'center'}}>
+            <Image
+            source={require('../assets/images/icons/news.png')}
+            resizeMode = 'contain'
+            style={{
+              width : 25,
+              height : 25,
+            }}
+            />
+            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
+              Actualités
+            </Text>
+          </View>
+        ),
+      }} />
+      <Tab.Screen name="Équipes" component={TeamsScreen} options={{
+        tabBarIcon: ({focused}) => (
+          <View style ={{alignItems: 'center', justifyContent:'center'}}>
+            <Image
+            source={require('../assets/images/icons/team.png')}
+            resizeMode = 'contain'
+            style={{
+              width : 25,
+              height : 25,
+            }}
+            />
+            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
+              Équipes
+            </Text>
+          </View>
+        ),
+      }} />
+    </Tab.Navigator>
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: '#7F5DF0',
+    shadowOffset:{
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius:3.5,
+    elevation:5,
+  }
+})
+
+export default Tabs;
