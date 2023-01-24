@@ -7,6 +7,11 @@ import Navigation from './navigation';
 import { UserProvider } from './context/UserContext';
 import { PostProvider } from './context/PostContext';
 import { CommentProvider } from './context/CommentContext';
+import { NavigationContainer } from '@react-navigation/native';
+import ConnectionScreen from './containers/connection';
+import SignUpScreen from './containers/SignUpScreen';
+import NewPostscreen from './containers/Newpost';
+
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -16,16 +21,17 @@ export default function App() {
         return null;
     } else {
         return (
-            <SafeAreaProvider>
-                <UserProvider>
+            <NavigationContainer>
+                {/* <UserProvider>
                     <PostProvider>
                         <CommentProvider>
                             <Navigation colorScheme={colorScheme} />
                             <StatusBar />
                         </CommentProvider>
                     </PostProvider>
-                </UserProvider>
-            </SafeAreaProvider>
+                </UserProvider> */}
+                <SignUpScreen />
+            </NavigationContainer>
         );
     }
 }
