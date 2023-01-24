@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/HomeScreen';
-import NewSubjectScreen from '../screens/NewSubjectScreen';
-import TeamsScreen from '../screens/TeamsScreen';
+import NewPostscreen from '../containers/Newpost';
+import TeamsScreen from '../containers/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
 
@@ -64,7 +64,7 @@ const Tabs = () => {
               Home
             </Text>
           </View>
-        ),
+        )
       }} />
 
       <Tab.Screen name="Forum" component={ForumScreen} 
@@ -83,10 +83,10 @@ const Tabs = () => {
               Forum
             </Text>
           </View>
-        ),
+        ), headerShown: false,
       }} />
 
-      <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen} 
+      <Tab.Screen name="Nouveau Sujet" component={NewPostscreen} 
       options={{
         tabBarIcon: ({focused}) => (
           <Image 
@@ -97,7 +97,7 @@ const Tabs = () => {
               height : 30,
             }}
           />
-        ), 
+        ), headerShown: false,
         tabBarButton: (props) => (
           <CustomTabBarButton {...props}/>
         )
@@ -120,7 +120,7 @@ const Tabs = () => {
               Actualités
             </Text>
           </View>
-        ),
+        ), headerShown: false,
       }} />
       <Tab.Screen name="Équipes" component={TeamsScreen} options={{
         tabBarIcon: ({focused}) => (
@@ -137,7 +137,7 @@ const Tabs = () => {
               Équipes
             </Text>
           </View>
-        ),
+        ), headerShown: false,
       }} />
     </Tab.Navigator>
   );
