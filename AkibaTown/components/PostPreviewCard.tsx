@@ -5,11 +5,16 @@ const PostPreviewCard = ({ dataToShow, navigation }: any) => {
 
     return (
         <View style={styles.container}>
-            <Text style={{fontWeight: 'bold', fontSize: 18}}>
-                {dataToShow?.forumName}
+            <View>
+                <Text style={{fontWeight: 'bold', fontSize: 18}}>
+                    {dataToShow?.forumName}
+                    {dataToShow?.title}
+                </Text>
                 <View style={{height: 5}}></View>
-                {dataToShow?.title} ({dataToShow?.msgAmount} commentaires)
-            </Text>
+                <Text>
+                    ({dataToShow?.msgAmount} commentaires)
+                </Text>
+            </View>
             <View style={{height: 5}}></View>
             <Text>
                 Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow?.author}</Text> le {dataToShow?.date}

@@ -3,15 +3,16 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackg
 
 interface Props {
     title: string;
-    range: number;
     component: any;
+    data: any[];
     navigation: any;
+    dataToShowCallback: (item: any) => {
+        dataToShow: any,
+        navigation: any
+    };
 }
 
-
-const SideScroller = ({ title, range, component, navigation }: Props) => {
-
-    const items = Array.from({ length: range }, (_, i) => i)
+const SideScroller = ({ title, component, data, dataToShowCallback }: Props) => {
 
     const bandHeader = (
         <View style={styles.bandHeader}>
@@ -36,9 +37,12 @@ const SideScroller = ({ title, range, component, navigation }: Props) => {
         <View style={styles.container}>
             {bandHeader}
             <ScrollView style={styles.content} horizontal={true}>
-                {items.map((item, index) => {
+                {data.map((item, index) => {
+                    const { dataToShow, navigation } = dataToShowCallback(item)
+                    console.log(dataToShow)
                     return (
                         <TouchableOpacity
+                            key={index}
                             style={[styles.content, { alignItems: 'flex-start' }]}
                         >
                             {component}

@@ -6,11 +6,11 @@ const MessagePreviewCard = ({ dataToShow, navigation }: any) => {
     return (
         <View style={styles.container}>
             <Text style={{color: 'grey', fontSize: 18}}>
-                {dataToShow.content}
+                {dataToShow?.content}
             </Text>
             <View style={{height: 5}}></View>
             <Text>
-                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow.author}</Text> le {dataToShow.date} dans <Text style={{ fontWeight: 'bold' }}>{dataToShow.forumName}</Text>
+                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow?.author}</Text> le {dataToShow?.date} dans <Text style={{ fontWeight: 'bold' }}>{dataToShow?.forumName}</Text>
             </Text>
         </View>
     )

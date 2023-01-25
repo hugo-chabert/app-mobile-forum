@@ -10,33 +10,38 @@ const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
 
 // FAKE DATA
-import { fakeMsgs, fakePosts, fakeUsers } from '../constants/FakeData.js';
+import { fakeMsgs, fakePosts, fakeUsers } from '../constants/FakeData';
 
 
 const HomeScreen = ({ navigation }: any) => {
 
+    const header = (
+        <View style={styles.header}>
+            <Image source={searchIcon} style={styles.icon} />
+            <Image source={logo} style={styles.mediumLogo} />
+            <Image source={profileIcon} style={styles.profileIcon} />
+        </View>
+    )
+
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Image source={searchIcon} style={styles.icon} />
-                <Image source={logo} style={styles.mediumLogo} />
-                <Image source={profileIcon} style={styles.profileIcon} />
-            </View>
-
+            {header}
             <ScrollView>
-                <View style={{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     <View style={styles.scrollers}>
                         <SideScroller
                             title="Derniers messages"
-                            range={3}
-                            component={<MessagePreviewCard dataToShow={fakeMsgs}/>}
+                            data={fakeMsgs}
+                            component={MessagePreviewCard}
                             navigation={navigation}
+                            dataToShowCallback={(item) => ({ dataToShow: item, navigation })}
                         />
                         <SideScroller
                             title="Derniers sujets"
-                            range={3}
-                            component={<PostPreviewCard dataToShow={fakePosts}/>}
+                            data={fakePosts}
+                            component={PostPreviewCard}
                             navigation={navigation}
+                            dataToShowCallback={(item) => ({ dataToShow: item, navigation })}
                         />
                     </View>
                 </View>
