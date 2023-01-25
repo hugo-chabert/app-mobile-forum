@@ -1,70 +1,63 @@
-import 'intl'
-import 'intl/locale-data/jsonp/en'
+const fakeData = {
+    posts: [
+        {
+            title: "Post One Piece",
+            author: "John Doe",
+            date: "2021-01-01",
+            forumName: "One Piece",
+            msgAmount: '13k'
+        },
+        {
+            title: "Post Naruto",
+            author: "xXx_DarkSasuke_xXx",
+            date: "2021-01-01",
+            forumName: "Naruto",
+            msgAmount: '13k'
+        },
+        {
+            title: "Post Chainsaw Man",
+            author: "user193801173329",
+            date: "2021-01-01",
+            forumName: "Chainsaw Man",
+            msgAmount: '13k'
+        },
+    ],
 
-const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+    messages: [
+        {
+            content: "lorem ipsum dolor sit amet nunc etiam aenean dolor vitae sed magna",
+            author: "John Doe",
+            date: "2021-01-01",
+            forumName: "One Piece",
+        },  
+        {
+            content: "lorem ipsum dolor sit amet nunc etiam aenean dolor vitae sed magna",
+            author: "xXx_DarkSasuke_xXx",
+            date: "2021-01-01",
+            forumName: "Shingeki no Kyojin",
+        },  
+        {
+            content: "lorem ipsum dolor sit amet nunc etiam aenean dolor vitae sed magna",
+            author: "user193801173329",
+            date: "2021-01-01",
+            forumName: "Vinland Saga",
+        },
+    ],
 
-const fakeMsgs = [
-    {
-        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
-        author: "John Doe",
-        date: "2021-01-01",
-        forumName: "One Piece",
-    },
-    {
-        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
-        author: "Jane Doe",
-        date: "2021-01-01",
-        forumName: "Naruto",
-    },
-    {
-        content: "djqpdjqjdpodkjpo zpopdi oz oqpo iqpozdiq ni izjqd",
-        author: "Sylvain",
-        date: "2021-01-01",
-        forumName: "Chainsaw Man",
-    },
-]
+    users: [
+        {
+            username: "John Doe",
+            registerDate: "2021-01-01",
+        },
+        {
+            username: "xXx_DarkSasuke_xXx",
+            registerDate: "2021-01-01",
+        },
+        {
+            username: "user193801173329",
+            registerDate: "2021-01-01",
+        }
+    ]
+}
 
-const fakePosts = [
-    {
-        forumName: "One Piece",
-        title: "One Piece surcoté ??????",
-        author: 'John Doe',
-        date: "2021-01-01",
-        msgAmount: formatter.format(30_000),
-    },
-    {
-        forumName: "L'attaque des titans",
-        title: "[Theorie] Erwin n'est pas mort",
-        author: 'John Doe',
-        date: "2021-01-01",
-        msgAmount: formatter.format(17_000),
-    },
-    {
-        forumName: "Boruto",
-        title: "Sasuke qui se bat contre des dinosaures ?? On en parle ?",
-        author: 'John Doe',
-        date: "2021-01-01",
-        msgAmount: formatter.format(61),
-    },
-]
-
-const fakeUsers = [
-    {
-        username: "John Doe",
-        avatar: "https://i.pravatar.cc/150?img=1",
-        daysSinceRegistration: "1",
-    },
-    {
-        username: "Mary Jane",
-        avatar: "https://i.pravatar.cc/150?img=1",
-        daysSinceRegistration: "3",
-    },
-    {
-        username: "Xavier Dupont de Ligonnès",
-        avatar: "https://i.pravatar.cc/150?img=1",
-        daysSinceRegistration: "3",
-    },
-]
-
-
-export { fakeMsgs, fakePosts, fakeUsers }
+export default fakeData;

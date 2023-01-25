@@ -4,20 +4,30 @@ import { View, Text, StyleSheet } from 'react-native'
 const PostPreviewCard = ({ dataToShow, navigation }: any) => {
 
     return (
-        <View style={styles.container}>
-            <View>
-                <Text style={{fontWeight: 'bold', fontSize: 18}}>
-                    {dataToShow?.forumName}
-                    {dataToShow?.title}
+        <View style={styles?.container}>
+            {dataToShow?.title !== undefined ? (
+                <View>
+                    <Text style={{ color: 'black', fontSize: 18 }}>
+                        {dataToShow?.title}
+                        {dataToShow?.msgAmount !== undefined ? (
+                            <Text style={{ color: 'grey', fontSize: 14 }}>
+                                {' '}
+                                ({dataToShow?.msgAmount} messages)
+                            </Text>
+                        ) : null}
+                    </Text>
+                    <Text style={{ color: 'grey', fontSize: 18 }}>
+                        {dataToShow?.content}
+                    </Text>
+                </View>
+            ) : (
+                <Text style={{ color: 'grey', fontSize: 18 }}>
+                    « {dataToShow?.content} »
                 </Text>
-                <View style={{height: 5}}></View>
-                <Text>
-                    ({dataToShow?.msgAmount} commentaires)
-                </Text>
-            </View>
-            <View style={{height: 5}}></View>
+            )}
+            <View style={{ height: 5 }}></View>
             <Text>
-                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow?.author}</Text> le {dataToShow?.date}
+                Posté par <Text style={{ textDecorationLine: 'underline' }}>{dataToShow?.author}</Text> le {dataToShow?.date} dans <Text style={{ fontWeight: 'bold' }}>{dataToShow?.forumName}</Text>
             </Text>
         </View>
     )

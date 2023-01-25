@@ -2,15 +2,23 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 
 import SideScroller from '../components/SideScroller';
-import MessagePreviewCard from '../components/MessagePreviewCard';
-import PostPreviewCard from '../components/PostPreviewCard';
+import fakeData from '../constants/FakeData';
 
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
 
-// FAKE DATA
-import { fakeMsgs, fakePosts, fakeUsers } from '../constants/FakeData';
+interface Post {
+    content: string;
+    author: string;
+    date: string;
+}
+
+interface Props {
+    title: string;
+    dataToShow: Post[];
+    navigation: any;
+}
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -31,17 +39,18 @@ const HomeScreen = ({ navigation }: any) => {
                     <View style={styles.scrollers}>
                         <SideScroller
                             title="Derniers messages"
-                            data={fakeMsgs}
-                            component={MessagePreviewCard}
+                            dataToShow={fakeData.messages}
                             navigation={navigation}
-                            dataToShowCallback={(item) => ({ dataToShow: item, navigation })}
                         />
                         <SideScroller
                             title="Derniers sujets"
-                            data={fakePosts}
-                            component={PostPreviewCard}
+                            dataToShow={fakeData.posts}
                             navigation={navigation}
-                            dataToShowCallback={(item) => ({ dataToShow: item, navigation })}
+                        />
+                        <SideScroller
+                            title="Derniers inscrits"
+                            dataToShow={fakeData.users}
+                            navigation={navigation}
                         />
                     </View>
                 </View>
