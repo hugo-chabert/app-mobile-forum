@@ -15,6 +15,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
+import SignUpScrenn from './SignUpScreen';
 
 const ConnectionScreen = (navigation) => {
 
@@ -75,7 +76,7 @@ const ConnectionScreen = (navigation) => {
 
 
             {/* Parti Inférieur : Formulaire de connexion  */}
-            <Animatable.View 
+            <Animatable.View
                 animation="fadeInUpBig"
                 style={styles.footer}
             >

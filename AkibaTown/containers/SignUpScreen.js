@@ -19,7 +19,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import ConnectionScreen from './connection';
 
-const SignUpScrenn = (navigation) => {
+const SignUpScrenn = ([navigation]) => {
 
     const [data, setData] = React.useState({
         firstname: '',
@@ -313,7 +313,7 @@ const SignUpScrenn = (navigation) => {
                     {/* Bouton de connxion et inscription */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('')}
+                            onPress={() => navigation.navigate()}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -326,7 +326,7 @@ const SignUpScrenn = (navigation) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('ConnectionScreen')}
+                            onPress={() => navigation.navigate()}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -424,8 +424,3 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
-
-function createAppContainer(AppNavigator: any) {
-    throw new Error('Function not implemented.');
-}
-

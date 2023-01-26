@@ -9,8 +9,13 @@ import { PostProvider } from './context/PostContext';
 import { CommentProvider } from './context/CommentContext';
 import { NavigationContainer } from '@react-navigation/native';
 import ConnectionScreen from './containers/connection';
+import TeamsScreen from './containers/TeamsScreen';
 import SignUpScreen from './containers/SignUpScreen';
 import NewPostscreen from './containers/Newpost';
+import Tabs from './navigation';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 
 export default function App() {
@@ -22,15 +27,16 @@ export default function App() {
     } else {
         return (
             <NavigationContainer>
-                {/* <UserProvider>
-                    <PostProvider>
-                        <CommentProvider>
-                            <Navigation colorScheme={colorScheme} />
-                            <StatusBar />
-                        </CommentProvider>
-                    </PostProvider>
-                </UserProvider> */}
-                <SignUpScreen />
+                <Stack.Navigator
+                    screenOptions={{
+                    headerShown: false
+                }} >
+
+                    <Stack.Screen name="Tabs" component={Tabs} />
+                    {/* <Stack.Screen name="Teams" component={TeamsScreen} /> */}
+                    {/* <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
+                    {/* <Stack.Screen name="SignIn" component={ConnectionScreen} /> */}
+                </Stack.Navigator>
             </NavigationContainer>
         );
     }
