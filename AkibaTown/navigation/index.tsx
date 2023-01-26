@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import NewSubjectScreen from '../screens/NewSubjectScreen';
 import TeamsScreen from '../screens/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -59,6 +61,61 @@ const Tabs = () => {
               width : 25,
               height : 25,
             }}
+        >
+            <Tab.Screen name="Accueil" component={HomeScreen}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Image
+                                source={require('../assets/images/icons/home.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                }}
+                            />
+                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+                                Home
+                            </Text>
+                        </View>
+                    ), headerShown: false
+                }} />
+
+            <Tab.Screen name="Forum" component={ForumScreen}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Image
+                                source={require('../assets/images/icons/forum.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                }}
+                            />
+                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+                                Forum
+                            </Text>
+                        </View>
+                    ), headerShown: false
+                }} />
+
+            <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={require('../assets/images/icons/add.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 30,
+                                height: 30,
+                            }}
+                        />
+                    ),
+                    tabBarButton: (props) => (
+                        <CustomTabBarButton {...props} />
+                    ), headerShown: false
+                }}
             />
             <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
               Home
@@ -67,80 +124,43 @@ const Tabs = () => {
         ),
       }} />
 
-      <Tab.Screen name="Forum" component={ForumScreen} 
-      options={{
-        tabBarIcon: ({focused}) => (
-          <View style ={{alignItems: 'center', justifyContent:'center'}}>
-            <Image
-            source={require('../assets/images/icons/forum.png')}
-            resizeMode = 'contain'
-            style={{
-              width : 25,
-              height : 25,
-            }}
-            />
-            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
-              Forum
-            </Text>
-          </View>
-        ),
-      }} />
-
-      <Tab.Screen name="Nouveau Sujet" component={NewSubjectScreen} 
-      options={{
-        tabBarIcon: ({focused}) => (
-          <Image 
-            source = {require('../assets/images/icons/add.png')}
-            resizeMode = 'contain'
-            style ={{
-              width : 30,
-              height : 30,
-            }}
-          />
-        ), 
-        tabBarButton: (props) => (
-          <CustomTabBarButton {...props}/>
-        )
-      }}
-      />
-
-      <Tab.Screen name="Actualités" component={NewsScreen} 
-      options={{
-        tabBarIcon: ({focused}) => (
-          <View style ={{alignItems: 'center', justifyContent:'center'}}>
-            <Image
-            source={require('../assets/images/icons/news.png')}
-            resizeMode = 'contain'
-            style={{
-              width : 25,
-              height : 25,
-            }}
-            />
-            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
-              Actualités
-            </Text>
-          </View>
-        ),
-      }} />
-      <Tab.Screen name="Équipes" component={TeamsScreen} options={{
-        tabBarIcon: ({focused}) => (
-          <View style ={{alignItems: 'center', justifyContent:'center'}}>
-            <Image
-            source={require('../assets/images/icons/team.png')}
-            resizeMode = 'contain'
-            style={{
-              width : 25,
-              height : 25,
-            }}
-            />
-            <Text style ={{ color: focused? '#e32f45' : '#748c94', fontSize: 12 }}>
-              Équipes
-            </Text>
-          </View>
-        ),
-      }} />
-    </Tab.Navigator>
-  );
+            <Tab.Screen name="Actualités" component={NewsScreen}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Image
+                                source={require('../assets/images/icons/news.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                }}
+                            />
+                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+                                Actualités
+                            </Text>
+                        </View>
+                    ), headerShown: false
+                }} />
+            <Tab.Screen name="Équipes" component={TeamsScreen} options={{
+                tabBarIcon: ({ focused }) => (
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Image
+                            source={require('../assets/images/icons/team.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 25,
+                                height: 25,
+                            }}
+                        />
+                        <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+                            Équipes
+                        </Text>
+                    </View>
+                ), headerShown: false
+            }} />
+        </Tab.Navigator>
+    );
 }
 
 const styles = StyleSheet.create({
