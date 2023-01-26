@@ -9,10 +9,22 @@ import { ImageBackground } from 'react-native';
 const ForumScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-                    <ImageBackground
-                        source={require('../assets/images/poster.png')}
-                        style={styles.bg}
-                        ></ImageBackground>
+            <View style={styles.bandHeader}>
+                <ImageBackground
+                    source={require('../assets/images/poster.png')}
+                    style={styles.bg}
+                >
+                </ImageBackground>
+                <View style={{
+                    position: 'absolute',
+                    width: '100%',
+                    padding: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                <Text style={{ color: '#ffffff', textAlign: 'left', fontSize: 25 }}>Tous Les Sujets</Text>
+            </View>
+            </View>
                 <ScrollView>
                     <View style={styles.tallFiltersContainer}>
                         <Text style={{marginLeft: 10, marginBottom: 10,}}>Trier par :</Text>
@@ -381,9 +393,17 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black'
     },
 
+    bandHeader: {
+        width: "100%",
+        height: 100,
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
     bg: {
-        width: 400,
-        height: 200,
+        width: '100%',
+        height: '100%',
         opacity: 0.4
     },
 });
