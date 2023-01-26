@@ -8,17 +8,7 @@ const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
 
-interface Post {
-    content: string;
-    author: string;
-    date: string;
-}
-
-interface Props {
-    title: string;
-    dataToShow: Post[];
-    navigation: any;
-}
+import { Post, Props } from '../constants/Interfaces';
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -39,16 +29,19 @@ const HomeScreen = ({ navigation }: any) => {
                     <View style={styles.scrollers}>
                         <SideScroller
                             title="Derniers messages"
+                            type='message'
                             dataToShow={fakeData.messages}
                             navigation={navigation}
                         />
                         <SideScroller
                             title="Derniers sujets"
+                            type='post'
                             dataToShow={fakeData.posts}
                             navigation={navigation}
                         />
                         <SideScroller
                             title="Derniers inscrits"
+                            type='user'
                             dataToShow={fakeData.users}
                             navigation={navigation}
                         />

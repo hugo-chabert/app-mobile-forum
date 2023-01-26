@@ -2,20 +2,9 @@ import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import PostPreviewCard from "./PostPreviewCard";
 
-interface Post {
-    content: string;
-    author: string;
-    date: string;
-}
+import { Post, Props } from '../constants/Interfaces';
 
-interface Props {
-    title: string;
-    navigation: any;
-    dataToShow: any;
-}
-
-
-const SideScroller = ({ title, dataToShow, navigation }: Props) => {
+const SideScroller = ({ title, dataToShow, navigation, type }: Props) => {
 
     const bandHeader = (
         <View style={styles.bandHeader}>
@@ -45,7 +34,7 @@ const SideScroller = ({ title, dataToShow, navigation }: Props) => {
                         <TouchableOpacity
                             key={index} onPress={() => navigation.navigate('Post', { post: post })}
                             style={[styles.content, { alignItems: 'flex-start' }]}>
-                            <PostPreviewCard dataToShow={post} />
+                            <PostPreviewCard title="" type={type} dataToShow={post} navigation={navigation}/>
                         </TouchableOpacity>
                     )
                 })}
