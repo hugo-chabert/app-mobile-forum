@@ -79,10 +79,14 @@ const SignUpScrenn = ([navigation]) => {
 
     return (
         <View style={styles.container}>
-
+            <Image
+                source={require('../assets/images/background.png')}
+                style={[styles.bg, { width: '100%', height: '100%', position: 'absolute' }]}
+            />
 
             {/* Parti supérieur : LOGO + Texte  */}
             <View style={styles.header}>
+
                 <Animatable.Image
                     animation="bounceIn"
                     duration={1500}
@@ -313,7 +317,7 @@ const SignUpScrenn = ([navigation]) => {
                     {/* Bouton de connxion et inscription */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate()}
+                            onPress={() => navigation.navigate('')}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -326,7 +330,7 @@ const SignUpScrenn = ([navigation]) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate()}
+                            onPress={() => navigation.navigate('')}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -352,7 +356,7 @@ const height_logo = height * 0.2;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#A51717'
+        backgroundColor: '#000'
     },
     header: {
         flex: 1,
@@ -422,5 +426,10 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
+    },
+    bg: {
+        width: '100%',
+        height: '100%',
+        opacity: 0.4
     }
 });
