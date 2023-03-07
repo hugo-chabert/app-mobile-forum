@@ -21,15 +21,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const TeamsScreen = ({ navigation }) => {
 
-    // const [data, setData] = useState(data);
-
-    // React.useEffect(() => {
-    //     fetch('../constants/fakedata.js')
-    //         .then(response => response.json())
-    //         .then(data => setData(data))
-    //         .catch(error => console.error(error));
-    // }, []);
-
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor='rgba(219, 217, 219, 1)' barStyle="dark-content" />

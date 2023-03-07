@@ -32,8 +32,8 @@ export default function App() {
                     headerShown: false
                 }} >
 
-                    {/* <Stack.Screen name="Tabs" component={Tabs} /> */}
-                    <Stack.Screen name="SignUp" component={SignUpScreen} />
+                    <Stack.Screen name="Tabs" component={Tabs} />
+                    {/* <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
                     {/* <Stack.Screen name="SignIn" component={ConnectionScreen} /> */}
                 </Stack.Navigator>
             </NavigationContainer>
