@@ -1,14 +1,19 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import MessageInfoCard from '../components/MessageInfoCard';
 
-const NewsScreen = ({ navigation }) => {
+
+const fixture = {
+    username: "Musashi06",
+    time: "3 min",
+    comments: '14',
+    
+}
+
+const NewsScreen = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
-            <Text>News screen</Text>
-            <Button
-                title="Click here"
-                onPress={() => alert('Button pressed')}
-            />
+            <MessageInfoCard data={fixture}/>
         </View>
     );
 }
@@ -18,8 +23,8 @@ export default NewsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 20,
+        paddingVertical: 50,
         backgroundColor: '#DBD9DB'
     },
 });
