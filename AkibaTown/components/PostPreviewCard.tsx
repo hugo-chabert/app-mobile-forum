@@ -5,12 +5,11 @@ import { Post, Props } from '../constants/Interfaces';
 
 const PostPreviewCard = ({ type, dataToShow, navigation }: Props) => {
 
-
     if (type === 'post') {
         return (
             <View style={styles?.container}>
                 <View>
-                    <Text style={{ color: 'black', fontSize: 18 }}>0
+                    <Text style={{ color: 'black', fontSize: 18 }}>
                         {dataToShow?.title}
                         <Text style={{ color: 'grey', fontSize: 14 }}>
                             {' '}
