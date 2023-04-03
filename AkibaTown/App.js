@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -12,6 +13,8 @@ import ConnectionScreen from './containers/connection';
 import SignUpScreen from './containers/SignUpScreen';
 import NewPostscreen from './containers/Newpost';
 
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -22,15 +25,10 @@ export default function App() {
     } else {
         return (
             <NavigationContainer>
-                {/* <UserProvider>
-                    <PostProvider>
-                        <CommentProvider>
-                            <Navigation colorScheme={colorScheme} />
-                            <StatusBar />
-                        </CommentProvider>
-                    </PostProvider>
-                </UserProvider> */}
-                <SignUpScreen />
+                <Stack.Navigator>
+                    <Stack.Screen name="SignUp" component={SignUpScreen} />
+                    <Stack.Screen name="SignIn" component={ConnectionScreen} />
+                </Stack.Navigator>
             </NavigationContainer>
         );
     }

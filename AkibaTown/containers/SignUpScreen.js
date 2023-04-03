@@ -19,7 +19,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import ConnectionScreen from './connection';
 
-const SignUpScrenn = (navigation) => {
+const SignUpScreen = ({navigation}) => {
 
     const [data, setData] = React.useState({
         firstname: '',
@@ -34,24 +34,6 @@ const SignUpScrenn = (navigation) => {
         confirm_secureTextEntry: true,
     });
 
-    const textInputChange = (val) => {
-        if (val.length != 0) {
-            setData({
-                ...data,
-                email: val,
-                username: val,
-                check_textInputChange: true
-            })
-        }
-        else {
-            setData({
-                ...data,
-                email: val,
-                username: val,
-                check_textInputChange: false
-            })
-        }
-    }
     const handlePasswordChange = (val) => {
         setData({
             ...data,
@@ -75,6 +57,13 @@ const SignUpScrenn = (navigation) => {
             ...data,
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
+    }
+
+    function SignUp() {
+        if(data(password) == data(confirm_password)){
+            console.log('data: ', data);
+            //navigation.navigate('SignIn');
+        }
     }
 
     return (
@@ -118,6 +107,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+                            onChangeText={(val) => setData({ ...data, lastname: val })}
                         />
                     </View>
 
@@ -139,6 +129,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+                            onChangeText={(val) => setData({ ...data, firstname: val })}
                         />
                     </View>
 
@@ -160,7 +151,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
+                            onChangeText={(val) => setData({ ...data, username: val })}
                         />
                         {data.check_textInputChange ?
                             <Animatable.View
@@ -193,6 +184,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+                            onChangeText={(val) => setData({ ...data, manga: val })}
                         />
                     </View>
 
@@ -214,7 +206,7 @@ const SignUpScrenn = (navigation) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
+                            onChangeText={(val) => setData({ ...data, email: val })}
                         />
                         {data.check_textInputChange ?
                             <Animatable.View
@@ -313,7 +305,7 @@ const SignUpScrenn = (navigation) => {
                     {/* Bouton de connxion et inscription */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('')}
+                            onPress={SignUp}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -326,7 +318,7 @@ const SignUpScrenn = (navigation) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('ConnectionScreen')}
+                            onPress={() => navigation.navigate('SignIn')}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -344,7 +336,7 @@ const SignUpScrenn = (navigation) => {
     );
 }
 
-export default SignUpScrenn;
+export default SignUpScreen;
 
 const { height } = Dimensions.get("screen");
 const height_logo = height * 0.2;
@@ -424,8 +416,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
-
-function createAppContainer(AppNavigator: any) {
-    throw new Error('Function not implemented.');
-}
 
