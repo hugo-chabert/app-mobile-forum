@@ -7,7 +7,7 @@ router.post("/users/register", (req, res) => {
     register(req, res);
 });
 
-router.get("/users/all", authenticateJWT, (req, res) => {
+router.get("/users/all", (req, res) => {
     getAll(req, res);
 });
 
