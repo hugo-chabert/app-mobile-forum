@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import NewPostscreen from '../containers/Newpost';
@@ -8,7 +9,8 @@ import TeamsScreen from '../containers/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
 
-const Tab = createBottomTabNavigator();
+export const Stack = createNativeStackNavigator();
+export const Tab = createBottomTabNavigator();
 
 const CustomTabBarButton = ({children, onPress}) => (
   <TouchableOpacity
@@ -30,8 +32,8 @@ const CustomTabBarButton = ({children, onPress}) => (
     </View>
   </TouchableOpacity>
 );
-
-const Tabs = () => {
+ 
+export const Tabs = () => {
   return(
     <Tab.Navigator
       tabBarOptions={{
@@ -155,5 +157,3 @@ const styles = StyleSheet.create({
     elevation:5,
   }
 })
-
-export default Tabs;

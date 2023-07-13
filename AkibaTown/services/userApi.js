@@ -40,7 +40,7 @@ async function register(data) {
 //         });
 // }
 
-export default {
+export {
     login,
     register,
     // update,

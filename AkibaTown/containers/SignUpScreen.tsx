@@ -17,9 +17,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import ConnectionScreen from './connection';
+import { useNavigation } from '@react-navigation/native';
+import { useUserContext } from '../context/UserContext';
 
-const SignUpScrenn = (navigation) => {
+const SignUpScreen = ({ navigation }: any) => {
 
     const [data, setData] = React.useState({
         firstname: '',
@@ -34,7 +35,9 @@ const SignUpScrenn = (navigation) => {
         confirm_secureTextEntry: true,
     });
 
-    const textInputChange = (val) => {
+    const userContext = useUserContext();
+
+    const textInputChange = (val: string) => {
         if (val.length != 0) {
             setData({
                 ...data,
@@ -52,13 +55,13 @@ const SignUpScrenn = (navigation) => {
             })
         }
     }
-    const handlePasswordChange = (val) => {
+    const handlePasswordChange = (val: string) => {
         setData({
             ...data,
             password: val
         });
     }
-    const handleConfirmPasswordChange = (val) => {
+    const handleConfirmPasswordChange = (val: string) => {
         setData({
             ...data,
             confirm_password: val
@@ -313,7 +316,11 @@ const SignUpScrenn = (navigation) => {
                     {/* Bouton de connxion et inscription */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('')}
+                            onPress={() => {
+                                // todo: créer un user dans la db depuis l'app
+                                userContext.register({...data});
+                                navigation.push('Connexion');
+                            }}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -326,7 +333,7 @@ const SignUpScrenn = (navigation) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('ConnectionScreen')}
+                            onPress={() => navigation.push('Connexion')}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
@@ -344,7 +351,7 @@ const SignUpScrenn = (navigation) => {
     );
 }
 
-export default SignUpScrenn;
+export default SignUpScreen;
 
 const { height } = Dimensions.get("screen");
 const height_logo = height * 0.2;

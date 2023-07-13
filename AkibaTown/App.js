@@ -3,14 +3,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import { Navigation, Stack, Tabs } from './navigation';
 import { UserProvider } from './context/UserContext';
 import { PostProvider } from './context/PostContext';
 import { CommentProvider } from './context/CommentContext';
 import { NavigationContainer } from '@react-navigation/native';
-import ConnectionScreen from './containers/connection';
 import SignUpScreen from './containers/SignUpScreen';
 import NewPostscreen from './containers/Newpost';
+import { AuthNavigation } from './navigation/AuthNav';
+import { AppNavigation } from './navigation/AppNav';
 
 
 export default function App() {
@@ -21,17 +22,22 @@ export default function App() {
         return null;
     } else {
         return (
-            <NavigationContainer>
-                {/* <UserProvider>
-                    <PostProvider>
-                        <CommentProvider>
+            <UserProvider>
+                <PostProvider>
+                    <CommentProvider>
+                        <NavigationContainer>
                             <Navigation colorScheme={colorScheme} />
                             <StatusBar />
-                        </CommentProvider>
-                    </PostProvider>
-                </UserProvider> */}
-                <SignUpScreen />
-            </NavigationContainer>
+
+                            {/* Navigation du formulaire d'inscription/connexion */}
+                            <AuthNavigation />
+
+                            {/* Navigation du reste de l'application */}
+                            <Stack.Screen name='AppNav' component={AppNavigation} />
+                        </NavigationContainer>
+                    </CommentProvider>
+                </PostProvider>
+            </UserProvider>
         );
     }
 }

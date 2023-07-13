@@ -8,15 +8,16 @@ import {
     Dimensions,
     StatusBar,
     TextInput,
-    Image, 
+    Image,
     Platform,
 } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
+import { useUserContext } from '../context/UserContext';
 
-const ConnectionScreen = (navigation) => {
+export default function ConnectionScreen({ navigation }: any) {
 
     const [data, setData] = React.useState({
         email: '',
@@ -25,8 +26,10 @@ const ConnectionScreen = (navigation) => {
         secureTextEntry: true,
     });
 
-    const textInputChange = (val) => {
-        if( val.length != 0 ) {
+    const userContext = useUserContext();
+
+    const textInputChange = (val: string) => {
+        if (val.length != 0) {
             setData({
                 ...data,
                 email: val,
@@ -41,7 +44,7 @@ const ConnectionScreen = (navigation) => {
             })
         }
     }
-    const handlePasswordChange = (val) => {
+    const handlePasswordChange = (val: string) => {
         setData({
             ...data,
             password: val
@@ -75,7 +78,7 @@ const ConnectionScreen = (navigation) => {
 
 
             {/* Parti Inférieur : Formulaire de connexion  */}
-            <Animatable.View 
+            <Animatable.View
                 animation="fadeInUpBig"
                 style={styles.footer}
             >
@@ -89,26 +92,26 @@ const ConnectionScreen = (navigation) => {
                     <TextInput
                         placeholder='Email'
                         placeholderTextColor="rgba(0, 0, 0, 0.5)"
-                        style = {[styles.textInput, {
-                            fontSize : 20
+                        style={[styles.textInput, {
+                            fontSize: 20
                         }]}
-                        autoCapitalize = 'none'
-                        onChangeText={(val)=>textInputChange(val)}
+                        autoCapitalize='none'
+                        onChangeText={(val) => textInputChange(val)}
                     />
                     {data.check_textInputChange ?
-                    <Animatable.View
-                        animation="bounceIn"
-                    >
-                        <Feather
-                            name='check-circle'
-                            color={'green'}
-                            size={20}
-                        />
-                    </Animatable.View>
-                    : null }
+                        <Animatable.View
+                            animation="bounceIn"
+                        >
+                            <Feather
+                                name='check-circle'
+                                color={'green'}
+                                size={20}
+                            />
+                        </Animatable.View>
+                        : null}
                 </View>
                 <Text style={[styles.text_footer, {
-                    marginTop : 35
+                    marginTop: 35
                 }]}>Mot de passe</Text>
                 <View style={styles.action}>
                     <FontAwesome
@@ -119,72 +122,82 @@ const ConnectionScreen = (navigation) => {
                     <TextInput
                         placeholder='Mot de passe'
                         placeholderTextColor="rgba(0, 0, 0, 0.5)"
-                        secureTextEntry = {data.secureTextEntry ? true : false}
-                        style = {[styles.textInput, {
-                            fontSize : 20
+                        secureTextEntry={data.secureTextEntry ? true : false}
+                        style={[styles.textInput, {
+                            fontSize: 20
                         }]}
-                        autoCapitalize = 'none'
-                        onChangeText={(val)=>handlePasswordChange(val)}
+                        autoCapitalize='none'
+                        onChangeText={(val) => handlePasswordChange(val)}
                     />
                     <TouchableOpacity
-                        onPress={ updateSecureTextEntry}
+                        onPress={updateSecureTextEntry}
                     >
                         {data.secureTextEntry ?
-                        <Feather
-                            name='eye-off'
-                            color={'grey'}
-                            size={20}
-                        />
-                        :
-                        <Feather
-                            name='eye'
-                            color={'grey'}
-                            size={20}
-                        />
+                            <Feather
+                                name='eye-off'
+                                color={'grey'}
+                                size={20}
+                            />
+                            :
+                            <Feather
+                                name='eye'
+                                color={'grey'}
+                                size={20}
+                            />
                         }
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity>
-                        <Text 
-                        style={[styles.text_footer,{
-                        marginTop : 15,
-                        textDecorationLine: 'underline',
-                        textDecorationStyle: 'solid',
-                        color: '#A51717'
-                        }]}
+                        <Text
+                            style={[styles.text_footer, {
+                                marginTop: 15,
+                                textDecorationLine: 'underline',
+                                textDecorationStyle: 'solid',
+                                color: '#A51717'
+                            }]}
                         >Mot de passe oublié</Text>
                     </TouchableOpacity>
                 </View>
 
-            
-            
-            {/* Bouton de connxion et inscription */}
+
+
+                {/* Bouton de connxion et inscription */}
                 <View style={styles.button}>
                     <TouchableOpacity
-                    onPress={() => navigation.navigate('')}
-                    style={[styles.signIn, {
-                        borderColor: '#A51717',
-                        borderWidth: 1,
-                        backgroundColor: '#A51717'
-                    }]}
+                        onPress={async () => {
+                            try {
+                                // todo: 'userContext.login' est introuvable
+                                await userContext.login(data.email, data.password)
+                                navigation.navigate('Stack', { screen: "Home" })
+                            } catch(e) {
+                                console.log(e)
+                            }
+                        }}
+                        style={[styles.signIn, {
+                            borderColor: '#A51717',
+                            borderWidth: 1,
+                            backgroundColor: '#A51717'
+                        }]}
                     >
                         <Text style={[styles.textSign, {
-                        color: '#fff'
-                    }]}>Se connecter</Text>
+                            color: '#fff'
+                        }]}>Se connecter</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUpScreen')}
-                    style={[styles.signIn, {
-                        borderColor: '#A51717',
-                        borderWidth: 1,
-                        marginTop: 25
-                    }]}
+                        onPress={() => {
+                            navigation.push('SignUp')
+                        }}
+                        style={[styles.signIn, {
+                            borderColor: '#A51717',
+                            borderWidth: 1,
+                            marginTop: 25
+                        }]}
                     >
                         <Text style={[styles.textSign, {
-                        color: '#A51717'
-                    }]}>M'inscrire</Text>
+                            color: '#A51717'
+                        }]}>M'inscrire</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>
@@ -192,9 +205,8 @@ const ConnectionScreen = (navigation) => {
     );
 }
 
-export default ConnectionScreen;
 
-const {height} = Dimensions.get("screen");
+const { height } = Dimensions.get("screen");
 const height_logo = height * 0.2;
 
 const styles = StyleSheet.create({
