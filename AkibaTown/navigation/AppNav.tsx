@@ -11,9 +11,6 @@ import NewsScreen from '../screens/NewsScreen';
 export const AppNavigation = () => {
     return (
         <Tab.Navigator>
-            {/* 
-                Il manque l'onglet "Nouveau post" et "Teams"
-            */}
             <Tab.Screen 
                 options={{ headerShown: false }}
                 name='Home' 

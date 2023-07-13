@@ -17,7 +17,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useUserContext } from '../context/UserContext';
 
-export default function ConnectionScreen({ navigation }: any) {
+const ConnectionScreen = ({ navigation }: any) => {
 
     const [data, setData] = React.useState({
         email: '',
@@ -169,7 +169,7 @@ export default function ConnectionScreen({ navigation }: any) {
                             try {
                                 // todo: 'userContext.login' est introuvable
                                 await userContext.login(data.email, data.password)
-                                navigation.navigate('Stack', { screen: "Home" })
+                                navigation.navigate('AppNav', { screen: "Home" })
                             } catch(e) {
                                 console.log(e)
                             }
@@ -285,3 +285,4 @@ const styles = StyleSheet.create({
     }
 });
 
+export default ConnectionScreen;

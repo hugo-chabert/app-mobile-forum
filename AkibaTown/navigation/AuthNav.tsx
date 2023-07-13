@@ -11,18 +11,16 @@ import ConnectionScreen from '../containers/ConnexionScreen';
 export const AuthNavigation = () => {
     return (
         <Stack.Navigator>
-            <UserProvider>
-                <Stack.Screen 
-                    options={{ headerShown: false }}
-                    name="SignUp" 
-                    component={SignUpScreen} 
-                />
-                <Stack.Screen 
-                    options={{ headerShown: false }}
-                    name="Connexion" 
-                    component={ConnectionScreen}
-                />
-            </UserProvider>
+            <Stack.Screen
+                options={{ headerShown: false }}
+                name="SignUp"
+                component={SignUpScreen}
+            />
+            <Stack.Screen
+                options={{ headerShown: false }}
+                name="Connexion"
+                component={ConnectionScreen}
+            />
         </Stack.Navigator>
     )
 }

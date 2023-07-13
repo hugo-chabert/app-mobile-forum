@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../config/config";
 
 async function login(email, password) {
+    console.log(email)
     return await axios.post(`${BASE_URL}/users/login`, {
         email: email,
         password: password,
@@ -40,7 +41,7 @@ async function register(data) {
 //         });
 // }
 
-export {
+export default {
     login,
     register,
     // update,
