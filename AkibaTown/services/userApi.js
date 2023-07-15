@@ -2,13 +2,12 @@ import axios from "axios";
 import { BASE_URL } from "../config/config";
 
 async function login(email, password) {
-    console.log(email)
     return await axios.post(`${BASE_URL}/users/login`, {
         email: email,
         password: password,
     })
-        .then(async response => {
-            return response
+        .then(response => {
+            return response.data
         })
         .catch(error => {
             console.log('ERR LOGIN ==', error.response);
@@ -17,7 +16,7 @@ async function login(email, password) {
 }
 
 async function register(data) {
-    return await axios.post(`${BASE_URL}/users/register`, data, { headers: { "Content-Type": "application/json" } })
+    await axios.post(`${BASE_URL}/users/register`, data, { headers: { "Content-Type": "application/json" } })
         .then(response => {
             return response
         })

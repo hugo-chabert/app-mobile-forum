@@ -9,8 +9,9 @@ import TeamsScreen from '../containers/TeamsScreen';
 import NewsScreen from '../screens/NewsScreen';
 import ForumScreen from '../screens/ForumScreen';
 
-export const Stack = createNativeStackNavigator();
-export const Tab = createBottomTabNavigator();
+export const RootStack = createNativeStackNavigator();
+export const AuthStack = createNativeStackNavigator();
+export const AppStack = createBottomTabNavigator();
 
 const CustomTabBarButton = ({children, onPress}) => (
   <TouchableOpacity
@@ -35,7 +36,7 @@ const CustomTabBarButton = ({children, onPress}) => (
  
 export const Tabs = () => {
   return(
-    <Tab.Navigator
+    <AppStack.Navigator
       tabBarOptions={{
       showLabel: false,
       style: {
@@ -50,7 +51,7 @@ export const Tabs = () => {
       }
     }}
     >
-      <Tab.Screen name="Accueil" component={HomeScreen}
+      <AppStack.Screen name="Accueil" component={HomeScreen}
       options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>
@@ -69,7 +70,7 @@ export const Tabs = () => {
         )
       }} />
 
-      <Tab.Screen name="Forum" component={ForumScreen} 
+      <AppStack.Screen name="Forum" component={ForumScreen} 
       options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>
@@ -88,7 +89,7 @@ export const Tabs = () => {
         ), headerShown: false,
       }} />
 
-      <Tab.Screen name="Nouveau Sujet" component={NewPostscreen} 
+      <AppStack.Screen name="Nouveau Sujet" component={NewPostscreen} 
       options={{
         tabBarIcon: ({focused}) => (
           <Image 
@@ -106,7 +107,7 @@ export const Tabs = () => {
       }}
       />
 
-      <Tab.Screen name="Actualités" component={NewsScreen} 
+      <AppStack.Screen name="Actualités" component={NewsScreen} 
       options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>
@@ -124,7 +125,7 @@ export const Tabs = () => {
           </View>
         ), headerShown: false,
       }} />
-      <Tab.Screen name="Équipes" component={TeamsScreen} options={{
+      <AppStack.Screen name="Équipes" component={TeamsScreen} options={{
         tabBarIcon: ({focused}) => (
           <View style ={{alignItems: 'center', justifyContent:'center'}}>
             <Image
@@ -141,7 +142,7 @@ export const Tabs = () => {
           </View>
         ), headerShown: false,
       }} />
-    </Tab.Navigator>
+    </AppStack.Navigator>
   );
 }
 

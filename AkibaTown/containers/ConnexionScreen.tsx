@@ -16,6 +16,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useUserContext } from '../context/UserContext';
+import { getData, getDataObject } from '../utils/storage';
 
 const ConnectionScreen = ({ navigation }: any) => {
 
@@ -167,9 +168,10 @@ const ConnectionScreen = ({ navigation }: any) => {
                     <TouchableOpacity
                         onPress={async () => {
                             try {
-                                // todo: 'userContext.login' est introuvable
                                 await userContext.login(data.email, data.password)
-                                navigation.navigate('AppNav', { screen: "Home" })
+                                if(await getData("token")) {
+                                    navigation.replace("AppNav")
+                                }
                             } catch(e) {
                                 console.log(e)
                             }

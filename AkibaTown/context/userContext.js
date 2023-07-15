@@ -1,6 +1,8 @@
 import React from 'react';
 import userApi from '../services/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {storeDataObject, getData} from "../utils/storage.js";
+
 
 const UserContext = React.createContext();
 
@@ -49,24 +51,16 @@ const UserProvider = ({ children }) => {
         })
         const response = await userApi.login(email, password)
 
-        if (response.data.token){
-            try {
-                await AsyncStorage.setItem('token', JSON.stringify(response.data.token))
-                setAuthState({
-                    ...authState,
-                    isLoading: false
-                })
-            } catch (e) {
-              // saving error
-            }
+        if (response.token){
+            storeDataObject('token',response.token)
         }
 
-        if (response.data.error) {
+        if (response.error) {
             setAuthState({
                 ...authState,
                 isLoading: false,
                 error: true,
-                errorMessage: response.data.error.message
+                errorMessage: response.error.message
             })
             return
         }

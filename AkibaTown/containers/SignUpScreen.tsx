@@ -319,7 +319,7 @@ const SignUpScreen = ({ navigation }: any) => {
                             onPress={() => {
                                 // todo: créer un user dans la db depuis l'app
                                 userContext.register({...data});
-                                navigation.push('Connexion');
+                                navigation.push('Connection');
                             }}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
@@ -333,7 +333,7 @@ const SignUpScreen = ({ navigation }: any) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.push('Connexion')}
+                            onPress={() => navigation.push('Connection')}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,
