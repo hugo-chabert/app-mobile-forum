@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import { ScrollView } from 'react-native';
-import Tabs from '../navigation/index'
+import { AppStack } from '../navigation/index'
 import { Picker } from '@react-native-picker/picker';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
