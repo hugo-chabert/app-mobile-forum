@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import { ScrollView } from 'react-native';
-import Tabs from '../navigation/index'
+import { Tabs } from '../navigation';
 import { Picker } from '@react-native-picker/picker';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -22,7 +22,7 @@ import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 
-const TeamsScreen = ({ navigation }) => {
+const TeamsScreen = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -36,7 +36,7 @@ const TeamsScreen = ({ navigation }) => {
                         source={require('../assets/images/background.png')}
                         style={[styles.bg, { width: '100%', height: '100%', position: 'absolute' }]}
                     />
-                    <Text style={styles.title}>Nouveau Sujet</Text>
+                    <Text style={styles.title}>Teams</Text>
                 </View>
 
             </ScrollView>

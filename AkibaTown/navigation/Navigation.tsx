@@ -11,7 +11,7 @@ import { CustomTabBarButton } from '../navigation';
 import { styles } from './index';
 
 import SignUpScreen from '../screens/SignUpScreen';
-import ConnectionScreen from '../screens/LoginScreen';
+import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ForumScreen from '../screens/ForumScreen';
 import NewsScreen from '../screens/NewsScreen';
@@ -30,8 +30,8 @@ function AuthNavigation() {
             />
             <AuthStack.Screen
                 options={{ headerShown: false }}
-                name="Connection"
-                component={ConnectionScreen}
+                name="Login"
+                component={LoginScreen}
             />
         </AuthStack.Navigator>
     )

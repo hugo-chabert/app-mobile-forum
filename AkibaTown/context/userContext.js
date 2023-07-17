@@ -70,7 +70,7 @@ const UserProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem('token')
             if(value !== null) {
-                console.log(JSON.parse(value))
+                return JSON.parse(value)
             }
         } catch(e) {
             console.log(e)
