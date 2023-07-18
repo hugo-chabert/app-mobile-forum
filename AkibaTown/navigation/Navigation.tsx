@@ -163,7 +163,8 @@ export const Navigator = () => {
             <PostProvider>
                 <CommentProvider>
                     <NavigationContainer>
-                        <RootStack.Navigator>
+                        {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
+                        <RootStack.Navigator screenOptions={{ headerShown: false }}> 
                             <RootStack.Screen name='AuthNav' component={AuthNavigation} />
                             <RootStack.Screen name='AppNav' component={AppNavigation} />
                         </RootStack.Navigator>

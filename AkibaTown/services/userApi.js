@@ -17,13 +17,13 @@ async function login(email, password) {
 
 async function register(data) {
     await axios.post(`${BASE_URL}/users/register`, data, { headers: { "Content-Type": "application/json" } })
-        .then(response => {
-            return response
-        })
-        .catch(error => {
-            console.log("ERR RES REGISTER ====", error.response);
-            return error.response
-        });
+    .then(response => {
+        return response
+    })
+    .catch(error => {
+        console.log("ERR RES REGISTER ====", error.response);
+        return error.response
+    });
 }
 
 // async function update(username, email, id) {

@@ -19,6 +19,8 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { useUserContext } from '../context/UserContext';
+import { getData } from '../utils/storage';
+import * as RegEx from '../constants/RegEx';
 
 const SignUpScreen = ({ navigation }: any) => {
 
@@ -35,7 +37,17 @@ const SignUpScreen = ({ navigation }: any) => {
         confirm_secureTextEntry: true,
     });
 
+    const [invalidField, setInvalidField] = React.useState({
+        isNameValid: false,
+        isFirstNameValid: false,
+        isEmailValid: false,
+        isUsernameValid: false,
+        isPasswordValid: false,
+        isPasswordVerifValid: false
+    });
+
     const userContext = useUserContext();
+
 
     const textInputChange = (val: string) => {
         if (val.length != 0) {
@@ -121,7 +133,16 @@ const SignUpScreen = ({ navigation }: any) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+
+                            onChangeText={(e) => {
+                                console.log(`${e} = ${RegEx.validateName(e)}`)
+                                if(e.length == 0) invalidField.isNameValid = true;
+                            }}
                         />
+                        {/* todo: le message d'erreur ne se mets pas à jour */}
+                        <Text style={{ color: 'red' }}>
+                            {invalidField.isNameValid ? "" : "Champ invalide"}
+                        </Text>
                     </View>
 
 
@@ -142,7 +163,16 @@ const SignUpScreen = ({ navigation }: any) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+
+                            onChangeText={(e) => {
+                                console.log(`${e} = ${RegEx.validateName(e)}`)
+                                
+                            }}
                         />
+                        {/* todo: le message d'erreur ne se mets pas à jour */}
+                        <Text style={{ color: 'red' }}>
+                            {invalidField.isFirstNameValid ? "" : "Champ invalide"}
+                        </Text>
                     </View>
 
 
@@ -316,10 +346,8 @@ const SignUpScreen = ({ navigation }: any) => {
                     {/* Bouton de connxion et inscription */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => {
-                                // todo: créer un user dans la db depuis l'app
-                                userContext.register({...data});
-                                navigation.push('Login');
+                            onPress={async () => {
+
                             }}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
@@ -333,7 +361,9 @@ const SignUpScreen = ({ navigation }: any) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => navigation.push('Login')}
+                            onPress={() => {
+                                navigation.push('Login')
+                            }}
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,

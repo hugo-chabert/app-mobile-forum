@@ -26,7 +26,7 @@ const UserProvider = ({ children }) => {
 
         const data = { username, email, firstname, lastname, password }
 
-        const response = await userApi.register(data)
+        const response = await userApi.register(data);
 
         if (response.data.error) {
             setAuthState({
@@ -35,6 +35,7 @@ const UserProvider = ({ children }) => {
                 error: true,
                 errorMessage: response.data.error.message
             })
+            console.log('erreur')
         }
         else {
             setAuthState({
@@ -53,6 +54,10 @@ const UserProvider = ({ children }) => {
 
         if (response.token){
             storeDataObject('token',response.token)
+            setAuthState({
+                ...authState,
+                isConnected: true,
+            })
         }
 
         if (response.error) {

@@ -3,15 +3,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import { getIsSignedIn } from './navigation/Navigation';
-
 
 import { Navigator } from './navigation/Navigation';
+
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
-    const isSignedIn = getIsSignedIn();
 
     if (!isLoadingComplete) {
         return null;
