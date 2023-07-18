@@ -3,10 +3,10 @@ const app = express()
 var cors = require('cors')
 const port = 3000
 
-var usersRouter = require('./router/userRouter');
-var postsRouter = require('./router/postRouter');
-var commentsRouter = require('./router/commentRouter');
-const sequelize = require('./config/database');
+var usersRouter = require('./src/router/userRouter');
+var postsRouter = require('./src/router/postRouter');
+var commentsRouter = require('./src/router/commentRouter');
+const sequelize = require('./src/config/database');
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
