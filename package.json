@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "react-native-linear-gradient": "^2.6.2"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
   }
 }

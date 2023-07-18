@@ -6,7 +6,7 @@ require('dotenv').config();
 
 function getAll(req, res) {
     Users.findAll({
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        // attributes: { exclude: ['createdAt', 'updatedAt'] }
     })
     .then((users) => {
         res.json(users);
@@ -16,7 +16,7 @@ function getAll(req, res) {
 
 function getOne(req, res) {
     Users.findByPk(req.params.id, {
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        // attributes: { exclude: ['createdAt', 'updatedAt'] }
     })
     .then((users) => {
         res.json(users);
@@ -59,13 +59,17 @@ function updateOne(req, res){
 
 function deleteOne(req, res){
     Users.destroy({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     })
     .then((data) => {
         if(data == 0) return res.status(404).json({msg : "Not Found"})
         res.send("User deleted!")
     })
-    .catch(error => res .status(500).json(error))
+    .catch(error => {
+        res .status(500).json(error)
+        console.log(error)
+    }
+    )
 }
 
 function login(req, res) {
