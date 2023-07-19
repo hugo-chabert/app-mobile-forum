@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL, API_URL } from "../config/config";
 
 async function login(email, password) {
-    return await axios.post(`${BASE_URL}/users/login`, {
+    return await axios.post(`${API_URL}/users/login`, {
         email: email,
         password: password,
     })
@@ -16,15 +16,16 @@ async function login(email, password) {
 }
 
 async function register(data) {
-    console.log("TEST")
-    return await axios.post(`${BASE_URL}/users/register`, data, { headers: { "Content-Type": "application/json" }})
+    console.log(1)
+    return await axios.post(`${API_URL}/users/register`, data, { headers: { "Content-Type": "application/json" }})
     .then(response => {
+        console.log(2)
         console.log(response)
         return response
     })
     .catch(error => {
+        console.log(3)
         console.log('ERR REGISTER ==', error.toJSON());
-        return error.response
     });
 }
 
