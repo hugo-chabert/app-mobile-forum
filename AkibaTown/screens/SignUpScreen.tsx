@@ -18,7 +18,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../context/userContext';
 import { getData } from '../utils/storage';
 import * as RegEx from '../constants/RegEx';
 

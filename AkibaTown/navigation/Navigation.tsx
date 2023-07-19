@@ -5,7 +5,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import { RootStack, AuthStack, AppStack } from '../navigation';
 import { PostProvider } from '../context/PostContext';
 import { CommentProvider } from '../context/CommentContext';
-import { UserProvider } from '../context/UserContext';
+import { UserProvider } from '../context/userContext';
 import { NavigationContainer } from '@react-navigation/native';
 import { CustomTabBarButton } from '../navigation';
 import { styles } from './index';

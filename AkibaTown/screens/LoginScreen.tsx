@@ -15,7 +15,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../context/userContext';
 import { getData } from '../utils/storage';
 
 const LoginScreen = ({ navigation }: any) => {
