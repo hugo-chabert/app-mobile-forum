@@ -25,13 +25,13 @@ import * as RegEx from '../constants/RegEx';
 const SignUpScreen = ({ navigation }: any) => {
 
     const [data, setData] = React.useState({
+        username: '',
         firstname: '',
         lastname: '',
-        username: '',
-        manga: '',
         email: '',
         password: '',
         confirm_password: '',
+        favorite_anime: '',
         check_textInputChange: false,
         secureTextEntry: true,
         confirm_secureTextEntry: true,
@@ -135,8 +135,7 @@ const SignUpScreen = ({ navigation }: any) => {
                             autoCapitalize='none'
 
                             onChangeText={(e) => {
-                                console.log(`${e} = ${RegEx.validateName(e)}`)
-                                if(e.length == 0) invalidField.isNameValid = true;
+                                data.lastname = e;
                             }}
                         />
                         {/* todo: le message d'erreur ne se mets pas à jour */}
@@ -165,8 +164,7 @@ const SignUpScreen = ({ navigation }: any) => {
                             autoCapitalize='none'
 
                             onChangeText={(e) => {
-                                console.log(`${e} = ${RegEx.validateName(e)}`)
-                                
+                                data.firstname = e;
                             }}
                         />
                         {/* todo: le message d'erreur ne se mets pas à jour */}
@@ -226,6 +224,7 @@ const SignUpScreen = ({ navigation }: any) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
+                            onChangeText={(val) => data.favorite_anime = val}
                         />
                     </View>
 
@@ -348,7 +347,22 @@ const SignUpScreen = ({ navigation }: any) => {
                         <TouchableOpacity
                             onPress={async () => {
 
+                                try {
+                                    await userContext.register(
+                                        data.username,
+                                        data.firstname,
+                                        data.lastname,
+                                        data.email,
+                                        data.password,
+                                        data.favorite_anime
+                                    )
+                                }
+                                catch (e) {
+                                    console.log(e)
+                                } 
+
                             }}
+
                             style={[styles.signIn, {
                                 borderColor: '#A51717',
                                 borderWidth: 1,

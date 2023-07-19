@@ -26,12 +26,13 @@ function getOne(req, res) {
 
 function register(req, res) {
     const { body } = req
+    // console.log(body)
     // const { error } = userValidation(body)
     // if (error) return res.status(401).json("Un des champs n'est pas valide")
 
     body.password = bcrypt.hashSync(body.password, 10)
 
-    Users.create({ ...body })
+    Users.create({...body})
     .then(() => {
         res.status(201).json({ msg: "Les ressources ont bien été créées" })
     })

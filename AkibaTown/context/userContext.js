@@ -18,13 +18,20 @@ const initialState = {
 const UserProvider = ({ children }) => {
     const [authState, setAuthState] = React.useState(initialState)
 
-    const register = async (username, email, firstname, lastname, password) => {
+    const register = async (username, firstname, lastname, email, password, favorite_anime) => {
         setAuthState({
             ...authState,
             isLoading: true
         })
 
-        const data = { username, email, firstname, lastname, password }
+        const data = {
+            username: username,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+            favorite_anime: favorite_anime,
+        }
 
         const response = await userApi.register(data);
 
@@ -35,13 +42,14 @@ const UserProvider = ({ children }) => {
                 error: true,
                 errorMessage: response.data.error.message
             })
-            console.log('erreur')
+            console.log(response.data.error.message)
         }
         else {
             setAuthState({
                 ...authState,
                 isLoading: false,
             })
+            console.log(response);
         }
     };
 

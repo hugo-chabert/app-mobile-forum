@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAll, getOne, getOneByUsername, register, updateOne, deleteOne, login } = require( '../services/userApi');
+const { getAll, getOne, register, updateOne, deleteOne, login } = require( '../services/userApi');
 const authenticateJWT = require('../utils/authenticateJWT');
 
 router.post("/users/register", (req, res) => {
