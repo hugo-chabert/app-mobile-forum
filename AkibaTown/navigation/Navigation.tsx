@@ -17,7 +17,7 @@ import ForumScreen from '../screens/ForumScreen';
 import NewsScreen from '../screens/NewsScreen';
 
 import { getData } from '../utils/storage';
-import NewPostscreen from '../screens/Newpost';
+import NewPostscreen from '../screens/NewPostScreen';
 import TeamsScreen from '../screens/TeamsScreen';
 
 function AuthNavigation() {

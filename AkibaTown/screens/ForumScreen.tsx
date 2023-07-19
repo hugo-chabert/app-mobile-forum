@@ -6,7 +6,7 @@ import { TouchableOpacity} from 'react-native';
 import { ImageBackground } from 'react-native';
 // import LinearGradient from 'react-native-linear-gradient';
 
-const ForumScreen = ({ navigation }) => {
+const ForumScreen = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
                     <ImageBackground
