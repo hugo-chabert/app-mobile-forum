@@ -19,6 +19,7 @@ import NewsScreen from '../screens/NewsScreen';
 import { getData } from '../utils/storage';
 import NewPostscreen from '../screens/NewPostScreen';
 import TeamsScreen from '../screens/TeamsScreen';
+import { PostScreen } from '../screens/PostScreen';
 
 function AuthNavigation() {
     return (
@@ -108,6 +109,16 @@ function AppNavigation() {
                             />
                         </View>
                     )
+                }}
+            />
+            <AppStack.Screen
+                name='Post'
+                component={PostScreen}
+                options={{
+                    headerShown: false,
+                    tabBarItemStyle: {
+                        display: 'none'
+                    }
                 }}
             />
             <AppStack.Screen

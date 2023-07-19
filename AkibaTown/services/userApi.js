@@ -28,6 +28,8 @@ async function register(data) {
     });
 }
 
+
+
 // async function update(username, email, id) {
 //     return await axios.put(`${API_URL}/users/${id}`, {
 //         username: username,

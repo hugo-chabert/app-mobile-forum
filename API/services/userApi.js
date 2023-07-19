@@ -103,5 +103,8 @@ function login(req, res) {
     })
 }
 
+function decodeToken(token) {
+    return jwt.decode(token);
+}
 
 module.exports = {getAll, getOne, register, updateOne, deleteOne, login}

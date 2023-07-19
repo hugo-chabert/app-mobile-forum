@@ -13,6 +13,9 @@ const initialState = {
 const PostProvider = ({ children }) => {
     const [postState, setPostState] = React.useState(initialState)
 
+    /**
+     * @returns id of the newly created post
+     */
     const create = async (titre, message, id_user) => {
         setPostState({
             ...postState,
@@ -33,6 +36,8 @@ const PostProvider = ({ children }) => {
                 ...postState,
                 isLoading: false,
             })
+
+            return response.data.id;
         }
     };
 

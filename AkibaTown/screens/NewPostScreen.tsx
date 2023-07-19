@@ -22,7 +22,8 @@ import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { usePostContext } from '../context/PostContext';
-
+import { getData } from '../utils/storage';
+import { useUserContext } from '../context/userContext';
 
 /*Fonction permettant de retirer le clavier*/
 function handleTouch() {
@@ -33,7 +34,7 @@ function handleTouch() {
 const NewPostscreen = ({ navigation }: any) => {
     const [selected, setSelected] = React.useState("");
 
-    const data = [
+    const mangas = [
         { key: '1', value: 'Combat', disabled: true },
         { key: '2', value: 'Naruto' },
         { key: '3', value: 'One piece' },
@@ -46,7 +47,11 @@ const NewPostscreen = ({ navigation }: any) => {
         { key: '10', value: 'Inazuma eleven ' },
     ]
 
+    const [title, setTitle] = React.useState('');
+    const [message, setMessage] = React.useState('');
+
     const postContext = usePostContext();
+    const userContext = useUserContext();
 
     return (
         <View style={styles.container}>
@@ -80,6 +85,7 @@ const NewPostscreen = ({ navigation }: any) => {
                                 height: 50,
                                 marginRight: 35
                             }]}
+                            onChangeText={(val) => setTitle(val)}
                         />
                     </View>
 
@@ -104,7 +110,7 @@ const NewPostscreen = ({ navigation }: any) => {
                             maxHeight={500}
                             placeholder='Choisir le manga'
                             setSelected={(val) => setSelected(val)}
-                            data={data}
+                            data={mangas}
                             save="value"
                         />
                     </View>
@@ -132,6 +138,7 @@ const NewPostscreen = ({ navigation }: any) => {
                                 paddingRight: 10,
                                 backgroundColor: '#e6e6e6',
                             }}
+                            onChangeText={(val) => setMessage(val)}
                         />
                     </View>
 
@@ -139,9 +146,24 @@ const NewPostscreen = ({ navigation }: any) => {
                     {/* Bouton Publier */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => {
+                            onPress={async () => {
+                                try {
+                                    const userToken = await getData("token")
+                                    const authorID = userContext.decodeToken(userToken);
+                                    console.log(authorID)
 
-                                
+                                    if(userToken !== undefined) {
+                                        console.log(authorID) // expected: 3
+                                        if(await postContext.create(title, message, authorID) !== undefined) {
+                                            // probleme ici
+
+                                            navigation.push('Post')
+                                        }
+                                    }
+                                }
+                                catch(e) {
+                                    console.log(e);
+                                }
 
                             }}
                             style={[styles.signIn, {
