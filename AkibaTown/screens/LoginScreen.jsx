@@ -18,7 +18,7 @@ import * as Animatable from 'react-native-animatable';
 import { useUserContext } from '../context/userContext';
 import { getData } from '../utils/storage';
 
-const LoginScreen = ({ navigation }: any) => {
+const LoginScreen = ({ navigation }) => {
 
     const userContext = useUserContext();
 
@@ -29,7 +29,7 @@ const LoginScreen = ({ navigation }: any) => {
         secureTextEntry: true,
     });
 
-    const textInputChange = (val: string) => {
+    const textInputChange = (val) => {
         if (val.length != 0) {
             setData({
                 ...data,
@@ -45,7 +45,7 @@ const LoginScreen = ({ navigation }: any) => {
             })
         }
     }
-    const handlePasswordChange = (val: string) => {
+    const handlePasswordChange = (val) => {
         setData({
             ...data,
             password: val

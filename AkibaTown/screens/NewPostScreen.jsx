@@ -30,7 +30,7 @@ function handleTouch() {
 }
 
 
-const NewPostscreen = ({ navigation }: any) => {
+const NewPostscreen = ({ navigation }) => {
     const [selected, setSelected] = React.useState("");
 
     const data = [

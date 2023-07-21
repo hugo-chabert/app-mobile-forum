@@ -22,7 +22,7 @@ import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 
-const TeamsScreen = ({ navigation }: any) => {
+const TeamsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ScrollView>

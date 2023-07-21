@@ -22,7 +22,7 @@ import { useUserContext } from '../context/userContext';
 import { getData } from '../utils/storage';
 import * as RegEx from '../constants/RegEx';
 
-const SignUpScreen = ({ navigation }: any) => {
+const SignUpScreen = ({ navigation }) => {
 
     const [data, setData] = React.useState({
         username: '',
@@ -49,7 +49,7 @@ const SignUpScreen = ({ navigation }: any) => {
     const userContext = useUserContext();
 
 
-    const textInputChange = (val: string) => {
+    const textInputChange = (val) => {
         if (val.length != 0) {
             setData({
                 ...data,
@@ -67,13 +67,13 @@ const SignUpScreen = ({ navigation }: any) => {
             })
         }
     }
-    const handlePasswordChange = (val: string) => {
+    const handlePasswordChange = (val) => {
         setData({
             ...data,
             password: val
         });
     }
-    const handleConfirmPasswordChange = (val: string) => {
+    const handleConfirmPasswordChange = (val) => {
         setData({
             ...data,
             confirm_password: val

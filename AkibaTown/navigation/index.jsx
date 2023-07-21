@@ -17,7 +17,7 @@ export const AppStack = createBottomTabNavigator();
 const Tab = createBottomTabNavigator();
 
 
-export const CustomTabBarButton = ({ children, onPress }: any) => (
+export const CustomTabBarButton = ({ children, onPress }) => (
     <TouchableOpacity
         style={{
             top: -25,
