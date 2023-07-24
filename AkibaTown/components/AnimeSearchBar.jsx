@@ -23,7 +23,7 @@ export const AnimeSearchBar = () => {
 
     const handleAnimePress = (_animeData) => {
         setAnimeData(_animeData)
-        setSearchValue(animeData.title)
+        setSearchValue(_animeData.title)
     }
 
 
@@ -49,7 +49,10 @@ export const AnimeSearchBar = () => {
 
                 value={searchValue === '' ? input : searchValue}
                 onChangeText={text => setInput(text)}
-                onFocus={() => setSearchValue('')}
+                onFocus={() => {
+                    setSearchValue('')
+                    setInput('')
+                }}
             />
 
             <AnimeSearchFilter data={searchAnimeData} input={input} onAnimePress={handleAnimePress}/>
