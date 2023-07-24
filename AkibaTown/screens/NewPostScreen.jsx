@@ -33,6 +33,9 @@ function handleTouch() {
 
 const NewPostscreen = ({ navigation }) => {
     const [selected, setSelected] = React.useState("");
+    const [postTitle, setPostTitle] = React.useState("");
+    const [postMessage, setPostMessage] = React.useState("");
+    const [postUserID, setPostUserID] = React.useState(null)
 
     const data = [
         { key: '1', value: 'Combat', disabled: true },
@@ -81,6 +84,7 @@ const NewPostscreen = ({ navigation }) => {
                                 height: 50,
                                 marginRight: 35
                             }]}
+                            onChangeText={text => setPostTitle(text)}
                         />
                     </View>
 
@@ -111,6 +115,7 @@ const NewPostscreen = ({ navigation }) => {
                                 paddingRight: 10,
                                 backgroundColor: '#e6e6e6',
                             }}
+                            onChangeText={text => setPostMessage(text)}
                         />
                     </View>
 
@@ -120,7 +125,12 @@ const NewPostscreen = ({ navigation }) => {
                         <TouchableOpacity
                             onPress={() => {
 
-                                
+                                try {
+                                    postContext.create(postTitle, postMessage, 5)
+                                }
+                                catch(e) {
+                                    console.log(e)
+                                }
 
                             }}
                             style={[styles.signIn, {

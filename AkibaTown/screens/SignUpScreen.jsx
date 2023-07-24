@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
     }
 });
 
-function createAppContainer(AppNavigator: any) {
+function createAppContainer(AppNavigator) {
     throw new Error('Function not implemented.');
 }
 
