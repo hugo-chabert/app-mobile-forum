@@ -22,6 +22,7 @@ import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { usePostContext } from '../context/PostContext';
+import { AnimeSearchBar } from '../components/AnimeSearchBar';
 
 
 /*Fonction permettant de retirer le clavier*/
@@ -85,29 +86,7 @@ const NewPostscreen = ({ navigation }) => {
 
 
                     {/* Input Manga */}
-                    <Text style={[styles.text_footer, {
-                        marginTop: 20
-                    }]}>Choix du manga
-                    </Text>
-                    <View style={styles.action_select}>
-                        <SelectList
-                            boxStyles={{
-                                width: 360,
-                                backgroundColor: '#e6e6e6'
-                            }}
-                            inputStyles={{
-                                fontSize: 25,
-                            }}
-                            dropdownTextStyles={{
-                                fontSize: 20,
-                            }}
-                            maxHeight={500}
-                            placeholder='Choisir le manga'
-                            setSelected={(val) => setSelected(val)}
-                            data={data}
-                            save="value"
-                        />
-                    </View>
+                    <AnimeSearchBar/>
 
 
                     {/* Text Area */}

@@ -19,7 +19,7 @@ import NewsScreen from '../screens/NewsScreen';
 import { getData } from '../utils/storage';
 import NewPostscreen from '../screens/NewPostScreen';
 import TeamsScreen from '../screens/TeamsScreen';
-import { AnimeAPIScreen } from '../screens/AnimeAPIScreen';
+import { AnimeSearchBar } from '../components/AnimeSearchBar';
 import { AnimeProvider } from '../context/AnimeContext';
 
 function AuthNavigation() {
@@ -169,8 +169,8 @@ export const Navigator = () => {
                             {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
                             <RootStack.Navigator screenOptions={{ headerShown: false }}>
                                 <RootStack.Screen 
-                                name="AnimeAPI" 
-                                component={AnimeAPIScreen} 
+                                    name="AnimeAPI" 
+                                    component={NewPostscreen}
                                 />
                                 {/* <RootStack.Screen name='AuthNav' component={AuthNavigation} />
                             <RootStack.Screen name='AppNav' component={AppNavigation} /> */}
