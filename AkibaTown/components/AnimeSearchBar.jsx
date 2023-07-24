@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, TextInput, StyleSheet, Image } from "react-native";
+import { View, Text, Button, TextInput, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import { useAnimeContext } from "../context/AnimeContext";
 import animeApi from "../services/animeApi";
@@ -10,6 +10,7 @@ export const AnimeSearchBar = () => {
     const [input, setInput] = React.useState('')
     const [searchAnimeData, setSearchAnimeData] = React.useState([])
     const [animeData, setAnimeData] = React.useState({})
+    const [searchValue, setSearchValue] = React.useState('')
 
     const searchAnime = async (str) => {
         try {
@@ -20,29 +21,14 @@ export const AnimeSearchBar = () => {
         }
     };
 
-    const handleAnimePress = (animeData) => {
-        setAnimeData(animeData)
+    const handleAnimePress = (_animeData) => {
+        setAnimeData(_animeData)
+        setSearchValue(animeData.title)
     }
 
-    const getAnimeData = async (id) => {
-        try {
-            const response = await animeApi.getAnimeByID(id);
-            return response;
-        } catch (error) {
-            console.log("ERROR:", error);
-        }
-    };
 
     React.useEffect(() => {
         
-        // getAnimeData(props.route.params.animeID)
-        // .then(data => {
-        //     setAnimeData(data);
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
-
         searchAnime(input)
         .then(data => {
             setSearchAnimeData(data);
@@ -51,30 +37,22 @@ export const AnimeSearchBar = () => {
             console.log(err)
         })
 
-    }, [])
+    }, [input])
 
     return (
-        <View style={styles.container}>
+        <View 
+            style={styles.container}
+        >
             <TextInput
-                style={{
-                    fontSize: 15,
-                    borderTopLeftRadius: 15,
-                    borderTopRightRadius: 15,
-                    borderBottomWidth: 1,
-                    borderBottomColor: 'lightgrey',
-                    backgroundColor: '#e6e6e6', 
-                    width: 300, 
-                    height: 50, 
-                    marginTop: 150,
-                    padding: 10, 
-                }}
+                style={styles.textInput}
                 placeholder="Search..."
 
-                value={input}
+                value={searchValue === '' ? input : searchValue}
                 onChangeText={text => setInput(text)}
+                onFocus={() => setSearchValue('')}
             />
 
-            <AnimeSearchFilter data={searchAnimeData} input={input} onAnimePress={handleAnimePress} />
+            <AnimeSearchFilter data={searchAnimeData} input={input} onAnimePress={handleAnimePress}/>
         </View>
     )
 }
@@ -87,5 +65,17 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center'
+    },
+    textInput: {
+        fontSize: 15,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: 'lightgrey',
+        backgroundColor: '#e6e6e6', 
+        width: 300, 
+        height: 50, 
+        marginTop: 20,
+        padding: 10, 
     }
 })

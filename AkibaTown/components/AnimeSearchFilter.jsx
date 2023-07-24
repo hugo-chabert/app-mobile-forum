@@ -9,7 +9,7 @@ const AnimeSearchFilter = ({ data, input, onAnimePress }) => {
     }
 
     return (
-        <ScrollView>
+        <TouchableOpacity style={{ height: 200 }}>
             <FlatList 
                 data={data} 
                 renderItem={({item}) => {
@@ -52,7 +52,7 @@ const AnimeSearchFilter = ({ data, input, onAnimePress }) => {
                     }
                 }} 
             />
-        </ScrollView>
+        </TouchableOpacity>
     )
 }
 
