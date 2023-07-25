@@ -1,0 +1,95 @@
+{
+    "users": [
+      {
+        "username": "user1",
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "user1@example.com",
+        "password": "password123",
+        "role": "user",
+        "favorite_anime": "Naruto"
+      },
+      {
+        "username": "user2",
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "email": "user2@example.com",
+        "password": "p@ssw0rd",
+        "role": "user",
+        "favorite_anime": "Attack on Titan"
+      },
+      {
+        "username": "user3",
+        "firstname": "Bob",
+        "lastname": "Johnson",
+        "email": "user3@example.com",
+        "password": "securePass",
+        "role": "user",
+        "favorite_anime": "One Piece"
+      },
+      {
+        "username": "user4",
+        "firstname": "Alice",
+        "lastname": "Brown",
+        "email": "user4@example.com",
+        "password": "safepassword",
+        "role": "user",
+        "favorite_anime": "My Hero Academia"
+      },
+      {
+        "username": "user5",
+        "firstname": "Mike",
+        "lastname": "Miller",
+        "email": "user5@example.com",
+        "password": "secret123",
+        "role": "user",
+        "favorite_anime": "Demon Slayer"
+      },
+      {
+        "username": "user6",
+        "firstname": "Emily",
+        "lastname": "Davis",
+        "email": "user6@example.com",
+        "password": "testpassword",
+        "role": "user",
+        "favorite_anime": "Fullmetal Alchemist"
+      },
+      {
+        "username": "user7",
+        "firstname": "Alex",
+        "lastname": "Wilson",
+        "email": "user7@example.com",
+        "password": "password@123",
+        "role": "user",
+        "favorite_anime": "Death Note"
+      },
+      {
+        "username": "user8",
+        "firstname": "Sophia",
+        "lastname": "Martinez",
+        "email": "user8@example.com",
+        "password": "myp@ssword",
+        "role": "user",
+        "favorite_anime": "Dragon Ball Z"
+      },
+      {
+        "username": "user9",
+        "firstname": "David",
+        "lastname": "Lee",
+        "email": "user9@example.com",
+        "password": "s3cur3pass",
+        "role": "user",
+        "favorite_anime": "Sword Art Online"
+      },
+      {
+        "username": "user10",
+        "firstname": "Olivia",
+        "lastname": "Garcia",
+        "email": "user10@example.com",
+        "password": "passw0rd!",
+        "role": "user",
+        "favorite_anime": "Hunter x Hunter"
+      }
+    ]
+  }
+  
