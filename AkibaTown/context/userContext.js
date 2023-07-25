@@ -1,6 +1,8 @@
 import React from 'react';
 import userApi from '../services/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {storeDataObject, getData} from "../utils/storage.js";
+
 
 const UserContext = React.createContext();
 
@@ -16,29 +18,38 @@ const initialState = {
 const UserProvider = ({ children }) => {
     const [authState, setAuthState] = React.useState(initialState)
 
-    const register = async (username, email, firstname, lastname, password) => {
-        setAuthState({
-            ...authState,
-            isLoading: true
-        })
-
-        const data = { username, email, firstname, lastname, password }
-
-        const response = await userApi.register(data)
-
-        if (response.data.error) {
+    const register = async (username, firstname, lastname, email, password, favorite_anime) => {
+        try {
+            setAuthState({
+                ...authState,
+                isLoading: true
+            })
+    
+            const response = await userApi.register({
+                username: username,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                profile_picture: null,
+                favorite_anime: favorite_anime,
+            });
+    
+            setAuthState({
+                ...authState,
+                isLoading: false,
+            });
+    
+            console.log(response);
+        } catch (error) {
             setAuthState({
                 ...authState,
                 isLoading: false,
                 error: true,
-                errorMessage: response.data.error.message
-            })
-        }
-        else {
-            setAuthState({
-                ...authState,
-                isLoading: false,
-            })
+                errorMessage: error.message
+            });
+    
+            console.log(error.message);
         }
     };
 
@@ -49,24 +60,20 @@ const UserProvider = ({ children }) => {
         })
         const response = await userApi.login(email, password)
 
-        if (response.data.token){
-            try {
-                await AsyncStorage.setItem('token', JSON.stringify(response.data.token))
-                setAuthState({
-                    ...authState,
-                    isLoading: false
-                })
-            } catch (e) {
-              // saving error
-            }
+        if (response.token){
+            storeDataObject('token',response.token)
+            setAuthState({
+                ...authState,
+                isConnected: true,
+            })
         }
 
-        if (response.data.error) {
+        if (response.error) {
             setAuthState({
                 ...authState,
                 isLoading: false,
                 error: true,
-                errorMessage: response.data.error.message
+                errorMessage: response.error.message
             })
             return
         }
@@ -76,7 +83,7 @@ const UserProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem('token')
             if(value !== null) {
-                console.log(JSON.parse(value))
+                return JSON.parse(value)
             }
         } catch(e) {
             console.log(e)
@@ -90,6 +97,7 @@ const UserProvider = ({ children }) => {
             console.log(e)
         }
     }
+
 
     return (
         <UserContext.Provider
