@@ -22,7 +22,7 @@ import { useUserContext } from '../context/userContext';
 import { getUserDataFromToken } from '../utils/jwt';
 import * as RegEx from '../constants/RegEx';
 
-const SignUpScreen = ({ navigation }: any) => {
+const SignUpScreen = ({ navigation }) => {
 
     const [data, setData] = React.useState({
         username: '',
@@ -48,7 +48,7 @@ const SignUpScreen = ({ navigation }: any) => {
 
     const userContext = useUserContext();
 
-    const usernameInputChange = (val: any) => {
+    const textInputChange = (val) => {
         if (val.length != 0) {
             setData({
                 ...data,
@@ -64,30 +64,13 @@ const SignUpScreen = ({ navigation }: any) => {
             })
         }
     }
-
-    const emailInputChange = (val: string) => {
-        if (val.length != 0) {
-            setData({
-                ...data,
-                email: val,
-                check_textInputChange: true
-            })
-        }
-        else {
-            setData({
-                ...data,
-                email: val,
-                check_textInputChange: false
-            })
-        }
-    }
-    const handlePasswordChange = (val: string) => {
+    const handlePasswordChange = (val) => {
         setData({
             ...data,
             password: val
         });
     }
-    const handleConfirmPasswordChange = (val: string) => {
+    const handleConfirmPasswordChange = (val) => {
         setData({
             ...data,
             confirm_password: val
@@ -502,7 +485,7 @@ const styles = StyleSheet.create({
     }
 });
 
-function createAppContainer(AppNavigator: any) {
+function createAppContainer(AppNavigator) {
     throw new Error('Function not implemented.');
 }
 
