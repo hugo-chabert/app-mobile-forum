@@ -45,7 +45,7 @@ export const AnimeSearchBar = () => {
         >
             <TextInput
                 style={styles.textInput}
-                placeholder="Search..."
+                placeholder="🔎 Cherchez un anime..."
 
                 value={searchValue === '' ? input : searchValue}
                 onChangeText={text => setInput(text)}
@@ -55,7 +55,11 @@ export const AnimeSearchBar = () => {
                 }}
             />
 
-            <AnimeSearchFilter data={searchAnimeData} input={input} onAnimePress={handleAnimePress}/>
+            <AnimeSearchFilter 
+                data={searchAnimeData} 
+                input={input} 
+                onAnimePress={handleAnimePress}
+            />
         </View>
     )
 }
