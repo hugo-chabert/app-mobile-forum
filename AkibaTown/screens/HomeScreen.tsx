@@ -7,11 +7,22 @@ import fakeData from '../constants/FakeData';
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
+import { getData } from '../utils/storage';
+import jwt_decode from "jwt-decode";
 
 import { Post, Props } from '../constants/Interfaces';
 
-
 const HomeScreen = ({ navigation }: any) => {
+    const [token, setToken] = React.useState('');
+    const [userData, setUserData] = React.useState({});
+
+    const getTokenData = async () => {
+        
+    }
+
+    React.useEffect(() => {
+        
+    }, [])
 
     const header = (
         <View style={styles.header}>
