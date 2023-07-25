@@ -48,12 +48,10 @@ const SignUpScreen = ({ navigation }: any) => {
 
     const userContext = useUserContext();
 
-
-    const textInputChange = (val: string) => {
+    const usernameInputChange = (val: any) => {
         if (val.length != 0) {
             setData({
                 ...data,
-                email: val,
                 username: val,
                 check_textInputChange: true
             })
@@ -61,8 +59,24 @@ const SignUpScreen = ({ navigation }: any) => {
         else {
             setData({
                 ...data,
-                email: val,
                 username: val,
+                check_textInputChange: false
+            })
+        }
+    }
+
+    const emailInputChange = (val: string) => {
+        if (val.length != 0) {
+            setData({
+                ...data,
+                email: val,
+                check_textInputChange: true
+            })
+        }
+        else {
+            setData({
+                ...data,
+                email: val,
                 check_textInputChange: false
             })
         }
@@ -139,9 +153,9 @@ const SignUpScreen = ({ navigation }: any) => {
                             }}
                         />
                         {/* todo: le message d'erreur ne se mets pas à jour */}
-                        <Text style={{ color: 'red' }}>
+                        {/* <Text style={{ color: 'red' }}>
                             {invalidField.isNameValid ? "" : "Champ invalide"}
-                        </Text>
+                        </Text> */}
                     </View>
 
 
@@ -168,9 +182,9 @@ const SignUpScreen = ({ navigation }: any) => {
                             }}
                         />
                         {/* todo: le message d'erreur ne se mets pas à jour */}
-                        <Text style={{ color: 'red' }}>
+                        {/* <Text style={{ color: 'red' }}>
                             {invalidField.isFirstNameValid ? "" : "Champ invalide"}
-                        </Text>
+                        </Text> */}
                     </View>
 
 
@@ -191,7 +205,7 @@ const SignUpScreen = ({ navigation }: any) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
+                            onChangeText={(val) => usernameInputChange(val)}
                         />
                         {data.check_textInputChange ?
                             <Animatable.View
@@ -246,7 +260,7 @@ const SignUpScreen = ({ navigation }: any) => {
                                 fontSize: 20
                             }]}
                             autoCapitalize='none'
-                            onChangeText={(val) => textInputChange(val)}
+                            onChangeText={(val) => emailInputChange(val)}
                         />
                         {data.check_textInputChange ?
                             <Animatable.View

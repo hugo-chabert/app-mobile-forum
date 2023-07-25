@@ -31,6 +31,7 @@ const UserProvider = ({ children }) => {
                 lastname: lastname,
                 email: email,
                 password: password,
+                profile_picture: null,
                 favorite_anime: favorite_anime,
             });
     
