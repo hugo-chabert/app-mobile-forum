@@ -1,5 +1,9 @@
 const Sequelize = require('sequelize');
+<<<<<<< Updated upstream:API/src/config/database.js
 require('dotenv').config();
+=======
+require('dotenv').config()
+>>>>>>> Stashed changes:API/config/database.js
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -13,7 +17,7 @@ const sequelize = new Sequelize(
 
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
- }).catch((error) => {
+}).catch((error) => {
     console.error('Unable to connect to the database: ', error);
- });
+});
 module.exports = sequelize;

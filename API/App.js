@@ -21,6 +21,7 @@ app.use(usersRouter);
 app.use(postsRouter);
 app.use(commentsRouter);
 
+<<<<<<< Updated upstream
 const UserModel = sequelize.models.users
 const PostModel = sequelize.models.posts
 sequelize.sync() // ajouté { force: true } pour pouvoir creer de nouveau mock
@@ -42,3 +43,11 @@ sequelize.sync() // ajouté { force: true } pour pouvoir creer de nouveau mock
   // console.log(`Example app listening on port ${port}`)
     })
 module.exports = server
+=======
+sequelize.sync()
+    .then((console.log('Connexion database done')))
+    .catch(error => console.log(error))
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
+>>>>>>> Stashed changes
