@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }: any) => {
         }
 
         populateData();
-    }, [])
+    }, [userData])
 
     const header = (
         <View style={styles.header}>
