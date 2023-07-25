@@ -11,7 +11,7 @@ import { getData } from '../utils/storage';
 import { getUserDataFromToken } from '../utils/jwt';
 
 
-const HomeScreen = ({ navigation }: any) => {
+const HomeScreen = ({ navigation }) => {
     const [userData, setUserData] = React.useState({
         id: 0,
         username: "",

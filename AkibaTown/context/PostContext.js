@@ -13,13 +13,13 @@ const initialState = {
 const PostProvider = ({ children }) => {
     const [postState, setPostState] = React.useState(initialState)
 
-    const create = async (titre, message, id_user) => {
+    const create = async (titre, message, selected_anime, id_user) => {
         setPostState({
             ...postState,
             isLoading: true
         })
 
-        const response = await postApi.create(titre, message, id_user)
+        const response = await postApi.create(titre, message, selected_anime, id_user)
 
         if (response.data.error) {
             setPostState({
@@ -91,6 +91,30 @@ const PostProvider = ({ children }) => {
 
         const response = await postApi.getAllPostsByUserID(userID)
         console.log('RESPONSE ==', response.data);
+
+        if (response.data.error) {
+            setPostState({
+                ...postState,
+                isLoading: false,
+                error: true,
+                errorMessage: response.data.error.message
+            })
+        } else {
+            setPostState({
+                ...postState,
+                isLoading: false,
+            })
+        }
+    }
+
+    const getAllPostsByAnime = async (anime) => {
+        setPostState({
+            ...postState,
+            isLoading: true
+        })
+
+        const response = await postApi.getAllPostsByAnime(anime)
+        console.log('RESPONSE ==', response);
 
         if (response.data.error) {
             setPostState({

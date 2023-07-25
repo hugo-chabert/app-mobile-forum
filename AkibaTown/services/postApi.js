@@ -1,10 +1,11 @@
 import axios from "axios";
 import { BASE_URL, API_URL } from "../config/config";
 
-async function create(titre, message, id_user) {
+async function create(titre, message, anime, id_user) {
     return await axios.post(`${API_URL}/posts/create`, {
         titre: titre,
         message: message,
+        selected_anime: anime,
         id_user: id_user,
     })
         .then(response => {
@@ -52,6 +53,17 @@ async function getAllPostsByUserID(userID) {
         });
 }
 
+async function getAllPostsByAnime(anime) {
+    return await axios.get(`${API_URL}/posts/all/${anime}`)
+    .then(async response => {
+        return response
+    })
+    .catch(error => {
+        console.log("ERR GET POST BY ANIME ==", error.response);
+        return error.response
+    })
+}
+
 async function getPostByTitle(title) {
     return await axios.get(`${API_URL}/posts/title/${title}`)
         .then(async response => {
@@ -79,6 +91,7 @@ export default {
     getAllPosts,
     getPostByID,
     getAllPostsByUserID,
+    getAllPostsByAnime,
     getPostByTitle,
     deletePost,
 }

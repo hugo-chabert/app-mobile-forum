@@ -168,12 +168,8 @@ export const Navigator = () => {
                         <NavigationContainer>
                             {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
                             <RootStack.Navigator screenOptions={{ headerShown: false }}>
-                                <RootStack.Screen 
-                                    name="AnimeAPI" 
-                                    component={NewPostscreen}
-                                />
-                                {/* <RootStack.Screen name='AuthNav' component={AuthNavigation} />
-                            <RootStack.Screen name='AppNav' component={AppNavigation} /> */}
+                                <RootStack.Screen name='AuthNav' component={AuthNavigation} />
+                                <RootStack.Screen name='AppNav' component={AppNavigation} />
                             </RootStack.Navigator>
                         </NavigationContainer>
                     </CommentProvider>

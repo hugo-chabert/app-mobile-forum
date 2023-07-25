@@ -15,7 +15,8 @@ import React from 'react'
 const AnimeSearchFilter = ({ data, input, onAnimePress }) => {
 
     const handlePress = (animeData) => {
-        console.log(`ID ${animeData.mal_id} - "${animeData.title}"`);
+        // console.log(`ID ${animeData.mal_id} - "${animeData.title}"`);
+        console.log("onAnimePress", animeData)
         onAnimePress(animeData);
     }
 
@@ -62,49 +63,6 @@ const AnimeSearchFilter = ({ data, input, onAnimePress }) => {
                     }
                 }
             })}
-
-            {/* <FlatList 
-                data={data} 
-                renderItem={({item}) => {
-                    if(input === "") {
-                        return (
-                            <TouchableOpacity
-                                style={styles.container}
-                                onPress={() => {
-                                    handlePress(item)
-                                }}
-                            >
-                                <Image
-                                    source={{ uri: item.images.jpg.image_url }} 
-                                    resizeMode="contain"
-                                    style={{ width: 50, aspectRatio: 1 }}
-                                />
-                                <Text style={{ alignSelf: 'center', fontStyle: 'italic' }}>{item.title}</Text>
-                            </TouchableOpacity>
-                        )
-                    }
-
-                    if(input !== "") {
-                        if(item?.title.toLowerCase().startsWith(input.toLowerCase())) {
-                            return (
-                                <TouchableOpacity
-                                    style={styles.container}
-                                    onPress={() => {
-                                        handlePress(item)
-                                    }}
-                                >
-                                    <Image
-                                        source={{ uri: item.images.jpg.image_url }} 
-                                        resizeMode="contain"
-                                        style={{ width: 50, aspectRatio: 1 }}
-                                    />
-                                    <Text style={{ alignSelf: 'center', fontStyle: 'italic' }}>{item.title}</Text>
-                                </TouchableOpacity>
-                            )
-                        }
-                    }
-                }} 
-            /> */}
         </ScrollView>
     )
 }
