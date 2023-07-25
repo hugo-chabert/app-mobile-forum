@@ -19,7 +19,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { useUserContext } from '../context/userContext';
-import { getData } from '../utils/storage';
+import { getUserDataFromToken } from '../utils/jwt';
 import * as RegEx from '../constants/RegEx';
 
 const SignUpScreen = ({ navigation }: any) => {
@@ -105,6 +105,12 @@ const SignUpScreen = ({ navigation }: any) => {
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
     }
+
+    React.useEffect(() => {
+        if(getUserDataFromToken() !== null) {
+            navigation.replace("AppNav");
+        }
+    }, [])
 
     return (
         <View style={styles.container}>

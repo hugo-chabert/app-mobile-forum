@@ -8,17 +8,12 @@ const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
 import { getData } from '../utils/storage';
-import jwt_decode from "jwt-decode";
+import { getUserDataFromToken } from '../utils/jwt';
 
 import { Post, Props } from '../constants/Interfaces';
 
 const HomeScreen = ({ navigation }: any) => {
-    const [token, setToken] = React.useState('');
-    const [userData, setUserData] = React.useState({});
-
-    const getTokenData = async () => {
-        
-    }
+    const [userData, setUserData] = React.useState();
 
     React.useEffect(() => {
         
@@ -35,6 +30,7 @@ const HomeScreen = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             {header}
+            <Text>Bonjour, </Text>
             <ScrollView>
                 <View style={{ flex: 1 }}>
                     <View style={styles.scrollers}>
