@@ -362,14 +362,20 @@ const SignUpScreen = ({ navigation }: any) => {
                             onPress={async () => {
 
                                 try {
-                                    await userContext.register(
+                                    if(await userContext.register(
                                         data.username,
                                         data.firstname,
                                         data.lastname,
                                         data.email,
                                         data.password,
                                         data.favorite_anime
-                                    )
+                                    )) {
+                                        alert("Inscription réussie !")
+                                        navigation.push('Login')
+                                    }
+                                    else {
+                                        alert("Erreur lors de l'inscription")
+                                    }
                                 }
                                 catch (e) {
                                     console.log(e)
