@@ -1,17 +1,17 @@
-const sequelize = require('sequelize');
+const {Sequelize, DataTypes }= require('sequelize');
 const { default: isEmail } = require('validator/lib/isEmail');
-const db = require('../config/database');
+const sequelize = require('../config/database');
 // const {dataTypes} = sequelize;
 
-const Users = db.define('users', {
+const Users = sequelize.define('users', {
     id : {
-        type : sequelize.INTEGER.UNSIGNED,
+        type : DataTypes.INTEGER.UNSIGNED,
         primaryKey : true,
         autoIncrement: true,
         allowNull : false,
     },
     username : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : false,
         // validate : {
         //     notNull: {
@@ -24,7 +24,7 @@ const Users = db.define('users', {
         // }
     },
     firstname : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : false,
         // validate : {
         //     notNull: {
@@ -37,7 +37,7 @@ const Users = db.define('users', {
         // }
     },
     lastname : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : false,
         // validate : {
         //     notNull: {
@@ -50,9 +50,10 @@ const Users = db.define('users', {
         // }
     },
     email : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : false,
         isEmail : true,
+        unique: true,
         // validate : {
         //     notNull: {
         //         msg: 'Please enter your email'
@@ -64,7 +65,7 @@ const Users = db.define('users', {
         // }
     },
     password : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : false,
         // validate : {
         //     notNull: {
@@ -76,12 +77,13 @@ const Users = db.define('users', {
         //     }
         // }
     },
-    profile_picture : {
-        type : sequelize.STRING,
-        allowNull : true
+    role: {
+        type: DataTypes.STRING, // Ou tout autre type de données qui représente les rôles (par exemple, ENUM ou INTEGER)
+        allowNull: false,
+        defaultValue: 'user', // Définis une valeur par défaut si nécessaire
     },
     favorite_anime : {
-        type : sequelize.STRING,
+        type : DataTypes.STRING,
         allowNull : true
     },
 })
