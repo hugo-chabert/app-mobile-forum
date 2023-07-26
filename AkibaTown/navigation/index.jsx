@@ -14,6 +14,7 @@ import ForumScreen from '../screens/ForumScreen';
 export const RootStack = createNativeStackNavigator();
 export const AuthStack = createNativeStackNavigator();
 export const AppStack = createBottomTabNavigator();
+export const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 

@@ -1,9 +1,5 @@
 const Sequelize = require('sequelize');
-<<<<<<< Updated upstream:API/src/config/database.js
 require('dotenv').config();
-=======
-require('dotenv').config()
->>>>>>> Stashed changes:API/config/database.js
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,

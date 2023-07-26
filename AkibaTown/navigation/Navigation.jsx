@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import useCachedResources from '../hooks/useCachedResources';
 import useColorScheme from '../hooks/useColorScheme';
-import { RootStack, AuthStack, AppStack } from '.';
+import { RootStack, AuthStack, AppStack, Stack } from './index';
 import { PostProvider } from '../context/PostContext';
 import { CommentProvider } from '../context/CommentContext';
 import { UserProvider } from '../context/userContext';
@@ -15,6 +15,7 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ForumScreen from '../screens/ForumScreen';
 import NewsScreen from '../screens/NewsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 import { getData } from '../utils/storage';
 import NewPostscreen from '../screens/NewPostScreen';
@@ -148,6 +149,14 @@ function AppNavigation() {
                             />
                         </View>
                     )
+                }}
+            />
+            <AppStack.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{ 
+                    headerShown: false,
+                    tabBarItemStyle: { display: 'none' },
                 }}
             />
         </AppStack.Navigator>

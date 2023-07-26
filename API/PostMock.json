@@ -3,51 +3,61 @@
         {
         "titre": "Episode 1000 de One Piece",
         "message": "Vous avez vu l'épisode, dites-moi votre avis !",
+        "selected_anime": "One Piece",
         "id_user": 1
         },
         {
         "titre": "Nouvelle saison de My Hero Academia annoncée",
         "message": "Grande nouvelle ! Une nouvelle saison de My Hero Academia a été confirmée pour l'année prochaine. Qui a hâte ?",
+        "selected_anime": "My Hero Academia",
         "id_user": 2
         },
         {
         "titre": "L'attente pour la suite de Attack on Titan",
         "message": "Ça fait des mois depuis la fin de la dernière saison d'Attack on Titan. Qui d'autre trépigne d'impatience pour la suite ?",
+        "selected_anime": "Attack on Titan",
         "id_user": 3
         },
         {
         "titre": "Nouveau manga : The Chronicles of Aegis",
         "message": "Je viens de découvrir un nouveau manga incroyable appelé 'The Chronicles of Aegis'. Des fans ici ?",
+        "selected_anime": "Discussion",
         "id_user": 4
         },
         {
         "titre": "Discussion sur les meilleurs openings d'anime",
         "message": "Quels sont, selon vous, les meilleurs openings d'anime de tous les temps ? Partagez vos favoris !",
+        "selected_anime": "Discussion",
         "id_user": 5
         },
         {
         "titre": "Analyse de la fin de Neon Genesis Evangelion",
         "message": "J'ai enfin terminé Neon Genesis Evangelion et je suis perplexe. Des théories sur la fin ?",
+        "selected_anime": "Neon Genesis Evangelion",
         "id_user": 6
         },
         {
         "titre": "Evénement spécial : Cosplay Party",
         "message": "Notre club d'anime organise une fête costumée demain. Qui va se joindre à nous en cosplay ?",
+        "selected_anime": "Discussion",
         "id_user": 7
         },
         {
         "titre": "Recommandations pour les fans de romances d'anime",
         "message": "Je cherche des suggestions d'anime romantiques. Quels sont vos préférés ?",
+        "selected_anime": "Discussion",
         "id_user": 8
         },
         {
         "titre": "Discussion sur le dernier chapitre de Demon Slayer",
         "message": "Le dernier chapitre de Demon Slayer est sorti ! Venez en discuter sans spoilers.",
+        "selected_anime": "Demon Slayer",
         "id_user": 9
         },
         {
         "titre": "Classement des meilleurs combattants d'anime",
         "message": "Qui sont, selon vous, les personnages les plus puissants dans l'univers des animés et mangas ?",
+        "selected_anime": "Discussion",
         "id_user": 10
         }
     ]

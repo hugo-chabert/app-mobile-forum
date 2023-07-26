@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import SideScroller from '../components/SideScroller';
 import fakeData from '../constants/FakeData';
@@ -34,7 +34,16 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.header}>
             <Image source={searchIcon} style={styles.icon} />
             <Image source={logo} style={styles.mediumLogo} />
-            <Image source={profileIcon ?? userData.profile_picture} style={styles.profileIcon} />
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('Profile')
+                }}
+            >
+                <Image 
+                    source={profileIcon ?? userData.profile_picture} 
+                    style={styles.profileIcon}
+                />
+            </TouchableOpacity>
         </View>
     )
 

@@ -25,17 +25,17 @@ const UserModel = sequelize.models.users
 const PostModel = sequelize.models.posts
 sequelize.sync() // ajouté { force: true } pour pouvoir creer de nouveau mock
     .then(() => {
-        users.map((user) => {
-            const hashedPassword = bcrypt.hashSync(user.password, 10); // Le deuxième argument est le "salt rounds"
-            user.password = hashedPassword;
-            UserModel.create(user);
-        })
-        console.log('Connexion database nickel. user created')
+        // users.map((user) => {
+        //     const hashedPassword = bcrypt.hashSync(user.password, 10); // Le deuxième argument est le "salt rounds"
+        //     user.password = hashedPassword;
+        //     UserModel.create(user);
+        // })
+        // console.log('Connexion database nickel. user created')
 
-        posts.map((post) => {
-            PostModel.create(post);
-        })
-        console.log('Connexion database nickel. posts created')
+        // posts.map((post) => {
+        //     PostModel.create(post);
+        // })
+        // console.log('Connexion database nickel. posts created')
     })
     .catch('errorr')
 const server = app.listen(port, () => {
