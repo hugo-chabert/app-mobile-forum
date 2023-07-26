@@ -7,23 +7,45 @@ import fakeData from '../constants/FakeData';
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
-
-import { Post, Props } from '../constants/Interfaces';
+import { getData } from '../utils/storage';
+import { getUserDataFromToken } from '../utils/jwt';
 
 
 const HomeScreen = ({ navigation }: any) => {
+    const [userData, setUserData] = React.useState({
+        id: 0,
+        username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        favorite_anime: "",
+        profile_picture: "",
+    });
+
+    React.useEffect(() => {
+        const populateData = async () => {
+            setUserData(await getUserDataFromToken());
+        }
+
+        populateData();
+    }, [userData])
 
     const header = (
         <View style={styles.header}>
             <Image source={searchIcon} style={styles.icon} />
             <Image source={logo} style={styles.mediumLogo} />
-            <Image source={profileIcon} style={styles.profileIcon} />
+            <Image source={profileIcon ?? userData.profile_picture} style={styles.profileIcon} />
         </View>
     )
 
     return (
         <View style={styles.container}>
             {header}
+            <Text
+                style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginVertical: 10 }}
+            >
+                Bonjour, {userData.username}
+            </Text>
             <ScrollView>
                 <View style={{ flex: 1 }}>
                     <View style={styles.scrollers}>

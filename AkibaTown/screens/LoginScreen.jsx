@@ -17,6 +17,8 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useUserContext } from '../context/userContext';
 import { getData } from '../utils/storage';
+import jwt_decode from "jwt-decode";
+import { getUserDataFromToken } from '../utils/jwt';
 
 const LoginScreen = ({ navigation }) => {
 
@@ -57,6 +59,12 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry: !data.secureTextEntry
         });
     }
+
+    React.useEffect(() => {
+        if(getUserDataFromToken() !== null) {
+            navigation.replace("AppNav");
+        }
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -169,7 +177,10 @@ const LoginScreen = ({ navigation }) => {
                         onPress={async () => {
                             try {
                                 userContext.login(data.email, data.password);
-                                if (await getData("token")) {
+                                const token = await getData("token");
+                                if (token) {
+                                    const decoded = jwt_decode(token)
+                                    console.log(decoded)
                                     navigation.replace("AppNav");
                                 }
                             }

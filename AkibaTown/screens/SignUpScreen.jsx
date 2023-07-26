@@ -19,7 +19,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { useUserContext } from '../context/userContext';
-import { getData } from '../utils/storage';
+import { getUserDataFromToken } from '../utils/jwt';
 import * as RegEx from '../constants/RegEx';
 
 const SignUpScreen = ({ navigation }) => {
@@ -48,8 +48,7 @@ const SignUpScreen = ({ navigation }) => {
 
     const userContext = useUserContext();
 
-
-    const textInputChange = (val) => {
+    const usernameInputChange = (val) => {
         if (val.length != 0) {
             setData({
                 ...data,
@@ -107,6 +106,12 @@ const SignUpScreen = ({ navigation }) => {
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
     }
+
+    React.useEffect(() => {
+        if(getUserDataFromToken() !== null) {
+            navigation.replace("AppNav");
+        }
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -364,14 +369,20 @@ const SignUpScreen = ({ navigation }) => {
                             onPress={async () => {
 
                                 try {
-                                    await userContext.register(
+                                    if(await userContext.register(
                                         data.username,
                                         data.firstname,
                                         data.lastname,
                                         data.email,
                                         data.password,
                                         data.favorite_anime
-                                    )
+                                    )) {
+                                        alert("Inscription réussie !")
+                                        navigation.push('Login')
+                                    }
+                                    else {
+                                        alert("Erreur lors de l'inscription")
+                                    }
                                 }
                                 catch (e) {
                                     console.log(e)

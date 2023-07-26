@@ -116,5 +116,8 @@ function login(req, res) {
     })
 }
 
+const decodeToken = (token) => {
+    console.log(jwt.decode(token))
+}
 
-module.exports = {getAll, getOne, register, updateOne, deleteOne, login}
+module.exports = {getAll, getOne, register, updateOne, deleteOne, login, decodeToken}

@@ -39,8 +39,9 @@ const UserProvider = ({ children }) => {
                 ...authState,
                 isLoading: false,
             });
+
+            return true;
     
-            console.log(response);
         } catch (error) {
             setAuthState({
                 ...authState,
