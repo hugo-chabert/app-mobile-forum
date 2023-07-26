@@ -20,6 +20,7 @@ const PostProvider = ({ children }) => {
         })
 
         const response = await postApi.create(titre, message, selected_anime, id_user)
+        console.log("Create post", response.data)
 
         if (response.data.error) {
             setPostState({
@@ -66,7 +67,6 @@ const PostProvider = ({ children }) => {
         })
 
         const response = await postApi.getPostByID(id)
-        console.log('RESPONSE ==', response.data);
 
         if (response.data.error) {
             setPostState({
@@ -90,7 +90,6 @@ const PostProvider = ({ children }) => {
         })
 
         const response = await postApi.getAllPostsByUserID(userID)
-        console.log('RESPONSE ==', response.data);
 
         if (response.data.error) {
             setPostState({
@@ -114,7 +113,6 @@ const PostProvider = ({ children }) => {
         })
 
         const response = await postApi.getAllPostsByAnime(anime)
-        console.log('RESPONSE ==', response);
 
         if (response.data.error) {
             setPostState({
@@ -138,7 +136,6 @@ const PostProvider = ({ children }) => {
         })
 
         const response = await postApi.getPostByTitle(title)
-        console.log('RESPONSE ==', response.data);
 
         if (response.data.error) {
             setPostState({

@@ -16,7 +16,7 @@ const AnimeSearchFilter = ({ data, input, onAnimePress }) => {
 
     const handlePress = (animeData) => {
         // console.log(`ID ${animeData.mal_id} - "${animeData.title}"`);
-        console.log("onAnimePress", animeData)
+        // console.log("onAnimePress", animeData)
         onAnimePress(animeData);
     }
 

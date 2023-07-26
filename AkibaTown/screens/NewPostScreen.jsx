@@ -23,6 +23,7 @@ import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { usePostContext } from '../context/PostContext';
 import { AnimeSearchBar } from '../components/AnimeSearchBar';
+import { getUserDataFromToken } from '../utils/jwt';
 
 
 /*Fonction permettant de retirer le clavier*/
@@ -47,15 +48,17 @@ const NewPostscreen = ({ navigation }) => {
     });
 
     React.useEffect(() => {
-        const populateData = async () => {
-            setUserData(await getUserDataFromToken());
+        async function populateUserData() {
+            setUserData(await getUserDataFromToken())
         }
-
-        populateData();
-    }, [userData])
+        populateUserData()
+        console.log(userData)
+    }, []);
 
     const handleAnimeSelection = (anime) => {
-        setPostAnime(anime)
+        console.log("Anime selected", anime.title)
+        setPostAnime(anime.title)
+        console.log("postAnime", postAnime)
     }
 
     const postContext = usePostContext();
@@ -143,7 +146,7 @@ const NewPostscreen = ({ navigation }) => {
                                     }
                                 }
                                 catch(e) {
-                                    console.log(e)
+                                    console.error("Publier", e)
                                 }
 
                             }}

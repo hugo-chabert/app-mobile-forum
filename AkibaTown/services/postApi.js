@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL, API_URL } from "../config/config";
 
 async function create(titre, message, anime, id_user) {
-    return await axios.post(`${API_URL}/posts/create`, {
+    return await axios.post(`${BASE_URL}/posts/create`, {
         titre: titre,
         message: message,
         selected_anime: anime,
@@ -20,7 +20,7 @@ async function create(titre, message, anime, id_user) {
 }
 
 async function getAllPosts() {
-    return await axios.get(`${API_URL}/posts/all`)
+    return await axios.get(`${BASE_URL}/posts/all`)
         .then(async response => {
             console.log('RES GET ALL POSTS ==', response.data);
             return response
@@ -32,7 +32,7 @@ async function getAllPosts() {
 }
 
 async function getPostByID(id) {
-    return await axios.get(`${API_URL}/posts/${id}`)
+    return await axios.get(`${BASE_URL}/posts/${id}`)
         .then(async response => {
             return response
         })
@@ -43,7 +43,7 @@ async function getPostByID(id) {
 }
 
 async function getAllPostsByUserID(userID) {
-    return await axios.get(`${API_URL}/posts/user/${userID}`)
+    return await axios.get(`${BASE_URL}/posts/user/${userID}`)
         .then(async response => {
             return response
         })
@@ -54,7 +54,7 @@ async function getAllPostsByUserID(userID) {
 }
 
 async function getAllPostsByAnime(anime) {
-    return await axios.get(`${API_URL}/posts/all/${anime}`)
+    return await axios.get(`${BASE_URL}/posts/all/${anime}`)
     .then(async response => {
         return response
     })
@@ -65,7 +65,7 @@ async function getAllPostsByAnime(anime) {
 }
 
 async function getPostByTitle(title) {
-    return await axios.get(`${API_URL}/posts/title/${title}`)
+    return await axios.get(`${BASE_URL}/posts/title/${title}`)
         .then(async response => {
             return response
         })
@@ -76,7 +76,7 @@ async function getPostByTitle(title) {
 }
 
 async function deletePost(id) {
-    return await axios.delete(`${API_URL}/posts/delete/${id}`)
+    return await axios.delete(`${BASE_URL}/posts/delete/${id}`)
         .then(async response => {
             return response
         })
