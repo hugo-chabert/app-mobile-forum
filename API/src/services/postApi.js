@@ -41,6 +41,16 @@ function getAllPostsByUserID(req, res) {
     })
 }
 
+function getAllPostsByAnime(req, res) {
+    posts.findAll({
+        where: { selected_anime: req.params.anime },
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
+    .then((posts) => {
+        res.json(posts);
+    })
+}
+
 function getPostByTitle(req, res) {
     posts.findAll({
         where: { titre: req.params.title },
@@ -88,6 +98,7 @@ module.exports = {
     getPostByID,
     getAllPostsByUserID,
     getPostByTitle,
+    getAllPostsByAnime,
     updatePost,
     deletePost,
 };

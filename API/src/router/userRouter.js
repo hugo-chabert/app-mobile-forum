@@ -11,15 +11,15 @@ router.get("/users/all", authenticateJWT, (req, res) => {
     getAll(req, res);
 });
 
-router.get("/users/all/?id={id}", (req, res) => {
+router.get("/users/:id", (req, res) => {
     getOne(req, res);
 });
 
-router.put("/users/update/?id={id}", (req, res) => {
+router.put("/users/update/:id", (req, res) => {
     updateOne(req, res);
 });
 
-router.delete("/users/delete/?id={id}", (req, res) => {
+router.delete("/users/delete/:id", (req, res) => {
     deleteOne(req, res);
 });
 

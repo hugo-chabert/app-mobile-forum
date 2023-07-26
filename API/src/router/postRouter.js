@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createPost, getAllPosts, getPostByID, getAllPostsByUserID, getPostByTitle, updatePost, deletePost } = require('../services/postApi');
+const { createPost, getAllPosts, getPostByID, getAllPostsByUserID, getAllPostsByAnime, getPostByTitle, updatePost, deletePost } = require('../services/postApi');
 
 router.post('/posts/create', (req, res) => {
     createPost(req, res);
@@ -8,6 +8,10 @@ router.post('/posts/create', (req, res) => {
 
 router.get('/posts/all', (req, res) => {
     getAllPosts(req, res);
+})
+
+router.get('/posts/all/:anime', (req, res) => {
+    getAllPostsByAnime(req, res);
 })
 
 router.get('/posts/:id', (req, res) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import useCachedResources from '../hooks/useCachedResources';
 import useColorScheme from '../hooks/useColorScheme';
-import { RootStack, AuthStack, AppStack } from '../navigation';
+import { RootStack, AuthStack, AppStack, Stack } from './index';
 import { PostProvider } from '../context/PostContext';
 import { CommentProvider } from '../context/CommentContext';
 import { UserProvider } from '../context/userContext';
 import { NavigationContainer } from '@react-navigation/native';
-import { CustomTabBarButton } from '../navigation';
+import { CustomTabBarButton } from '.';
 import { styles } from './index';
 
 import SignUpScreen from '../screens/SignUpScreen';
@@ -15,11 +15,18 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ForumScreen from '../screens/ForumScreen';
 import NewsScreen from '../screens/NewsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 import { getData } from '../utils/storage';
 import NewPostscreen from '../screens/NewPostScreen';
 import TeamsScreen from '../screens/TeamsScreen';
-import { PostScreen } from '../screens/PostScreen';
+import { AnimeSearchBar } from '../components/AnimeSearchBar';
+import { AnimeProvider } from '../context/AnimeContext';
+import { useUserContext } from '../context/userContext';
+import { getUserDataFromToken } from '../utils/jwt';
+import { deleteData } from '../utils/storage';
+import userApi from '../services/userApi';
+import CheckUser from '../components/CheckUser';
 
 function AuthNavigation() {
     return (
@@ -112,16 +119,6 @@ function AppNavigation() {
                 }}
             />
             <AppStack.Screen
-                name='Post'
-                component={PostScreen}
-                options={{
-                    headerShown: false,
-                    tabBarItemStyle: {
-                        display: 'none'
-                    }
-                }}
-            />
-            <AppStack.Screen
                 name='News'
                 component={NewsScreen}
                 options={{
@@ -159,29 +156,54 @@ function AppNavigation() {
                     )
                 }}
             />
+            <AppStack.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    headerShown: false,
+                    tabBarItemStyle: { display: 'none' },
+                }}
+            />
         </AppStack.Navigator>
     )
 }
 
 export const getIsSignedIn = async () => {
-    return false;
+    const token = await getData('token');
+    console.log("token", token)
+    return token !== undefined ? true : false;
 };
 
 
-export const Navigator = () => {
+export const Navigator =  () => {
+    const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+   React.useEffect(() => {
+        const checkToken = async () => {
+            const signedIn = await getIsSignedIn();
+            setIsSignedIn(signedIn);
+        };
+        checkToken();
+    }, []);
+
     return (
         <UserProvider>
+            {/* <AnimeProvider> */}
             <PostProvider>
                 <CommentProvider>
                     <NavigationContainer>
                         {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
-                        <RootStack.Navigator screenOptions={{ headerShown: false }}> 
-                            <RootStack.Screen name='AuthNav' component={AuthNavigation} />
-                            <RootStack.Screen name='AppNav' component={AppNavigation} />
+                        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+                            {isSignedIn ? (
+                                <RootStack.Screen name='AppNav' component={AppNavigation} />
+                            ) : (
+                                <RootStack.Screen name='AuthNav' component={AuthNavigation} />
+                            )}
                         </RootStack.Navigator>
                     </NavigationContainer>
                 </CommentProvider>
             </PostProvider>
+            {/* </AnimeProvider> */}
         </UserProvider>
     )
 }

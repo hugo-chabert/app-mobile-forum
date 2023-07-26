@@ -22,8 +22,9 @@ import * as Animatable from 'react-native-animatable';
 import SelectDropdown from 'react-native-select-dropdown'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { usePostContext } from '../context/PostContext';
-import { getData } from '../utils/storage';
-import { useUserContext } from '../context/userContext';
+import { AnimeSearchBar } from '../components/AnimeSearchBar';
+import { getUserDataFromToken } from '../utils/jwt';
+
 
 /*Fonction permettant de retirer le clavier*/
 function handleTouch() {
@@ -31,27 +32,36 @@ function handleTouch() {
 }
 
 
-const NewPostscreen = ({ navigation }: any) => {
-    const [selected, setSelected] = React.useState("");
+const NewPostscreen = ({ navigation }) => {
+    const [postTitle, setPostTitle] = React.useState('')
+    const [postAnime, setPostAnime] = React.useState({})
+    const [postMessage, setPostMessage] = React.useState('')
 
-    const mangas = [
-        { key: '1', value: 'Combat', disabled: true },
-        { key: '2', value: 'Naruto' },
-        { key: '3', value: 'One piece' },
-        { key: '4', value: 'Baki' },
-        { key: '5', value: 'DBZ' },
-        { key: '6', value: 'Sport', disabled: true },
-        { key: '7', value: 'Kuroko Basket' },
-        { key: '8', value: 'Blue Lock' },
-        { key: '9', value: 'SlamDunk ' },
-        { key: '10', value: 'Inazuma eleven ' },
-    ]
+    const [userData, setUserData] = React.useState({
+        id: 0,
+        username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        favorite_anime: "",
+        profile_picture: "",
+    });
 
-    const [title, setTitle] = React.useState('');
-    const [message, setMessage] = React.useState('');
+    React.useEffect(() => {
+        async function populateUserData() {
+            setUserData(await getUserDataFromToken())
+        }
+        populateUserData()
+        console.log(userData)
+    }, []);
+
+    const handleAnimeSelection = (anime) => {
+        console.log("Anime selected", anime.title)
+        setPostAnime(anime.title)
+        console.log("postAnime", postAnime)
+    }
 
     const postContext = usePostContext();
-    const userContext = useUserContext();
 
     return (
         <View style={styles.container}>
@@ -85,35 +95,13 @@ const NewPostscreen = ({ navigation }: any) => {
                                 height: 50,
                                 marginRight: 35
                             }]}
-                            onChangeText={(val) => setTitle(val)}
+                            onChangeText={text => setPostTitle(text)}
                         />
                     </View>
 
 
                     {/* Input Manga */}
-                    <Text style={[styles.text_footer, {
-                        marginTop: 20
-                    }]}>Choix du manga
-                    </Text>
-                    <View style={styles.action_select}>
-                        <SelectList
-                            boxStyles={{
-                                width: 360,
-                                backgroundColor: '#e6e6e6'
-                            }}
-                            inputStyles={{
-                                fontSize: 25,
-                            }}
-                            dropdownTextStyles={{
-                                fontSize: 20,
-                            }}
-                            maxHeight={500}
-                            placeholder='Choisir le manga'
-                            setSelected={(val) => setSelected(val)}
-                            data={mangas}
-                            save="value"
-                        />
-                    </View>
+                    <AnimeSearchBar getSelectedAnime={handleAnimeSelection}/>
 
 
                     {/* Text Area */}
@@ -138,7 +126,7 @@ const NewPostscreen = ({ navigation }: any) => {
                                 paddingRight: 10,
                                 backgroundColor: '#e6e6e6',
                             }}
-                            onChangeText={(val) => setMessage(val)}
+                            onChangeText={text => setPostMessage(text)}
                         />
                     </View>
 
@@ -147,22 +135,18 @@ const NewPostscreen = ({ navigation }: any) => {
                     <View style={styles.button}>
                         <TouchableOpacity
                             onPress={async () => {
+                                console.log(`{"postTitle": ${postTitle}, "postAnime": ${postAnime}, "postMessage": ${postMessage}, "userID": ${userData.id}}`)
+
                                 try {
-                                    const userToken = await getData("token")
-                                    const authorID = userContext.decodeToken(userToken);
-                                    console.log(authorID)
-
-                                    if(userToken !== undefined) {
-                                        console.log(authorID) // expected: 3
-                                        if(await postContext.create(title, message, authorID) !== undefined) {
-                                            // probleme ici
-
-                                            navigation.push('Post')
-                                        }
+                                    if(await postContext.create(postTitle, postMessage, postAnime, userData.id)) {
+                                        alert("Création du post réussie !")
+                                    }
+                                    else {
+                                        alert("Erreur lors de la création du post")
                                     }
                                 }
                                 catch(e) {
-                                    console.log(e);
+                                    console.error("Publier", e)
                                 }
 
                             }}

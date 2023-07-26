@@ -19,37 +19,38 @@ const UserProvider = ({ children }) => {
     const [authState, setAuthState] = React.useState(initialState)
 
     const register = async (username, firstname, lastname, email, password, favorite_anime) => {
-        setAuthState({
-            ...authState,
-            isLoading: true
-        })
+        try {
+            setAuthState({
+                ...authState,
+                isLoading: true
+            })
+    
+            const response = await userApi.register({
+                username: username,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                profile_picture: null,
+                favorite_anime: favorite_anime,
+            });
+    
+            setAuthState({
+                ...authState,
+                isLoading: false,
+            });
 
-        const data = {
-            username: username,
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-            favorite_anime: favorite_anime,
-        }
-
-        const response = await userApi.register(data);
-
-        if (response.data.error) {
+            return true;
+    
+        } catch (error) {
             setAuthState({
                 ...authState,
                 isLoading: false,
                 error: true,
-                errorMessage: response.data.error.message
-            })
-            console.log(response.data.error.message)
-        }
-        else {
-            setAuthState({
-                ...authState,
-                isLoading: false,
-            })
-            console.log(response);
+                errorMessage: error.message
+            });
+    
+            console.error(error.message);
         }
     };
 
@@ -86,7 +87,7 @@ const UserProvider = ({ children }) => {
                 return JSON.parse(value)
             }
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
     }
 
@@ -94,7 +95,7 @@ const UserProvider = ({ children }) => {
         try {
             await AsyncStorage.removeItem('token')
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
     }
 

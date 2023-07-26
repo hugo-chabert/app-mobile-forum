@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import SideScroller from '../components/SideScroller';
 import fakeData from '../constants/FakeData';
@@ -7,23 +7,54 @@ import fakeData from '../constants/FakeData';
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
+const profile_picture = require('../assets/images/profile/default_profile_icon.jpg')
+import { getData } from '../utils/storage';
+import { getUserDataFromToken } from '../utils/jwt';
 
-import { Post, Props } from '../constants/Interfaces';
 
+const HomeScreen = ({ navigation }) => {
+    const [userData, setUserData] = React.useState({
+        id: 0,
+        username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        favorite_anime: "",
+        profile_picture: "",
+    });
 
-const HomeScreen = ({ navigation }: any) => {
+    React.useEffect(() => {
+        async function populateUserData() {
+            setUserData(await getUserDataFromToken())
+        }
+        populateUserData()
+    }, []);
 
     const header = (
         <View style={styles.header}>
             <Image source={searchIcon} style={styles.icon} />
             <Image source={logo} style={styles.mediumLogo} />
-            <Image source={profileIcon} style={styles.profileIcon} />
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('Profile')
+                }}
+            >
+                <Image 
+                    source={profile_picture} 
+                    style={styles.profileIcon}
+                />
+            </TouchableOpacity>
         </View>
     )
 
     return (
         <View style={styles.container}>
             {header}
+            <Text
+                style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginVertical: 10 }}
+            >
+                Bonjour, {userData.username}
+            </Text>
             <ScrollView>
                 <View style={{ flex: 1 }}>
                     <View style={styles.scrollers}>

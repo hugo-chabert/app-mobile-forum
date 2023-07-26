@@ -1,18 +1,20 @@
 import axios from "axios";
-import { BASE_URL } from "../config/config";
+import { BASE_URL, API_URL } from "../config/config";
 
-async function create(titre, message, id_user) {
+async function create(titre, message, anime, id_user) {
     return await axios.post(`${BASE_URL}/posts/create`, {
         titre: titre,
         message: message,
+        selected_anime: anime,
         id_user: id_user,
     })
-        .then(async response => {
+        .then(response => {
             console.log('RES CREATE POST ==', response);
             return response
         })
         .catch(error => {
-            console.log('ERR CREATE POST ==', error.response);
+            // Encore une Axios NetworkError
+            console.log('ERR CREATE POST ==', error.toJSON());
             return error.response
         });
 }
@@ -51,6 +53,17 @@ async function getAllPostsByUserID(userID) {
         });
 }
 
+async function getAllPostsByAnime(anime) {
+    return await axios.get(`${BASE_URL}/posts/all/${anime}`)
+    .then(async response => {
+        return response
+    })
+    .catch(error => {
+        console.log("ERR GET POST BY ANIME ==", error.response);
+        return error.response
+    })
+}
+
 async function getPostByTitle(title) {
     return await axios.get(`${BASE_URL}/posts/title/${title}`)
         .then(async response => {
@@ -78,6 +91,7 @@ export default {
     getAllPosts,
     getPostByID,
     getAllPostsByUserID,
+    getAllPostsByAnime,
     getPostByTitle,
     deletePost,
 }

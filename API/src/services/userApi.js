@@ -6,7 +6,7 @@ require('dotenv').config();
 
 function getAll(req, res) {
     Users.findAll({
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        // attributes: { exclude: ['createdAt', 'updatedAt'] }
     })
     .then((users) => {
         res.json(users);
@@ -16,7 +16,7 @@ function getAll(req, res) {
 
 function getOne(req, res) {
     Users.findByPk(req.params.id, {
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        // attributes: { exclude: ['createdAt', 'updatedAt'] }
     })
     .then((users) => {
         res.json(users);
@@ -26,19 +26,26 @@ function getOne(req, res) {
 
 function register(req, res) {
     const { body } = req
-    // console.log(body)
-    // const { error } = userValidation(body)
-    // if (error) return res.status(401).json("Un des champs n'est pas valide")
-
+    // on hache le mot de passe
     body.password = bcrypt.hashSync(body.password, 10)
 
-    Users.create({...body})
-    .then(() => {
-        res.status(201).json({ msg: "Les ressources ont bien été créées" })
-    })
-    .catch(error => res.status(500).json(error))
+    // on va chercher dans la base de donnée si l'utilisateur existe déja
+    Users.findOne({ where: { email: body.email } })
+        .then(existingUser => {
+            if (existingUser) {
+                // L'e-mail existe déjà, renvoyer un message d'erreur approprié
+                return res.status(409).json({ error: "L'e-mail existe déjà en base de données." });
+            } else {
+                // L'e-mail n'existe pas encore, créer l'utilisateur
+                Users.create({ ...body })
+                .then(() => {
+                    res.status(201).json({ msg: "Les ressources ont bien été créées" });
+                })
+                .catch(error => res.status(500).json(error));
+            }
+            })
+            .catch(error => res.status(500).json(error));
 }
-
 function updateOne(req, res){
     // const { error } = userValidation(body)
     // if (error) return res.status(401).json("Un des champs n'est pas valide")
@@ -60,13 +67,19 @@ function updateOne(req, res){
 
 function deleteOne(req, res){
     Users.destroy({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     })
     .then((data) => {
-        if(data == 0) return res.status(404).json({msg : "Not Found"})
-        res.send("User deleted!")
+        if (data == 0) {
+            return res.status(404).json({ msg: "Not Found" });
+          }
+          res.send("User deleted!");
     })
-    .catch(error => res .status(500).json(error))
+    .catch(error => {
+        res.status(500).json(error)
+        console.log(error)
+    }
+    )
 }
 
 function login(req, res) {
@@ -83,7 +96,7 @@ function login(req, res) {
         if (result) {
             users.password = undefined;
             const jsontoken = jwt.sign({ result: users }, process.env.JWT_KEY, {
-                expiresIn: "1h"
+                expiresIn: "7d"
             });
             res.status(200).json({
                 success: 1,
@@ -103,8 +116,8 @@ function login(req, res) {
     })
 }
 
-function decodeToken(token) {
-    return jwt.decode(token);
+const decodeToken = (token) => {
+    console.log(jwt.decode(token))
 }
 
-module.exports = {getAll, getOne, register, updateOne, deleteOne, login}
+module.exports = {getAll, getOne, register, updateOne, deleteOne, login, decodeToken}
