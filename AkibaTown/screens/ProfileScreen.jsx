@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import { getUserDataFromToken } from '../utils/jwt'
+import UserCard from '../components/UserCard'
+import { deleteData, getData } from '../utils/storage'
+
 
 const ProfileScreen = () => {
     const [userData, setUserData] = React.useState({
@@ -13,17 +16,18 @@ const ProfileScreen = () => {
         profile_picture: "",
     });
 
-    React.useEffect(() => {
-        const populateData = async () => {
-            setUserData(await getUserDataFromToken());
-        }
-
-        populateData();
-    }, [userData])
 
     return (
         <View>
-            <Text>ProfileScreen</Text>
+            <UserCard />
+
+            <Button
+                title='Logout'
+                onPress={async () => {
+                    deleteData('token')
+                    console.log(await getData('token'))
+                }}
+            />
         </View>
     )
 }

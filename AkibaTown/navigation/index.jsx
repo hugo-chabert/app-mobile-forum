@@ -39,79 +39,79 @@ export const CustomTabBarButton = ({ children, onPress }) => (
     </TouchableOpacity>
 );
 
-export const Tabs = () => {
-    return (
-        <Tab.Navigator
-            screenOptions={{
-                tabBarStyle: {
-                    position: 'absolute',
-                    bottom: 25,
-                    left: 20,
-                    right: 20,
-                    backgroundColor: '#ffffff',
-                    borderRadius: 15,
-                    height: 90,
-                    ...styles.shadow
-                }
-            }}
-        >
-            <Tab.Screen name="Accueil" component={HomeScreen}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Image
-                                source={require('../assets/images/icons/home.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 25,
-                                    height: 25,
-                                }}
-                            />
-                        </View>
-                    )
-                }}
-            />
+// export const Tabs = () => {
+//     return (
+//         <Tab.Navigator
+//             screenOptions={{
+//                 tabBarStyle: {
+//                     position: 'absolute',
+//                     bottom: 25,
+//                     left: 20,
+//                     right: 20,
+//                     backgroundColor: '#ffffff',
+//                     borderRadius: 15,
+//                     height: 90,
+//                     ...styles.shadow
+//                 }
+//             }}
+//         >
+//             <Tab.Screen name="Accueil" component={HomeScreen}
+//                 options={{
+//                     tabBarIcon: ({ focused }) => (
+//                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+//                             <Image
+//                                 source={require('../assets/images/icons/home.png')}
+//                                 resizeMode='contain'
+//                                 style={{
+//                                     width: 25,
+//                                     height: 25,
+//                                 }}
+//                             />
+//                         </View>
+//                     )
+//                 }}
+//             />
 
-            < Tab.Screen name="Actualités" component={NewsScreen}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Image
-                                source={require('../assets/images/icons/news.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 25,
-                                    height: 25,
-                                }}
-                            />
-                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
-                                Actualités
-                            </Text>
-                        </View>
-                    ), headerShown: false
-                }} />
+//             < Tab.Screen name="Actualités" component={NewsScreen}
+//                 options={{
+//                     tabBarIcon: ({ focused }) => (
+//                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+//                             <Image
+//                                 source={require('../assets/images/icons/news.png')}
+//                                 resizeMode='contain'
+//                                 style={{
+//                                     width: 25,
+//                                     height: 25,
+//                                 }}
+//                             />
+//                             <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+//                                 Actualités
+//                             </Text>
+//                         </View>
+//                     ), headerShown: false
+//                 }} />
 
-            < Tab.Screen name="Équipes" component={TeamsScreen} options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <Image
-                            source={require('../assets/images/icons/team.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 25,
-                                height: 25,
-                            }}
-                        />
-                        <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
-                            Équipes
-                        </Text>
-                    </View>
-                ), headerShown: false
-            }} />
+//             < Tab.Screen name="Équipes" component={TeamsScreen} options={{
+//                 tabBarIcon: ({ focused }) => (
+//                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+//                         <Image
+//                             source={require('../assets/images/icons/team.png')}
+//                             resizeMode='contain'
+//                             style={{
+//                                 width: 25,
+//                                 height: 25,
+//                             }}
+//                         />
+//                         <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}>
+//                             Équipes
+//                         </Text>
+//                     </View>
+//                 ), headerShown: false
+//             }} />
 
-        </Tab.Navigator >
-    );
-}
+//         </Tab.Navigator >
+//     );
+// }
 
 export const styles = StyleSheet.create({
     shadow: {

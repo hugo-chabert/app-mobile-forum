@@ -96,7 +96,7 @@ function login(req, res) {
         if (result) {
             users.password = undefined;
             const jsontoken = jwt.sign({ result: users }, process.env.JWT_KEY, {
-                expiresIn: "1h"
+                expiresIn: "7d"
             });
             res.status(200).json({
                 success: 1,

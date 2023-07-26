@@ -22,6 +22,11 @@ import NewPostscreen from '../screens/NewPostScreen';
 import TeamsScreen from '../screens/TeamsScreen';
 import { AnimeSearchBar } from '../components/AnimeSearchBar';
 import { AnimeProvider } from '../context/AnimeContext';
+import { useUserContext } from '../context/userContext';
+import { getUserDataFromToken } from '../utils/jwt';
+import { deleteData } from '../utils/storage';
+import userApi from '../services/userApi';
+import CheckUser from '../components/CheckUser';
 
 function AuthNavigation() {
     return (
@@ -154,7 +159,7 @@ function AppNavigation() {
             <AppStack.Screen
                 name="Profile"
                 component={ProfileScreen}
-                options={{ 
+                options={{
                     headerShown: false,
                     tabBarItemStyle: { display: 'none' },
                 }}
@@ -164,25 +169,40 @@ function AppNavigation() {
 }
 
 export const getIsSignedIn = async () => {
-    return false;
+    const token = await getData('token');
+    console.log("token", token)
+    return token !== undefined ? true : false;
 };
 
 
-export const Navigator = () => {
+export const Navigator =  () => {
+    const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+   React.useEffect(() => {
+        const checkToken = async () => {
+            const signedIn = await getIsSignedIn();
+            setIsSignedIn(signedIn);
+        };
+        checkToken();
+    }, []);
+
     return (
         <UserProvider>
             {/* <AnimeProvider> */}
-                <PostProvider>
-                    <CommentProvider>
-                        <NavigationContainer>
-                            {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
-                            <RootStack.Navigator screenOptions={{ headerShown: false }}>
-                                <RootStack.Screen name='AuthNav' component={AuthNavigation} />
+            <PostProvider>
+                <CommentProvider>
+                    <NavigationContainer>
+                        {/* Mettre le 'headerShown' ici permet aux enfants de cacher leur header */}
+                        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+                            {isSignedIn ? (
                                 <RootStack.Screen name='AppNav' component={AppNavigation} />
-                            </RootStack.Navigator>
-                        </NavigationContainer>
-                    </CommentProvider>
-                </PostProvider>
+                            ) : (
+                                <RootStack.Screen name='AuthNav' component={AuthNavigation} />
+                            )}
+                        </RootStack.Navigator>
+                    </NavigationContainer>
+                </CommentProvider>
+            </PostProvider>
             {/* </AnimeProvider> */}
         </UserProvider>
     )

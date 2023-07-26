@@ -7,6 +7,7 @@ import fakeData from '../constants/FakeData';
 const searchIcon = require('../assets/images/icons/search.png')
 const logo = require('../assets/images/AkibaTownLogo.png')
 const profileIcon = require('../assets/images/profile/zoro.jpg')
+const profile_picture = require('../assets/images/profile/default_profile_icon.jpg')
 import { getData } from '../utils/storage';
 import { getUserDataFromToken } from '../utils/jwt';
 
@@ -23,12 +24,11 @@ const HomeScreen = ({ navigation }) => {
     });
 
     React.useEffect(() => {
-        const populateData = async () => {
-            setUserData(await getUserDataFromToken());
+        async function populateUserData() {
+            setUserData(await getUserDataFromToken())
         }
-
-        populateData();
-    }, [userData])
+        populateUserData()
+    }, []);
 
     const header = (
         <View style={styles.header}>
@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
                 }}
             >
                 <Image 
-                    source={profileIcon ?? userData.profile_picture} 
+                    source={profile_picture} 
                     style={styles.profileIcon}
                 />
             </TouchableOpacity>

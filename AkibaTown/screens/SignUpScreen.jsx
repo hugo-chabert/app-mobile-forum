@@ -107,12 +107,6 @@ const SignUpScreen = ({ navigation }) => {
         });
     }
 
-    React.useEffect(() => {
-        if(getUserDataFromToken() !== null) {
-            navigation.replace("AppNav");
-        }
-    }, [])
-
     return (
         <View style={styles.container}>
 
