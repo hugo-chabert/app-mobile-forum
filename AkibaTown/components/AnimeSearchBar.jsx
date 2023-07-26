@@ -6,7 +6,7 @@ import animeApi from "../services/animeApi";
 import AnimeSearchFilter from "./AnimeSearchFilter";
 
 
-export const AnimeSearchBar = () => {
+export const AnimeSearchBar = ({ getSelectedAnime }) => {
     const [input, setInput] = React.useState('')
     const [searchAnimeData, setSearchAnimeData] = React.useState([])
     const [animeData, setAnimeData] = React.useState({})
@@ -23,7 +23,10 @@ export const AnimeSearchBar = () => {
 
     const handleAnimePress = (_animeData) => {
         setAnimeData(_animeData)
-        setSearchValue(_animeData.title)
+        setSearchValue(animeData.title)
+        // todo: les données de l'animeData se perdent entre les fonctions callback...
+        console.log("animeData", animeData)
+        getSelectedAnime(animeData)
     }
 
 

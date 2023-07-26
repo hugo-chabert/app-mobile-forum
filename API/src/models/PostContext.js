@@ -14,11 +14,10 @@ const Posts = db.define('posts', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    // PAS DE CHAMP 'DATE', SEQUELIZE CREE 'createdAt'
-    // date: {
-    //     type: DataTypes.DATE,
-    //     allowNull: false
-    // },
+    selected_anime: {
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
     message: {
         type: Sequelize.TEXT,
         allowNull: false

@@ -32,23 +32,31 @@ function handleTouch() {
 
 
 const NewPostscreen = ({ navigation }) => {
-    const [selected, setSelected] = React.useState("");
-    const [postTitle, setPostTitle] = React.useState("");
-    const [postMessage, setPostMessage] = React.useState("");
-    const [postUserID, setPostUserID] = React.useState(null)
+    const [postTitle, setPostTitle] = React.useState('')
+    const [postAnime, setPostAnime] = React.useState({})
+    const [postMessage, setPostMessage] = React.useState('')
 
-    const data = [
-        { key: '1', value: 'Combat', disabled: true },
-        { key: '2', value: 'Naruto' },
-        { key: '3', value: 'One piece' },
-        { key: '4', value: 'Baki' },
-        { key: '5', value: 'DBZ' },
-        { key: '6', value: 'Sport', disabled: true },
-        { key: '7', value: 'Kuroko Basket' },
-        { key: '8', value: 'Blue Lock' },
-        { key: '9', value: 'SlamDunk ' },
-        { key: '10', value: 'Inazuma eleven ' },
-    ]
+    const [userData, setUserData] = React.useState({
+        id: 0,
+        username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        favorite_anime: "",
+        profile_picture: "",
+    });
+
+    React.useEffect(() => {
+        const populateData = async () => {
+            setUserData(await getUserDataFromToken());
+        }
+
+        populateData();
+    }, [userData])
+
+    const handleAnimeSelection = (anime) => {
+        setPostAnime(anime)
+    }
 
     const postContext = usePostContext();
 
@@ -90,7 +98,7 @@ const NewPostscreen = ({ navigation }) => {
 
 
                     {/* Input Manga */}
-                    <AnimeSearchBar/>
+                    <AnimeSearchBar getSelectedAnime={handleAnimeSelection}/>
 
 
                     {/* Text Area */}
@@ -123,10 +131,16 @@ const NewPostscreen = ({ navigation }) => {
                     {/* Bouton Publier */}
                     <View style={styles.button}>
                         <TouchableOpacity
-                            onPress={() => {
+                            onPress={async () => {
+                                console.log(`{"postTitle": ${postTitle}, "postAnime": ${postAnime}, "postMessage": ${postMessage}, "userID": ${userData.id}}`)
 
                                 try {
-                                    postContext.create(postTitle, postMessage, 5)
+                                    if(await postContext.create(postTitle, postMessage, postAnime, userData.id)) {
+                                        alert("Création du post réussie !")
+                                    }
+                                    else {
+                                        alert("Erreur lors de la création du post")
+                                    }
                                 }
                                 catch(e) {
                                     console.log(e)
