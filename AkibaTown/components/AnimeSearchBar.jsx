@@ -24,6 +24,7 @@ export const AnimeSearchBar = ({ getSelectedAnime }) => {
     const handleAnimePress = (_animeData) => {
         setAnimeData(_animeData)
         setSearchValue(animeData.title)
+        // todo: les données de l'animeData se perdent entre les fonctions callback...
         console.log("animeData", animeData)
         getSelectedAnime(animeData)
     }
