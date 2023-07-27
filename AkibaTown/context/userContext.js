@@ -50,7 +50,7 @@ const UserProvider = ({ children }) => {
                 errorMessage: error.message
             });
     
-            console.log(error.message);
+            console.error(error.message);
         }
     };
 
@@ -87,7 +87,7 @@ const UserProvider = ({ children }) => {
                 return JSON.parse(value)
             }
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
     }
 
@@ -95,7 +95,7 @@ const UserProvider = ({ children }) => {
         try {
             await AsyncStorage.removeItem('token')
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
     }
 

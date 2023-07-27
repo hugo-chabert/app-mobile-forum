@@ -1,10 +1,17 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity, ImageBackground } from "react-native";
 import PostPreviewCard from "./PostPreviewCard";
 
-import { Post, Props } from '../constants/Interfaces';
+const SideScroller = ({ title, data, navigation, type }) => {
 
-const SideScroller = ({ title, dataToShow, navigation, type }: Props) => {
+    const [posts, setPosts] = React.useState();
+
+
+    React.useEffect(() => {
+        console.log("Data (SideScroller)", data)
+        console.log("Posts (SideScroller)", posts)
+        setPosts(data)
+    }, [data])
 
     const bandHeader = (
         <View style={styles.bandHeader}>
@@ -28,17 +35,15 @@ const SideScroller = ({ title, dataToShow, navigation, type }: Props) => {
     return (
         <View style={styles.container}>
             {bandHeader}
-            <ScrollView style={styles.content} horizontal={true}>
-                {dataToShow.map((post: Post, index: number) => {
-                    return (
-                        <TouchableOpacity
-                            key={index} onPress={() => navigation.navigate('Post', { post: post })}
-                            style={[styles.content, { alignItems: 'flex-start' }]}>
-                            <PostPreviewCard title="" type={type} dataToShow={post} navigation={navigation}/>
-                        </TouchableOpacity>
-                    )
-                })}
-            </ScrollView>
+            <FlatList
+                horizontal
+                style={styles.content}
+                data={posts}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                    <PostPreviewCard type={type} data={item} />
+                )}
+            />
         </View>
     )
 }

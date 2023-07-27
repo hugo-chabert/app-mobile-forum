@@ -16,7 +16,7 @@ async function login(email, password) {
 }
 
 async function register(data) {
-    console.log("services/userApi.js/register()", data)
+    // console.log("services/userApi.js/register()", data)
     return await axios.post(`${BASE_URL}/users/register`, data, { headers: { "Content-Type": "application/json" }})
     .then(response => {
         console.log(response)
@@ -24,6 +24,18 @@ async function register(data) {
     })
     .catch(error => {
         console.log('ERR REGISTER ==', error.response.data);
+        return error.response
+    });
+}
+
+async function getUserByID(id) {
+    return await axios.get(`${BASE_URL}/users/${id}`, data)
+    .then(response => {
+        console.log(response)
+        return response
+    })
+    .catch(error => {
+        console.log('ERR GET USER BY ID ==', error.response.data);
         return error.response
     });
 }
@@ -45,5 +57,6 @@ async function register(data) {
 export default {
     login,
     register,
+    getUserByID,
     // update,
 }

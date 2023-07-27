@@ -17,7 +17,7 @@ export const AnimeSearchBar = ({ getSelectedAnime }) => {
             const response = await animeApi.getAnimeByTitle(str);
             return response;
         } catch (error) {
-            console.log("ERROR:", error);
+            console.error("ERROR:", error);
         }
     };
 
@@ -25,7 +25,7 @@ export const AnimeSearchBar = ({ getSelectedAnime }) => {
         setAnimeData(_animeData)
         setSearchValue(animeData.title)
         // todo: les données de l'animeData se perdent entre les fonctions callback...
-        console.log("animeData", animeData)
+        // console.log("animeData", animeData)
         getSelectedAnime(animeData)
     }
 
@@ -37,7 +37,7 @@ export const AnimeSearchBar = ({ getSelectedAnime }) => {
             setSearchAnimeData(data);
         })
         .catch(err => {
-            console.log(err)
+            console.error(err)
         })
 
     }, [input])

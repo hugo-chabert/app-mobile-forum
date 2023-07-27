@@ -4,13 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import HomeScreen from '../screens/HomeScreen';
-import NewPostscreen from '../screens/NewPostScreen';
-import NewSubjectScreen from '../screens/NewPostScreen';
-import TeamsScreen from '../screens/TeamsScreen';
-import NewsScreen from '../screens/NewsScreen';
-import ForumScreen from '../screens/ForumScreen';
-
 export const RootStack = createNativeStackNavigator();
 export const AuthStack = createNativeStackNavigator();
 export const AppStack = createBottomTabNavigator();

@@ -170,7 +170,6 @@ function AppNavigation() {
 
 export const getIsSignedIn = async () => {
     const token = await getData('token');
-    console.log("token", token)
     return token !== undefined ? true : false;
 };
 
