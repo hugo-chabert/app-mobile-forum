@@ -5,7 +5,7 @@ import UserCard from '../components/UserCard.jsx'
 import { deleteData, getData } from '../utils/storage'
 
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
     const [userData, setUserData] = React.useState({
         id: 0,
         username: "",
@@ -26,6 +26,7 @@ const ProfileScreen = () => {
                 onPress={async () => {
                     deleteData('token')
                     console.log(await getData('token'))
+                    navigation.replace('AuthNav')
                 }}
             />
         </View>

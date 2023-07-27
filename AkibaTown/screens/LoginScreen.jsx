@@ -175,7 +175,7 @@ const LoginScreen = ({ navigation }) => {
                                 if (token) {
                                     const decoded = jwt_decode(token)
                                     console.log(decoded)
-                                    // navigation.replace("AppNav");
+                                    navigation.replace("AppNav");
                                 }
                             }
                             catch (e) {

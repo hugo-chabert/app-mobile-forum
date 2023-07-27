@@ -139,10 +139,10 @@ const NewPostscreen = ({ navigation }) => {
 
                                 try {
                                     if(await postContext.create(postTitle, postMessage, postAnime, userData.id)) {
-                                        alert("Création du post réussie !")
+                                        alert("Erreur lors de la création du post")
                                     }
                                     else {
-                                        alert("Erreur lors de la création du post")
+                                        alert("Création du post réussie !")
                                     }
                                 }
                                 catch(e) {
