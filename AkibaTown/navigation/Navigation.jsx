@@ -195,8 +195,13 @@ export const Navigator =  () => {
                         <RootStack.Navigator screenOptions={{ headerShown: false }}>
                             {/* {isSignedIn ? ( */}
                                 <RootStack.Screen name='AuthNav' component={AuthNavigation} />
+<<<<<<< Updated upstream
                             {/* ) : ( */}
                                 <RootStack.Screen name='AppNav' component={AppNavigation} />
+=======
+                                <RootStack.Screen name='AppNav' component={AppNavigation} />
+                            {/* ) : ( */}
+>>>>>>> Stashed changes
                             {/* )} */}
                         </RootStack.Navigator>
                     </NavigationContainer>

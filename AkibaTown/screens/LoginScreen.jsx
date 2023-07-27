@@ -172,6 +172,7 @@ const LoginScreen = ({ navigation }) => {
                             try {
                                 userContext.login(data.email, data.password);
                                 const token = await getData("token");
+                                console.log(token)
                                 if (token) {
                                     const decoded = jwt_decode(token)
                                     console.log(decoded)

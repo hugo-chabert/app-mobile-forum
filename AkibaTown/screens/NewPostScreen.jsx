@@ -141,9 +141,6 @@ const NewPostscreen = ({ navigation }) => {
                                     if(await postContext.create(postTitle, postMessage, postAnime, userData.id)) {
                                         alert("Création du post réussie !")
                                     }
-                                    else {
-                                        alert("Erreur lors de la création du post")
-                                    }
                                 }
                                 catch(e) {
                                     console.error("Publier", e)
