@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import { getUserDataFromToken } from '../utils/jwt'
-import UserCard from '../components/UserCard'
+import UserCard from '../components/UserCard.jsx'
 import { deleteData, getData } from '../utils/storage'
 
 

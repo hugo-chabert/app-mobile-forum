@@ -22,8 +22,8 @@ async function create(titre, message, anime, id_user) {
 async function getAllPosts() {
     return await axios.get(`${BASE_URL}/posts/all`)
         .then(async response => {
-            console.log('RES GET ALL POSTS ==', response.data);
-            return response
+            // console.log('RES GET ALL POSTS ==', response.data);
+            return response.data
         })
         .catch(error => {
             console.log('ERR GET ALL POSTS ==', error.response);

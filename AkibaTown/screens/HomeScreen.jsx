@@ -10,6 +10,7 @@ const profileIcon = require('../assets/images/profile/zoro.jpg')
 const profile_picture = require('../assets/images/profile/default_profile_icon.jpg')
 import { getData } from '../utils/storage';
 import { getUserDataFromToken } from '../utils/jwt';
+import postApi from '../services/postApi';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -23,11 +24,19 @@ const HomeScreen = ({ navigation }) => {
         profile_picture: "",
     });
 
+    const [posts, setPosts] = React.useState([])
+
+    async function populateUserData() {
+        setUserData(await getUserDataFromToken())
+    }
+
+    async function populatePosts() {
+        setPosts(await postApi.getAllPosts());
+    }
+
     React.useEffect(() => {
-        async function populateUserData() {
-            setUserData(await getUserDataFromToken())
-        }
         populateUserData()
+        populatePosts().then(console.log("Posts (HomeScreen)", posts))
     }, []);
 
     const header = (
@@ -39,8 +48,8 @@ const HomeScreen = ({ navigation }) => {
                     navigation.navigate('Profile')
                 }}
             >
-                <Image 
-                    source={profile_picture} 
+                <Image
+                    source={profile_picture}
                     style={styles.profileIcon}
                 />
             </TouchableOpacity>
@@ -59,23 +68,17 @@ const HomeScreen = ({ navigation }) => {
                 <View style={{ flex: 1 }}>
                     <View style={styles.scrollers}>
                         <SideScroller
-                            title="Derniers messages"
-                            type='message'
-                            dataToShow={fakeData.messages}
-                            navigation={navigation}
-                        />
-                        <SideScroller
                             title="Derniers sujets"
                             type='post'
-                            dataToShow={fakeData.posts}
+                            data={posts}
                             navigation={navigation}
                         />
-                        <SideScroller
+                        {/* <SideScroller
                             title="Derniers inscrits"
                             type='user'
-                            dataToShow={fakeData.users}
+                            data={fakeData.users}
                             navigation={navigation}
-                        />
+                        /> */}
                     </View>
                 </View>
             </ScrollView>
